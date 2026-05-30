@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent 速查手册</title>
+    <style>
+        :root {
+            --bg: #0d1117; --card: #161b22; --border: #30363d;
+            --text: #c9d1d9; --text2: #8b949e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+            background: var(--bg); color: var(--text);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            line-height: 1.6;
+        }
+        .container { text-align: center; padding: 40px 20px; }
+        h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 8px; }
+        h1 span { color: #3fb950; }
+        p.sub { color: var(--text2); font-size: 1.1rem; margin-bottom: 48px; }
+        .cards { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+        .card {
+            background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 36px 32px; width: 300px; text-decoration: none; color: var(--text);
+            transition: all 0.2s; text-align: left;
+        }
+        .card:hover { border-color: #3fb950; transform: translateY(-2px); }
+        .card h2 { font-size: 1.3rem; margin-bottom: 8px; }
+        .card .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .card .dot.green { background: #3fb950; }
+        .card .dot.purple { background: #a78bfa; }
+        .card p { color: var(--text2); font-size: 0.92rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span>Hermes</span> Agent 速查手册</h1>
+        <p class="sub">CLI命令 · 会话命令 · 内置技能 · 可用插件 — 两种风格，内容相同</p>
+        <div class="cards">
+            <a href="/dark/" class="card">
+                <h2><span class="dot green"></span>极简深色 · 绿</h2>
+                <p>深色背景 + 绿色强调。护眼，适合长时间查阅。行式列表，信息密度高。</p>
+            </a>
+            <a href="/purple/" class="card">
+                <h2><span class="dot purple"></span>暗色几何 · 紫</h2>
+                <p>渐变标题 + 紫色光晕。现代感强，卡片网格布局，视觉层次丰富。</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

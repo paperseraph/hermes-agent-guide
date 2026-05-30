@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent 命令速查手册</title>
+    <meta name="description" content="Hermes Agent 完整命令、技能与插件速查手册 — 新人友好版">
+    <meta name="theme-color" content="#a78bfa">
+    <style>
+        :root {
+            --bg: #0a0a0b; --bg2: #111113; --bg3: #1a1a1e;
+            --text: #e4e4e7; --text2: #a1a1aa;
+            --accent: #a78bfa; --accent2: #7c3aed;
+            --border: #27272a; --hover: #18181b;
+            --card: #111113; --code-bg: #1a1a1e;
+            --glow: rgba(167,139,250,0.10);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, 'Noto Sans SC', sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px;
+        }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(167,139,250,0.07), transparent),
+                radial-gradient(ellipse 50% 80% at 80% 80%, rgba(124,58,237,0.05), transparent);
+            pointer-events: none; z-index: 0;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
+        header {
+            padding: 64px 28px 44px; text-align: center; position: relative; margin-bottom: 40px;
+        }
+        header::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px;
+        }
+        header h1 {
+            font-size: 3rem; font-weight: 800; letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #e4e4e7 0%, #a78bfa 50%, #c4b5fd 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 12px;
+        }
+        header p { color: var(--text2); font-size: 1.1rem; font-weight: 400; }
+        nav {
+            display: flex; gap: 2px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 48px; position: sticky; top: 0;
+            background: rgba(10,10,11,0.85); backdrop-filter: blur(20px);
+            padding: 16px 0; z-index: 10; border-bottom: 1px solid var(--border);
+        }
+        nav a {
+            color: var(--text2); text-decoration: none; padding: 8px 20px;
+            border-radius: 6px; font-size: 0.92rem; font-weight: 500;
+            transition: all 0.2s; letter-spacing: 0.01em;
+        }
+        nav a:hover { color: #fff; background: var(--bg3); }
+        nav a.active { color: #fff; background: var(--accent2); }
+        section { margin-bottom: 60px; }
+        section h2 {
+            font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: -0.02em;
+            padding-bottom: 16px; border-bottom: 1px solid var(--border);
+            margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
+        }
+        .section-desc { color: var(--text2); font-size: 1rem; margin-bottom: 28px; }
+        .section-desc code { background: var(--code-bg); padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; }
+        .category { margin-bottom: 42px; }
+        .category h3 {
+            font-size: 1.1rem; color: var(--accent); margin-bottom: 16px;
+            font-weight: 600; display: flex; align-items: center; gap: 8px;
+        }
+        .category h3::before {
+            content: ''; display: inline-block; width: 7px; height: 7px;
+            background: var(--accent); border-radius: 50%;
+        }
+        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 8px; }
+        .cmd-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+            padding: 18px 20px; transition: all 0.2s; position: relative; overflow: hidden;
+        }
+        .cmd-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--glow); opacity: 0; transition: opacity 0.3s;
+        }
+        .cmd-card:hover { border-color: var(--accent2); }
+        .cmd-card:hover::before { opacity: 1; }
+        .cmd-card > * { position: relative; z-index: 1; }
+        .cmd-card .code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem; color: #c4b5fd; margin-bottom: 8px; word-break: break-all;
+            background: var(--code-bg); padding: 2px 8px; border-radius: 4px; display: inline-block;
+        }
+        .cmd-card .desc { font-size: 1rem; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+        .cmd-card .scenario { font-size: 0.92rem; color: var(--text2); line-height: 1.65; }
+        /* Skills */
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 6px; }
+        .skill-item {
+            padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        .skill-item:hover { background: var(--hover); }
+        .skill-item .skill-name {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+            color: #c4b5fd; font-weight: 500; margin-bottom: 4px;
+        }
+        .skill-item .skill-desc { font-size: 0.92rem; color: var(--text2); line-height: 1.6; }
+        /* Plugins */
+        .plugin-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .plugin-table th {
+            text-align: left; padding: 12px 16px; background: var(--bg2);
+            color: var(--accent); font-weight: 600; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 0.8px;
+        }
+        .plugin-table td { padding: 10px 16px; border-bottom: 1px solid var(--border); }
+        .plugin-table tr:hover td { background: var(--hover); }
+        footer {
+            text-align: center; padding: 40px; color: var(--text2); font-size: 0.9rem;
+            border-top: 1px solid var(--border); margin-top: 64px;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 768px) {
+            .cmd-grid, .skill-grid { grid-template-columns: 1fr; }
+            .container { padding: 16px; }
+            header h1 { font-size: 1.9rem; }
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <h1><span>Hermes</span> Agent 速查手册</h1>
+        <p>CLI命令 · 会话斜杠命令 · 内置技能 · 可用插件 — 新手友好，详细说明</p>
+    </header>
+    <div class="container">
+        <nav id="nav">
+            <a href="#cli" class="active">CLI命令</a>
+            <a href="#slash">会话命令</a>
+            <a href="#skills">内置技能</a>
+            <a href="#plugins">可用插件</a>
+        </nav>
+
+        <section id="cli">
+            <h2><span class="icon">🖥️</span> CLI 命令行参考</h2>
+            <p class="section-desc">在终端输入的命令。每条命令包含：用法、功能说明、典型使用场景。</p>
+            <div class="category"><h3>启动</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes</div><div class="desc">启动交互式聊天会话</div><div class="scenario">最常用的启动方式，直接进入对话模式。就像打开一个智能终端，可以和 Agent 自由对话、问问题、让它帮你写代码、查资料、管理文件。每次启动都是新会话，上下文干净。</div></div>
+<div class="cmd-card"><div class="code">hermes chat -q &quot;问题&quot;</div><div class="desc">单次查询，非交互模式，问完即退出</div><div class="scenario">适合脚本调用或定时任务。不进入对话循环，Agent 回答问题后立即退出。比如在 bash 脚本里用 hermes 处理数据、在 cron 定时任务里让 Agent 每天生成报告。</div></div>
+<div class="cmd-card"><div class="code">hermes --resume SESSION</div><div class="desc">恢复指定 ID 的会话，继续之前未完成的工作</div><div class="scenario">代码写到一半、分析做到一半，第二天用这个命令无缝继续。SESSION ID 可以通过 hermes sessions list 查看。Agent 会重新加载之前的完整对话历史。</div></div>
+<div class="cmd-card"><div class="code">hermes --continue [名称]</div><div class="desc">恢复最近会话或按名称搜索恢复</div><div class="scenario">比 --resume 更友好，不需要记 ID。直接 hermes --continue 恢复最近一次对话，或 hermes --continue &quot;项目A&quot; 按名称搜索。</div></div>
+<div class="cmd-card"><div class="code">hermes --profile NAME</div><div class="desc">使用指定配置文件启动，切换不同身份/环境</div><div class="scenario">你可以在不同场景用不同配置：工作用工作 profile（连公司 API），个人用个人 profile（用自己的 key）。每个 profile 有独立的配置、技能和记忆。</div></div>
+<div class="cmd-card"><div class="code">hermes --yolo</div><div class="desc">跳过所有危险命令的确认提示，自动执行</div><div class="scenario">适合信任度高的自动化场景。正常模式下 Agent 执行 rm、chmod 等危险命令会先确认，加 --yolo 直接执行。慎用，建议只在沙箱环境或定时任务中使用。</div></div>
+<div class="cmd-card"><div class="code">hermes --skill NAME</div><div class="desc">启动时预加载指定技能，直接进入专项工作模式</div><div class="scenario">比如 hermes --skill a-stock-intelligence-agent 启动后就直接具备 A 股分析能力。省去进入聊天后再加载技能的步骤。</div></div>
+<div class="cmd-card"><div class="code">hermes --worktree</div><div class="desc">隔离 git 工作树模式，并行处理多个代码分支</div><div class="scenario">如果你同时在改多个 PR 或多个 feature 分支，每个 --worktree 实例操作独立的工作目录，互不干扰。</div></div>
+</div></div>
+<div class="category"><h3>模型</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes model</div><div class="desc">交互式选择模型和提供商，可视化切换</div><div class="scenario">打开一个 TUI 菜单，列出你所有已配置的模型（DeepSeek、Claude、GPT 等），方向键选择，回车切换。适合想试试不同模型效果的时候。</div></div>
+<div class="cmd-card"><div class="code">hermes chat -m MODEL</div><div class="desc">指定模型进行对话，临时覆盖默认模型</div><div class="scenario">比如日常用便宜的 DeepSeek，遇到复杂任务临时切换到 Claude：hermes chat -m claude-sonnet-4。只影响这一次对话。</div></div>
+<div class="cmd-card"><div class="code">hermes chat --provider P</div><div class="desc">强制指定 API 提供商</div><div class="scenario">同一个模型可能有多个供应商（如通过 OpenRouter 或直接 API），用这个调参 API 路由。也用于 API 额度管理，在多个供应商之间切换。</div></div>
+</div></div>
+<div class="category"><h3>配置</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes setup</div><div class="desc">交互式配置向导，一步步设置 Hermes</div><div class="scenario">第一次安装 Hermes 后必跑的命令。向导会引导你：选择模型、配置 API Key、设置消息平台等。也可以随时重跑修改配置。</div></div>
+<div class="cmd-card"><div class="code">hermes config</div><div class="desc">查看当前完整配置</div><div class="scenario">打印所有配置项的当前值。快速确认模型、工具集、网关等设置是否正确。</div></div>
+<div class="cmd-card"><div class="code">hermes config edit</div><div class="desc">用默认编辑器打开 config.yaml 手动修改</div><div class="scenario">适合需要批量修改配置或调整高级选项的情况。会自动打开记事本/vim/vscode 等系统默认编辑器。</div></div>
+<div class="cmd-card"><div class="code">hermes config set KEY VAL</div><div class="desc">命令行直接设置单个配置项</div><div class="scenario">不需要打开编辑器，一行命令搞定。比如 hermes config set model claude-sonnet-4。适合脚本化配置管理。</div></div>
+<div class="cmd-card"><div class="code">hermes config path</div><div class="desc">打印配置文件所在路径</div><div class="scenario">想知道 config.yaml 到底在哪？这个命令告诉你绝对路径。默认在 ~/.hermes/config.yaml。</div></div>
+<div class="cmd-card"><div class="code">hermes config check</div><div class="desc">检查配置完整性和版本兼容性</div><div class="scenario">Hermes 升级后，有些配置项可能过时或缺失。这个命令会扫描并报告哪些配置需要更新。</div></div>
+<div class="cmd-card"><div class="code">hermes config migrate</div><div class="desc">自动将旧版本配置迁移到新版本格式</div><div class="scenario">升级 Hermes 后运行，自动把旧配置转成新格式，不需要手动改 yaml。</div></div>
+<div class="cmd-card"><div class="code">hermes doctor [--fix]</div><div class="desc">全面健康检查：依赖、环境、配置</div><div class="scenario">Hermes 跑不起来？先跑这个。检查 Python 版本、Node.js、npm、各依赖是否就绪。加 --fix 自动尝试修复常见问题。</div></div>
+<div class="cmd-card"><div class="code">hermes status [--all]</div><div class="desc">显示所有组件运行状态</div><div class="scenario">查看网关是否在线、有哪些定时任务在跑、各消息平台连接状态。加 --all 显示详细信息。</div></div>
+</div></div>
+<div class="category"><h3>认证</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes auth</div><div class="desc">交互式管理所有 API 凭证</div><div class="scenario">一个 TUI 界面管理所有模型供应商的 API Key。添加、删除、查看，不用手改配置文件。</div></div>
+<div class="cmd-card"><div class="code">hermes auth add PROVIDER</div><div class="desc">为指定供应商添加 API Key 或 OAuth 凭证</div><div class="scenario">比如 hermes auth add deepseek 然后输入 API Key。支持 API Key、OAuth Token 等多种认证方式。</div></div>
+<div class="cmd-card"><div class="code">hermes auth list</div><div class="desc">列出所有已配置的认证信息</div><div class="scenario">查看你已经接入了哪些模型供应商，哪些有有效凭证。不会显示密钥明文。</div></div>
+<div class="cmd-card"><div class="code">hermes auth remove P</div><div class="desc">删除某个供应商的认证凭证</div><div class="scenario">API Key 过期或想换 Key 时使用。先 remove 旧的，再 add 新的。</div></div>
+</div></div>
+<div class="category"><h3>工具</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes tools</div><div class="desc">交互式 TUI 管理工具集的启用/禁用</div><div class="scenario">Hermes 有很多工具集（浏览器、终端、Python 执行等）。这个命令打开可视化界面，方向键选择、空格切换启禁。</div></div>
+<div class="cmd-card"><div class="code">hermes tools list</div><div class="desc">列出所有工具集及启用状态</div><div class="scenario">快速查看当前有哪些工具可用。终端输出，一目了然。</div></div>
+<div class="cmd-card"><div class="code">hermes tools enable N</div><div class="desc">启用某个工具集（如 browser、vision）</div><div class="scenario">默认有些工具是关闭的。比如想用浏览器自动化，先 hermes tools enable browser。</div></div>
+<div class="cmd-card"><div class="code">hermes tools disable N</div><div class="desc">禁用某个工具集，减少 token 消耗</div><div class="scenario">不需要的工具关掉可以节约上下文窗口。比如不写代码的时候可以关掉 terminal。</div></div>
+</div></div>
+<div class="category"><h3>技能</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes skills list</div><div class="desc">列出本地已安装的所有技能</div><div class="scenario">技能是 Hermes 的专业知识包。这个命令看本地装了哪些，每个技能的名字和简介。</div></div>
+<div class="cmd-card"><div class="code">hermes skills search Q</div><div class="desc">在技能市场中搜索技能</div><div class="scenario">不知道有没有你需要的技能？搜一下。比如 hermes skills search &quot;python 量化&quot; 搜索量化交易相关技能。</div></div>
+<div class="cmd-card"><div class="code">hermes skills install ID</div><div class="desc">从技能市场安装指定技能</div><div class="scenario">找到想要的技能后，用 ID 安装。比如 hermes skills install akshare-stock。安装后需要 /reset 刷新。</div></div>
+<div class="cmd-card"><div class="code">hermes skills inspect ID</div><div class="desc">预览技能内容，不安装</div><div class="scenario">安装前想先看看技能里有什么？inspect 展示完整内容但不安装，看完再决定要不要装。</div></div>
+<div class="cmd-card"><div class="code">hermes skills config</div><div class="desc">按平台配置技能的启用/禁用</div><div class="scenario">同一个技能可以只在特定平台生效。比如「飞书集成」技能只在飞书平台启用，CLI 端不加载。</div></div>
+<div class="cmd-card"><div class="code">hermes skills check</div><div class="desc">检查已安装技能是否有更新</div><div class="scenario">技能作者可能发布了新版本。这个命令扫描本地技能并标记哪些需要更新。</div></div>
+<div class="cmd-card"><div class="code">hermes skills update</div><div class="desc">批量更新所有过期技能到最新版</div><div class="scenario">一键升级所有可以更新的技能。建议定期运行保持技能最新。</div></div>
+<div class="cmd-card"><div class="code">hermes skills uninstall N</div><div class="desc">卸载不再需要的技能</div><div class="scenario">清理不用的技能减少加载时间。卸载后不影响已有对话。</div></div>
+<div class="cmd-card"><div class="code">hermes skills publish PATH</div><div class="desc">将本地技能发布到技能注册表</div><div class="scenario">你写了一个好用的技能想分享给社区？运行这个命令发布。需要先在技能市场注册账号。</div></div>
+<div class="cmd-card"><div class="code">hermes skills browse</div><div class="desc">浏览技能市场中所有可用技能</div><div class="scenario">打开一个交互式浏览器，可以按分类、热度、评分筛选。发现你不知道但可能需要的技能。</div></div>
+<div class="cmd-card"><div class="code">hermes skills tap add R</div><div class="desc">添加第三方 GitHub 仓库作为技能来源</div><div class="scenario">除了官方技能市场，还可以接入社区维护的技能仓库。比如某人维护的 A 股技能合集。</div></div>
+</div></div>
+<div class="category"><h3>MCP</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes mcp serve</div><div class="desc">将 Hermes 作为 MCP 服务器运行，供其他工具调用</div><div class="scenario">MCP（Model Context Protocol）是 AI 工具间的通用协议。启动这个模式后，VS Code、Cursor 等 IDE 可以直接调用 Hermes 的能力。</div></div>
+<div class="cmd-card"><div class="code">hermes mcp add NAME</div><div class="desc">添加外部 MCP 服务器，扩展工具集</div><div class="scenario">接入外部 MCP 服务（如文件系统服务、数据库查询服务），Hermes 就能使用这些服务提供的工具。</div></div>
+<div class="cmd-card"><div class="code">hermes mcp remove NAME</div><div class="desc">移除已配置的 MCP 服务器</div><div class="scenario">不再需要某个 MCP 服务时删除，减少不必要的连接和 token 消耗。</div></div>
+<div class="cmd-card"><div class="code">hermes mcp list</div><div class="desc">列出所有已添加的 MCP 服务器</div><div class="scenario">查看当前接入了哪些外部 MCP 服务，以及各服务的连接状态。</div></div>
+<div class="cmd-card"><div class="code">hermes mcp test NAME</div><div class="desc">测试与指定 MCP 服务器的连接</div><div class="scenario">添加 MCP 服务后，先测试连接是否正常。会发送一个 ping 请求并报告结果。</div></div>
+<div class="cmd-card"><div class="code">hermes mcp configure NAME</div><div class="desc">选择性地启用/禁用 MCP 服务提供的工具</div><div class="scenario">一个 MCP 服务可能提供几十个工具，你只需要其中几个。这个命令让你精细控制。</div></div>
+</div></div>
+<div class="category"><h3>网关</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes gateway run</div><div class="desc">前台启动网关进程，日志直接输出到终端</div><div class="scenario">调试网关问题时用这个。能看到所有连入的消息、错误日志。退出终端网关就停。</div></div>
+<div class="cmd-card"><div class="code">hermes gateway install</div><div class="desc">将网关安装为系统后台服务，开机自启</div><div class="scenario">生产环境用这个。Windows 上会创建计划任务，Linux/Mac 上会创建 systemd/launchd 服务。</div></div>
+<div class="cmd-card"><div class="code">hermes gateway start/stop</div><div class="desc">启动或停止后台网关服务</div><div class="scenario">控制网关运行状态。修改配置后通常需要 restart 来生效。</div></div>
+<div class="cmd-card"><div class="code">hermes gateway restart</div><div class="desc">重启网关服务，使新配置生效</div><div class="scenario">改了 config.yaml 或加了新平台后，重启网关让变更生效。不会丢失未处理的消息。</div></div>
+<div class="cmd-card"><div class="code">hermes gateway status</div><div class="desc">查看网关运行状态和平台连接情况</div><div class="scenario">检查网关是否在线、连了哪些消息平台、各平台连接是否正常。</div></div>
+<div class="cmd-card"><div class="code">hermes gateway setup</div><div class="desc">配置消息平台接入（飞书/Telegram/微信等）</div><div class="scenario">交互式向导，一步步帮你配置飞书 App ID/Secret、Telegram Bot Token 等。初次接入消息平台必跑。</div></div>
+</div></div>
+<div class="category"><h3>会话</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes sessions list</div><div class="desc">列出最近的对话会话</div><div class="scenario">查看你之前的所有对话记录。显示会话 ID、标题、时间、消息数。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions browse</div><div class="desc">交互式会话浏览器，搜索和恢复历史对话</div><div class="scenario">比 list 更好用的历史会话管理。可以搜索、预览、选择恢复。类似聊天软件的历史记录。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions export OUT</div><div class="desc">导出指定会话为 JSONL 格式</div><div class="scenario">备份重要对话、分享给他人、或用其他工具分析对话数据。JSONL 格式每行一条消息。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions rename ID T</div><div class="desc">给会话起一个有意义的名字</div><div class="scenario">默认会话标题是自动生成的，可能不直观。手动重命名为&quot;年度报告分析&quot;、&quot;Python 爬虫调试&quot;等。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions delete ID</div><div class="desc">删除指定会话及所有记录</div><div class="scenario">清理不需要的对话。删除不可恢复，操作前确认。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions prune</div><div class="desc">批量清理超过 N 天的旧会话</div><div class="scenario">磁盘空间不够？一键清理老对话。默认清理超过 30 天的，可用 --older-than N 调整天数。</div></div>
+<div class="cmd-card"><div class="code">hermes sessions stats</div><div class="desc">会话库存储统计</div><div class="scenario">显示总共有多少次会话、占用多少磁盘空间、最老的会话是什么时候的。帮你判断要不要清理。</div></div>
+</div></div>
+<div class="category"><h3>定时</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes cron list</div><div class="desc">列出所有定时任务及下次执行时间</div><div class="scenario">你有多少自动化任务在跑？每个任务的下次触发时间、调度规则、是否暂停。</div></div>
+<div class="cmd-card"><div class="code">hermes cron create SCHED</div><div class="desc">创建新的定时任务</div><div class="scenario">SCHED 可以是 '30m'（每30分钟）、'every 2h'（每2小时）、'0 9 * * *'（每天9点）。创建时需提供任务提示词和推送目标。</div></div>
+<div class="cmd-card"><div class="code">hermes cron edit ID</div><div class="desc">编辑已有定时任务的调度、提示词或推送目标</div><div class="scenario">修改任务内容、调整执行频率、更换推送渠道。edit 后立即生效。</div></div>
+<div class="cmd-card"><div class="code">hermes cron pause/resume ID</div><div class="desc">暂停或恢复指定的定时任务</div><div class="scenario">临时想停掉某个自动任务？pause。想重新启用？resume。不影响任务配置。</div></div>
+<div class="cmd-card"><div class="code">hermes cron run ID</div><div class="desc">手动立即触发一次定时任务（不等待调度）</div><div class="scenario">刚创建的任务想马上看看效果？不用等到调度时间，直接 run 一次测试。</div></div>
+<div class="cmd-card"><div class="code">hermes cron remove ID</div><div class="desc">删除定时任务</div><div class="scenario">不再需要的自动化任务删除。注意删除和 pause 不同，删除后配置就没了。</div></div>
+<div class="cmd-card"><div class="code">hermes cron status</div><div class="desc">查看定时任务调度器运行状态</div><div class="scenario">检查调度器是否正常、有多少活跃任务、最近执行记录等。</div></div>
+</div></div>
+<div class="category"><h3>Webhook</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes webhook subscribe N</div><div class="desc">创建一个 webhook 路由，接收外部事件</div><div class="scenario">让外部服务（GitHub、飞书、自定义脚本）通过 HTTP POST 触发 Hermes 执行任务。每个 webhook 有唯一 URL。</div></div>
+<div class="cmd-card"><div class="code">hermes webhook list</div><div class="desc">列出所有已创建的 webhook 订阅</div><div class="scenario">查看每个 webhook 的名称、URL、触发条件等。</div></div>
+<div class="cmd-card"><div class="code">hermes webhook remove NAME</div><div class="desc">删除指定的 webhook 订阅</div><div class="scenario">不再需要的外部触发入口，删除后对应的 URL 立即失效。</div></div>
+<div class="cmd-card"><div class="code">hermes webhook test NAME</div><div class="desc">向指定 webhook 发送测试 POST 请求</div><div class="scenario">不用外部服务，本地发一个测试请求验证 webhook 是否正常工作。</div></div>
+</div></div>
+<div class="category"><h3>配置档</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes profile list</div><div class="desc">列出所有已创建的配置档</div><div class="scenario">配置档（Profile）是 Hermes 的多身份系统。每个 profile 有独立的模型配置、技能集和记忆。</div></div>
+<div class="cmd-card"><div class="code">hermes profile create NAME</div><div class="desc">创建新的配置档，隔离不同场景</div><div class="scenario">比如创建一个「工作」profile 连公司 API，一个「个人」profile 用私人账号。每个 profile 完全独立。</div></div>
+<div class="cmd-card"><div class="code">hermes profile use NAME</div><div class="desc">切换当前活动配置档</div><div class="scenario">下班了？hermes profile use personal 切换到个人模式，不再消耗公司 API 额度。</div></div>
+<div class="cmd-card"><div class="code">hermes profile delete NAME</div><div class="desc">删除指定配置档及其所有数据</div><div class="scenario">不再需要的身份配置删除。注意会同时删除该 profile 下的所有技能和记忆。</div></div>
+<div class="cmd-card"><div class="code">hermes profile show NAME</div><div class="desc">查看指定配置档的详细设置</div><div class="scenario">看看某个 profile 用的什么模型、装了哪些技能、连了什么平台。</div></div>
+</div></div>
+<div class="category"><h3>更新</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes update</div><div class="desc">检查并更新 Hermes 到最新版本</div><div class="scenario">自动检测新版本、下载、安装。建议定期运行获取最新功能和修复。</div></div>
+<div class="cmd-card"><div class="code">hermes uninstall</div><div class="desc">完全卸载 Hermes，清理所有文件</div><div class="scenario">当你需要彻底移除 Hermes 时使用。会删除程序文件但默认保留配置和会话数据。</div></div>
+</div></div>
+<div class="category"><h3>其他</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">hermes insights [--days N]</div><div class="desc">查看 Hermes 使用统计和分析</div><div class="scenario">用了多少 token？最常用的命令是什么？哪个模型用得最多？统计过去 N 天的使用数据。</div></div>
+<div class="cmd-card"><div class="code">hermes completion bash|zsh</div><div class="desc">生成 Shell 自动补全脚本</div><div class="scenario">安装后终端里输入 hermes 然后按 Tab 就能自动补全子命令。大幅提升命令行效率。</div></div>
+<div class="cmd-card"><div class="code">hermes pairing list/approve/revoke</div><div class="desc">管理私聊（DM）授权</div><div class="scenario">控制谁能通过消息平台直接私聊你的 Agent。approve 批准，revoke 撤销授权。</div></div>
+</div></div>
+        </section>
+
+        <section id="slash">
+            <h2><span class="icon">💬</span> 会话内斜杠命令</h2>
+            <p class="section-desc">在聊天界面输入的 <code>/</code> 开头的命令，无需退出对话。</p>
+            <div class="category"><h3>会话</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/new (/reset)</div><div class="desc">开始全新会话，丢弃当前上下文</div><div class="scenario">话题完全切换时使用。当前对话的所有上下文清空，Agent 像刚启动一样。等价于退出重新进入。</div></div>
+<div class="cmd-card"><div class="code">/clear</div><div class="desc">清屏并开始新会话（仅 CLI 端）</div><div class="scenario">终端里消息太多看不清？清屏。注意和 /new 一样会清空上下文。</div></div>
+<div class="cmd-card"><div class="code">/retry</div><div class="desc">让 Agent 重新回答你上一条消息</div><div class="scenario">回答不满意？不用重新打字，/retry 让 Agent 换个思路再答一次。相当于撤回重问。</div></div>
+<div class="cmd-card"><div class="code">/undo</div><div class="desc">移除最后一轮对话（你的消息 + Agent 回复）</div><div class="scenario">不小心说了不该说的，或者 Agent 的回答引入了错误信息？/undo 撤销最后一轮，回到上一步状态。</div></div>
+<div class="cmd-card"><div class="code">/title [名称]</div><div class="desc">给当前会话命名，方便以后查找</div><div class="scenario">默认标题是自动生成的摘要。手动改成「年度财报分析」「Python 性能优化」等更有辨识度的标题。</div></div>
+<div class="cmd-card"><div class="code">/compress</div><div class="desc">手动触发上下文压缩，释放 token 空间</div><div class="scenario">对话太长，Agent 开始忘记前面的内容？/compress 把历史对话压缩成摘要，腾出空间继续深入讨论。</div></div>
+<div class="cmd-card"><div class="code">/stop</div><div class="desc">终止当前正在运行的后台任务</div><div class="scenario">Agent 在跑一个很耗时的任务，你想中断它？/stop 立刻停止。任务的中间结果会丢失。</div></div>
+<div class="cmd-card"><div class="code">/rollback [N]</div><div class="desc">回滚最近 N 次文件修改，恢复文件系统快照</div><div class="scenario">Agent 改错了文件？/rollback 把文件恢复到修改前的状态。默认回滚最近一次修改。</div></div>
+<div class="cmd-card"><div class="code">/snapshot [sub]</div><div class="desc">手动创建或恢复 Hermes 完整状态快照</div><div class="scenario">包括配置、会话、文件系统。在做重大操作前先 snapshot 备份，出问题可以恢复。</div></div>
+<div class="cmd-card"><div class="code">/background &lt;prompt&gt;</div><div class="desc">在后台运行一个任务，不阻塞当前对话</div><div class="scenario">比如让 Agent 在后台下载数据，你继续问别的问题。任务完成时会通知你。</div></div>
+<div class="cmd-card"><div class="code">/queue &lt;prompt&gt;</div><div class="desc">排队一个任务，等当前任务完成后再执行</div><div class="scenario">Agent 正在忙，先把下一个任务排上队。不用等，继续聊天。</div></div>
+<div class="cmd-card"><div class="code">/steer &lt;prompt&gt;</div><div class="desc">在 Agent 下一个工具调用后立即插入一条指令</div><div class="scenario">类似在 Agent 的思考过程中插一句话。比如 Agent 在写代码，steer「别忘了加异常处理」。</div></div>
+<div class="cmd-card"><div class="code">/resume [名称]</div><div class="desc">恢复之前命名过的会话</div><div class="scenario">通过 /title 命名的会话，用 /resume 按名称恢复。比记 ID 方便多了。</div></div>
+<div class="cmd-card"><div class="code">/goal [text|sub]</div><div class="desc">设置跨会话持久目标</div><div class="scenario">Agent 会在每次对话开始时回顾你设定的目标，确保不偏离方向。适合长期项目。</div></div>
+<div class="cmd-card"><div class="code">/redraw</div><div class="desc">强制刷新 CLI 界面（终端显示异常时使用）</div><div class="scenario">终端输出乱掉、界面渲染坏了？/redraw 重新绘制整个界面。</div></div>
+</div></div>
+<div class="category"><h3>配置</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/config</div><div class="desc">在 CLI 中直接查看当前配置（终端格式）</div><div class="scenario">不退出对话就能看配置。比 hermes config 更简化的显示。</div></div>
+<div class="cmd-card"><div class="code">/model [名称]</div><div class="desc">显示当前模型或临时切换到指定模型</div><div class="scenario">/model 看当前用哪个模型。 /model claude-sonnet-4 临时换一个。只影响当前会话。</div></div>
+<div class="cmd-card"><div class="code">/personality [名称]</div><div class="desc">设置 Agent 的个性/系统提示词</div><div class="scenario">想让 Agent 更幽默？更专业？切换不同的 personality 预设。或自定义一个。</div></div>
+<div class="cmd-card"><div class="code">/reasoning [级别]</div><div class="desc">设置推理深度：low/medium/high/xhigh</div><div class="scenario">简单任务用 low 节约成本，复杂分析用 high 获得更深入的思考。直接影响 token 消耗和响应质量。</div></div>
+<div class="cmd-card"><div class="code">/verbose</div><div class="desc">循环切换 Agent 输出的详细程度</div><div class="scenario">四种级别循环：关闭 → 简洁 → 正常 → 详细。想看 Agent 的思考过程时调到详细，想快速看结果时调简洁。</div></div>
+<div class="cmd-card"><div class="code">/voice [on|off|tts]</div><div class="desc">切换语音交互模式</div><div class="scenario">on 开启语音输入/输出，off 关闭，tts 仅输出转语音。适合开车或不方便打字的时候。</div></div>
+<div class="cmd-card"><div class="code">/yolo</div><div class="desc">临时跳过当前会话的所有确认提示</div><div class="scenario">比 --yolo 参数更灵活，在会话中途开启/关闭。批处理文件操作时打开，完成后关闭。</div></div>
+<div class="cmd-card"><div class="code">/skin [名称]</div><div class="desc">更换 CLI 终端颜色主题</div><div class="scenario">不喜欢默认配色？换个皮肤。支持多种预设主题，也可以自定义。</div></div>
+</div></div>
+<div class="category"><h3>工具</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/tools</div><div class="desc">在 CLI 中打开工具管理界面</div><div class="scenario">和 hermes tools 一样的功能，但不需要退出对话。在聊天中直接管理工具启用/禁用。</div></div>
+<div class="cmd-card"><div class="code">/toolsets</div><div class="desc">列出所有可用工具集及当前状态</div><div class="scenario">快速查看哪些工具开着、哪些关着。比 hermes tools list 信息更紧凑。</div></div>
+<div class="cmd-card"><div class="code">/skills</div><div class="desc">在 CLI 中搜索和管理技能</div><div class="scenario">聊天中突然需要某个技能？/skills 打开技能管理界面，搜索、安装都在聊天内完成。</div></div>
+<div class="cmd-card"><div class="code">/skill &lt;名称&gt;</div><div class="desc">加载指定技能到当前会话</div><div class="scenario">临时需要使用某个技能（比如突然要分析 A 股），/skill akshare-stock 立刻加载。</div></div>
+<div class="cmd-card"><div class="code">/reload-skills</div><div class="desc">重新扫描技能目录，发现手动新增的技能</div><div class="scenario">手动在 skills 目录放了新技能文件？/reload-skills 让 Hermes 重新扫描并加载。</div></div>
+<div class="cmd-card"><div class="code">/reload</div><div class="desc">重新加载 .env 环境变量（仅 CLI）</div><div class="scenario">修改了环境变量文件，不需要退出 Hermes。直接 /reload 刷新。</div></div>
+<div class="cmd-card"><div class="code">/reload-mcp</div><div class="desc">重新加载 MCP 服务器配置</div><div class="scenario">MCP 服务器配置变更后，用它重新连接。不需要重启 Hermes。</div></div>
+<div class="cmd-card"><div class="code">/cron</div><div class="desc">在 CLI 中管理定时任务</div><div class="scenario">查看、创建、暂停、删除定时任务，全部在对话内完成。比退出到终端操作方便。</div></div>
+<div class="cmd-card"><div class="code">/plugins</div><div class="desc">列出已安装的插件及状态</div><div class="scenario">看看你装了哪些插件，哪些启用了、哪些没启用。</div></div>
+<div class="cmd-card"><div class="code">/curator [sub]</div><div class="desc">后台技能维护：自动检查更新、清理过期技能</div><div class="scenario">技能管家。定期运行保持技能库整洁。</div></div>
+<div class="cmd-card"><div class="code">/kanban [sub]</div><div class="desc">多配置档协作看板</div><div class="scenario">如果你有多个 Agent 同时工作，看板帮你跟踪每个 Agent 的任务状态。</div></div>
+</div></div>
+<div class="category"><h3>网关</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/approve</div><div class="desc">批准网关端待处理的危险命令</div><div class="scenario">通过消息平台发来的命令如果涉及危险操作，需要你在终端或另一个聊天窗口 approve。</div></div>
+<div class="cmd-card"><div class="code">/deny</div><div class="desc">拒绝网关端待处理的危险命令</div><div class="scenario">不信任的命令直接拒绝，Agent 不会执行。</div></div>
+<div class="cmd-card"><div class="code">/restart</div><div class="desc">重启网关服务</div><div class="scenario">网关出问题、配置变更后，用这个快速重启。比退出到终端手动重启方便。</div></div>
+<div class="cmd-card"><div class="code">/sethome</div><div class="desc">设置当前聊天频道为 home 频道（默认推送目标）</div><div class="scenario">定时任务的输出、重要通知，默认会推送到 home 频道。用这个命令绑定你的主力聊天窗口。</div></div>
+<div class="cmd-card"><div class="code">/update</div><div class="desc">通过网关更新 Hermes 到最新版本</div><div class="scenario">网关端一键更新。会自动下载、安装、重启。</div></div>
+<div class="cmd-card"><div class="code">/topic [sub]</div><div class="desc">管理 Telegram DM 话题模式</div><div class="scenario">在 Telegram 私聊中创建话题线程，一个对话一个话题，方便管理多个并行任务。</div></div>
+<div class="cmd-card"><div class="code">/platforms (/gateway)</div><div class="desc">查看所有消息平台的连接状态</div><div class="scenario">飞书在线吗？Telegram 连上了吗？一键查看所有平台状态。</div></div>
+</div></div>
+<div class="category"><h3>实用</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/branch (/fork)</div><div class="desc">从当前对话分叉出一个独立会话</div><div class="scenario">当前思路想保留，但想尝试另一个方向？分叉出两个独立会话，各自探索。</div></div>
+<div class="cmd-card"><div class="code">/fast</div><div class="desc">切换到快速优先模式，降低推理深度、加快响应</div><div class="scenario">简单任务不需要深度思考，/fast 让 Agent 快速响应，节省时间和 token。</div></div>
+<div class="cmd-card"><div class="code">/browser</div><div class="desc">启动 CDP 浏览器连接，开启浏览器自动化</div><div class="scenario">让 Agent 能打开网页、点击按钮、填写表单。需要先启用 browser 工具集。</div></div>
+<div class="cmd-card"><div class="code">/history</div><div class="desc">在 CLI 中显示当前会话的完整对话历史</div><div class="scenario">翻看之前聊了什么。支持上下滚动浏览。</div></div>
+<div class="cmd-card"><div class="code">/save</div><div class="desc">保存当前对话到本地文件（仅 CLI）</div><div class="scenario">把对话记录导出为 Markdown 文件存档。默认保存在当前目录。</div></div>
+<div class="cmd-card"><div class="code">/copy [N]</div><div class="desc">复制 Agent 最近 N 条回复到系统剪贴板</div><div class="scenario">Agent 写了一段好代码？/copy 直接复制，不用鼠标选中。</div></div>
+<div class="cmd-card"><div class="code">/paste</div><div class="desc">从剪贴板粘贴图片发送给 Agent（仅 CLI）</div><div class="scenario">截图后不用保存文件，直接粘贴给 Agent 分析。</div></div>
+<div class="cmd-card"><div class="code">/image</div><div class="desc">附加本地图片文件发送给 Agent 分析（仅 CLI）</div><div class="scenario">上传截图、照片等让 Agent 识别内容。需要启用 vision 工具集。</div></div>
+</div></div>
+<div class="category"><h3>信息</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/help</div><div class="desc">显示所有可用命令的帮助信息</div><div class="scenario">不记得有什么命令了？/help 全部列出来。</div></div>
+<div class="cmd-card"><div class="code">/commands [页码]</div><div class="desc">分页浏览命令列表（网关端）</div><div class="scenario">命令太多一屏显示不下，/commands 分页展示。适合手机等小屏幕设备。</div></div>
+<div class="cmd-card"><div class="code">/usage</div><div class="desc">查看当前会话的 Token 用量统计</div><div class="scenario">用了多少 token？花了多少钱？还剩多少上下文空间？一目了然。</div></div>
+<div class="cmd-card"><div class="code">/insights [天数]</div><div class="desc">查看过去 N 天的使用统计（网关端）</div><div class="scenario">和历史使用数据对比，了解使用趋势。</div></div>
+<div class="cmd-card"><div class="code">/status</div><div class="desc">查看当前会话详细信息（网关端）</div><div class="scenario">会话 ID、模型、推理级别、工具集状态等。</div></div>
+<div class="cmd-card"><div class="code">/profile</div><div class="desc">显示当前活动配置档名称和简要信息</div><div class="scenario">确认你现在用的是哪个 profile，避免用错账号。</div></div>
+<div class="cmd-card"><div class="code">/debug</div><div class="desc">生成调试报告上传到可分享的链接</div><div class="scenario">遇到 bug？/debug 收集诊断信息并生成链接，方便发给开发者排查。</div></div>
+</div></div>
+<div class="category"><h3>退出</h3><div class="cmd-grid">
+<div class="cmd-card"><div class="code">/quit (/exit, /q)</div><div class="desc">退出 CLI 模式，结束当前终端会话</div><div class="scenario">退出前会自动保存会话，下次可以 --continue 恢复。</div></div>
+</div></div>
+        </section>
+
+        <section id="skills">
+            <h2><span class="icon">🧩</span> 内置技能列表</h2>
+            <p class="section-desc">共 113 个技能，覆盖 19 个领域。技能是 Hermes 的专业知识包，每个技能赋予 Agent 一个领域的专业能力。</p>
+            <div class="category"><h3>A股量化分析 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(12)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">akshare-stock</div><div class="skill-desc">A股全能分析工具包。基于 akshare 库，覆盖实时行情（大盘指数、个股K线）、技术面（均线/MACD/RSI）、基本面（ROE/毛利率/负债率）、行业板块排行、资金流向、涨跌停统计。支持自然语言查询，是 A 股分析的核心数据引擎。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-earnings-agent</div><div class="skill-desc">A股财报深度分析 Agent。主动拉取券商研报、财务指标（利润表/资产负债表/现金流）、业绩预告和公司公告。不做被动汇总，会主动搜索交叉验证，挖掘财报中的异常和风险点。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-intelligence-agent</div><div class="skill-desc">A股多 Agent 团队总指挥。下设 L0 望风者（实时情报+舆情监控）和 L1 研究员（宏观/复盘/技术/财报四大方向），自动调度、交叉验证、生成综合研判报告。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-macro-agent</div><div class="skill-desc">宏观经济主动研判 Agent。自动拉取 PMI/CPI/PPI/M2/LPR/GDP 等核心宏观数据，结合美联储利率决议、全球市场联动、国内政策信号，判断宏观周期位置和风险偏好。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-macro-knowledge</div><div class="skill-desc">宏观分析知识库。收录海峡两岸关系、资源国政策、央行货币政策、A 股政策信号等对市场的传导映射。格式简洁，支持快速检索。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-market-review-agent</div><div class="skill-desc">每日盘后复盘 Agent。自动拉取龙虎榜数据、板块资金流向、涨停原因分析，交叉验证市场传闻与实际盘面表现，识别主力资金动向。</div></div>
+<div class="skill-item"><div class="skill-name">a-stock-technical-agent</div><div class="skill-desc">技术分析 Agent。调用 baostock/a kshare 拉取历史 K 线，分析趋势线、支撑压力位、量价关系、均线系统，自动标注关键技术形态（头肩顶/双底/三角形突破等）。</div></div>
+<div class="skill-item"><div class="skill-name">l0-briefing-format</div><div class="skill-desc">L0 望风者简报格式规范。定义情报源扫描结果的极简呈现格式：一屏内、不用表格、单行分隔、标题缩至25字。情报员+舆情兵双通道输出。</div></div>
+<div class="skill-item"><div class="skill-name">quant-backtrader</div><div class="skill-desc">Backtrader 量化回测环境配置。Windows + CUDA 加速，支持多股票同时回测、自定义策略、绩效分析。内含安装步骤和常见坑。</div></div>
+<div class="skill-item"><div class="skill-name">quant-ml-stack</div><div class="skill-desc">量化机器学习环境搭建。PyTorch CUDA 版本配置、conda 环境隔离、量化专用 Python 环境（quant310）的完整工具链（XGBoost/LightGBM/scikit-learn）。</div></div>
+<div class="skill-item"><div class="skill-name">quant-ml-tools</div><div class="skill-desc">AI/ML 量化工具对比和选型指南。涵盖强化学习（FinRL）、金融 NLP（FinBERT）、自动因子挖掘（gplearn+alphalens）等工具的实际使用评价和坑点。</div></div>
+<div class="skill-item"><div class="skill-name">weekly-editor</div><div class="skill-desc">周报总编 Agent。每周汇总 L1 各研究员团队的周报，提取核心观点、标注时效性，双写入 SQLite 知识库和 Markdown 报告。支持历史回溯。</div></div>
+</div>
+</div>
+<div class="category"><h3>自主 Agent 与编程 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(7)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">autonomous-ai-agents</div><div class="skill-desc">自主 AI 编程 Agent 和 Multi-agent 工作流编排。可以一键创建独立 Agent 进程，分配任务，多个 Agent 并行工作。适合大型项目的分工协作。</div></div>
+<div class="skill-item"><div class="skill-name">claude-code</div><div class="skill-desc">将编程任务委托给 Claude Code CLI。支持功能开发、PR 创建、代码重构。Claude 擅长复杂逻辑和大型代码库的理解。</div></div>
+<div class="skill-item"><div class="skill-name">codex</div><div class="skill-desc">将编程任务委托给 OpenAI Codex CLI。适合快速原型、小型脚本、API 对接等任务。响应快、成本低。</div></div>
+<div class="skill-item"><div class="skill-name">hermes-agent</div><div class="skill-desc">Hermes Agent 自身的配置、扩展和贡献指南。包括新增插件、编写技能、修改配置、参与开发等。想深入了解 Hermes 内部机制必读。</div></div>
+<div class="skill-item"><div class="skill-name">kanban-codex-lane</div><div class="skill-desc">Hermes 看板系统中的 Codex 专属通道。看板工作流自动将编程类任务路由到 Codex CLI 执行。</div></div>
+<div class="skill-item"><div class="skill-name">opencode</div><div class="skill-desc">将编程任务委托给 OpenCode CLI。适合需要 PR 审查、代码质量检查的场景。</div></div>
+<div class="skill-item"><div class="skill-name">subagent-driven-development</div><div class="skill-desc">基于子 Agent 的开发模式。用 delegate_task 将大任务拆解为多个子任务，每个子 Agent 独立执行，最后汇总。适合大型功能的分层实现。</div></div>
+</div>
+</div>
+<div class="category"><h3>网站部署 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(4)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">cloudflare-pages</div><div class="skill-desc">Cloudflare Pages 部署方案。国内直连速度快，免梯子。支持自定义域名、CI/CD 自动部署、预览环境、回滚。通过 wrangler CLI 或 Git 集成部署。</div></div>
+<div class="skill-item"><div class="skill-name">netlify-deploy</div><div class="skill-desc">Netlify 零配置部署方案。npx 一键部署，无需全局安装。自动检测项目框架、生成构建配置。支持预览链接、表单处理、Serverless 函数。</div></div>
+<div class="skill-item"><div class="skill-name">vercel-deployment</div><div class="skill-desc">Vercel 部署专家指南。偏向 Next.js 生态但纯静态站点同样支持。自动 HTTPS、全球 CDN、即时回滚。</div></div>
+<div class="skill-item"><div class="skill-name">static-site-deploy</div><div class="skill-desc">静态网站部署通用指南。对比多个免费托管平台（Cloudflare/Netlify/Vercel/GitHub Pages），帮助选择最适合的方案。</div></div>
+</div>
+</div>
+<div class="category"><h3>创意设计 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(15)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">blender-mcp</div><div class="skill-desc">通过 MCP 协议从 Hermes 直接控制 Blender 3D 软件。可以建模、渲染、动画，不用离开聊天界面。</div></div>
+<div class="skill-item"><div class="skill-name">creative</div><div class="skill-desc">创意内容生成总入口。涵盖 ASCII 艺术、手绘风格图表、SVG 架构图、网页设计等视觉创意工具。</div></div>
+<div class="skill-item"><div class="skill-name">ascii-art</div><div class="skill-desc">ASCII 艺术生成。支持 pyfiglet 大字、cowsay 奶牛说、boxes 边框、图片转 ASCII。终端里的可视化表达。</div></div>
+<div class="skill-item"><div class="skill-name">ascii-video</div><div class="skill-desc">ASCII 视频生成。将视频或音频转换为彩色 ASCII 动画 MP4/GIF。适合制作复古风格的技术演示。</div></div>
+<div class="skill-item"><div class="skill-name">architecture-diagram</div><div class="skill-desc">深色主题 SVG 架构图/云架构/基础设施图生成。适合技术文档、PPT、博客配图。</div></div>
+<div class="skill-item"><div class="skill-name">comfyui</div><div class="skill-desc">ComfyUI 图像/视频/音频生成。支持 Stable Diffusion 生态的节点式工作流，安装配置和 API 调用。</div></div>
+<div class="skill-item"><div class="skill-name">excalidraw</div><div class="skill-desc">手绘风格图表生成（Excalidraw JSON 格式）。架构图、流程图、时序图全部手绘风，适合非正式技术讨论。</div></div>
+<div class="skill-item"><div class="skill-name">font-pairing-suggester</div><div class="skill-desc">字体搭配推荐工具。根据使用场景（网页/海报/长文）推荐中英文最佳字体组合。</div></div>
+<div class="skill-item"><div class="skill-name">manim-video</div><div class="skill-desc">Manim CE 数学和算法动画制作。3Blue1Brown 同款引擎，适合制作数学可视化、算法演示视频。</div></div>
+<div class="skill-item"><div class="skill-name">p5js</div><div class="skill-desc">p5.js 创意编程。生成艺术、着色器、交互式动画、3D 场景。浏览器里直接运行。</div></div>
+<div class="skill-item"><div class="skill-name">pixel-art</div><div class="skill-desc">像素艺术生成。支持 NES/Game Boy/PICO-8 等经典调色板。适合游戏素材、复古风格图标。</div></div>
+<div class="skill-item"><div class="skill-name">popular-web-designs</div><div class="skill-desc">54 个真实设计系统的 HTML/CSS 复刻。涵盖 Stripe/Linear/Vercel 等知名产品的设计语言，拿来即用。</div></div>
+<div class="skill-item"><div class="skill-name">songwriting-and-ai-music</div><div class="skill-desc">AI 歌曲创作指南。从歌词写作技巧到 Suno AI 音乐生成提示词，教你用 AI 做完整的音乐作品。</div></div>
+<div class="skill-item"><div class="skill-name">theme-factory</div><div class="skill-desc">HTML/CSS 主题工具包。为生成的网页制品快速套用设计主题，支持颜色/字体/间距的全局调整。</div></div>
+<div class="skill-item"><div class="skill-name">touchdesigner-mcp</div><div class="skill-desc">通过 MCP 协议控制 TouchDesigner 实时视觉软件。适合 VJ、舞台视觉、交互装置等场景。</div></div>
+</div>
+</div>
+<div class="category"><h3>效率工具 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(10)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">airtable</div><div class="skill-desc">Airtable REST API 操作。支持记录增删改查、过滤、批量更新（upsert）。把 Airtable 当数据库用。</div></div>
+<div class="skill-item"><div class="skill-name">google-workspace</div><div class="skill-desc">Google 全家桶集成。Gmail 收发邮件、Calendar 管日程、Drive 传文件、Docs/Sheets 编辑文档。支持 gws CLI 和 Python 两种方式。</div></div>
+<div class="skill-item"><div class="skill-name">linear</div><div class="skill-desc">Linear 项目管理工具集成。通过 GraphQL API 管理 Issue、项目、团队。适合敏捷开发团队。</div></div>
+<div class="skill-item"><div class="skill-name">maps</div><div class="skill-desc">地图和地理编码服务。基于 OpenStreetMap/OSRM，支持地址转坐标、POI 搜索、路线规划、时区查询。免费无需 API Key。</div></div>
+<div class="skill-item"><div class="skill-name">nano-pdf</div><div class="skill-desc">PDF 文字编辑工具。用自然语言指令修改 PDF 中的文字、标题、错别字，不需要手动排版。</div></div>
+<div class="skill-item"><div class="skill-name">notion</div><div class="skill-desc">Notion 全能操作。通过 API 和 ntn CLI 管理页面、数据库、Markdown 导入。支持 Worker 自动化。</div></div>
+<div class="skill-item"><div class="skill-name">ocr-and-documents</div><div class="skill-desc">文档文字提取。支持 PDF、扫描件，使用 pymupdf/marker-pdf。图片转文字、表格提取、格式保留。</div></div>
+<div class="skill-item"><div class="skill-name">powerpoint</div><div class="skill-desc">PPT 全生命周期管理。创建、读取、编辑 .pptx 文件，支持幻灯片增删、备注编辑、模板套用。</div></div>
+<div class="skill-item"><div class="skill-name">markdown-to-epub-converter</div><div class="skill-desc">Markdown 转 EPUB 电子书。可以把聊天记录、文档、小说等一键转成 Kindle 可读的电子书格式。</div></div>
+<div class="skill-item"><div class="skill-name">note-taking</div><div class="skill-desc">笔记系统集成。在 Obsidian 仓库中读、写、搜索笔记。支持双向链接和知识图谱。</div></div>
+</div>
+</div>
+<div class="category"><h3>开发与调试 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(14)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">debug-isolation</div><div class="skill-desc">调试隔离技巧集。教你如何在复杂系统中逐层排查，快速定位问题根因。</div></div>
+<div class="skill-item"><div class="skill-name">debugging-hermes-tui-commands</div><div class="skill-desc">Hermes TUI 斜杠命令调试指南。涵盖 Python 代码、Gateway 通信、Ink UI 渲染三个层面的调试方法。</div></div>
+<div class="skill-item"><div class="skill-name">hermes-agent-skill-authoring</div><div class="skill-desc">Hermes 技能编写规范。从 YAML frontmatter、目录结构到内容格式的完整指南。附带技能验证器。</div></div>
+<div class="skill-item"><div class="skill-name">hermes-skill-install</div><div class="skill-desc">技能安装失败的排查和手动安装方案。涵盖跨盘路径 BUG、社区技能 fetch 超时等常见问题的解决方法。</div></div>
+<div class="skill-item"><div class="skill-name">layered-debugging</div><div class="skill-desc">层层隔离排查方法论。当多个系统同时出问题时，逐层隔离、逐个验证、逐层修复。禁止同时修多个。</div></div>
+<div class="skill-item"><div class="skill-name">node-inspect-debugger</div><div class="skill-desc">Node.js 调试方案。通过 --inspect 标志配合 Chrome DevTools 协议进行 CLI 级别的 JavaScript 调试。</div></div>
+<div class="skill-item"><div class="skill-name">plan</div><div class="skill-desc">计划模式。不执行任何操作，只输出详细实施计划到 .hermes/plans/ 目录。适合需要先评审再执行的场景。</div></div>
+<div class="skill-item"><div class="skill-name">requesting-code-review</div><div class="skill-desc">代码提交前审查流程。安全漏洞扫描、代码质量门禁、自动修复建议。确保每次提交都是干净的。</div></div>
+<div class="skill-item"><div class="skill-name">spike</div><div class="skill-desc">抛砖式探索实验。先快速验证一个想法的可行性，确认可行后再正式构建。避免在错误方向上浪费大量时间。</div></div>
+<div class="skill-item"><div class="skill-name">system-safety</div><div class="skill-desc">系统安全红线。所有 Agent（含子 Agent）必须遵守的规则：禁止擅自修改 .env、禁止操作 venv、禁止重启 Gateway、禁止改系统环境变量。</div></div>
+<div class="skill-item"><div class="skill-name">systematic-debugging</div><div class="skill-desc">四阶段根因调试法。①复现 bug → ②理解根本原因 → ③设计修复方案 → ④验证修复。先理解再动手。</div></div>
+<div class="skill-item"><div class="skill-name">tech-support</div><div class="skill-desc">技术问题分流器。用户问编程/调试/配置问题时，自动路由到干净的子 Agent 处理，避免主 Agent 上下文膨胀。</div></div>
+<div class="skill-item"><div class="skill-name">test-driven-development</div><div class="skill-desc">TDD 测试驱动开发。强制红-绿-重构循环，先写测试再写代码。确保每次改动有测试保护。</div></div>
+<div class="skill-item"><div class="skill-name">writing-plans</div><div class="skill-desc">实施计划编写指南。教你把大需求拆解为可执行的小任务，每个任务明确涉及的文件路径和代码结构。</div></div>
+</div>
+</div>
+<div class="category"><h3>数据科学 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(2)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">data-science</div><div class="skill-desc">数据科学工具集。交互式探索分析、数据可视化、统计建模的完整工作流。</div></div>
+<div class="skill-item"><div class="skill-name">jupyter-live-kernel</div><div class="skill-desc">实时 Jupyter Kernel。在 Hermes 中连接运行中的 Jupyter Notebook，实时执行 Python 代码、查看结果、修改变量。</div></div>
+</div>
+</div>
+<div class="category"><h3>DevOps <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(5)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">devops</div><div class="skill-desc">DevOps 技能合集。涵盖部署、监控、运维自动化的常用工具和流程。</div></div>
+<div class="skill-item"><div class="skill-name">gateway-windows-platforms</div><div class="skill-desc">Windows 上 Gateway 消息平台的设置和调试。包括飞书集成、Scheduled Task 配置、Python 虚拟环境路径等 Windows 特有坑。</div></div>
+<div class="skill-item"><div class="skill-name">kanban-orchestrator</div><div class="skill-desc">多 Agent 看板编排器。任务分解手册 + 反诱惑规则（不要自己动手，让子 Agent 做）。</div></div>
+<div class="skill-item"><div class="skill-name">kanban-worker</div><div class="skill-desc">看板 Worker 执行指南。常见陷阱、边缘情况和最佳实践。编写看板任务时的参考手册。</div></div>
+<div class="skill-item"><div class="skill-name">webhook-subscriptions</div><div class="skill-desc">Webhook 订阅管理。事件驱动的 Agent 触发：GitHub Push → Agent 自动测试部署；飞书消息 → Agent 自动回复。</div></div>
+</div>
+</div>
+<div class="category"><h3>学术研究 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(4)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">arxiv</div><div class="skill-desc">arXiv 论文检索。按关键词、作者、分类号、论文 ID 搜索最新学术论文。支持摘要浏览和 PDF 下载。</div></div>
+<div class="skill-item"><div class="skill-name">blogwatcher</div><div class="skill-desc">博客和 RSS 监控。通过 blogwatcher-cli 工具跟踪你关注的博客更新，新文章自动推送。</div></div>
+<div class="skill-item"><div class="skill-name">llm-wiki</div><div class="skill-desc">Andrej Karpathy 的 LLM Wiki 知识库。构建和查询大型语言模型的交叉链接 Markdown 知识网络。</div></div>
+<div class="skill-item"><div class="skill-name">polymarket</div><div class="skill-desc">Polymarket 预测市场数据查询。获取市场列表、实时价格、订单簿深度、历史结算数据。</div></div>
+</div>
+</div>
+<div class="category"><h3>消息与协作 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(4)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">feishu-integration</div><div class="skill-desc">飞书/Lark 消息平台接入。App ID/Secret 配置、WebSocket 连接、文档创建、消息推送。国内用户首选。</div></div>
+<div class="skill-item"><div class="skill-name">email</div><div class="skill-desc">终端邮件管理。通过 Himalaya CLI 实现 IMAP/SMTP 收发邮件。支持多账号、搜索、文件夹管理。</div></div>
+<div class="skill-item"><div class="skill-name">messaging</div><div class="skill-desc">跨平台消息发送。统一接口向飞书/Telegram/Discord/Slack 等发送消息。</div></div>
+<div class="skill-item"><div class="skill-name">yuanbao</div><div class="skill-desc">元宝（腾讯）群组操作。@提及用户、查询群信息、获取成员列表。</div></div>
+</div>
+</div>
+<div class="category"><h3>媒体处理 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(5)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">gif-search</div><div class="skill-desc">GIF 动图搜索和下载。通过 Tenor API（curl+jq），支持关键词搜索、热门趋势。</div></div>
+<div class="skill-item"><div class="skill-name">heartmula</div><div class="skill-desc">AI 歌曲生成。HeartMuLa 引擎：输入歌词+风格标签，生成类似 Suno 的音乐作品。</div></div>
+<div class="skill-item"><div class="skill-name">songsee</div><div class="skill-desc">音频可视化。通过 CLI 工具生成音频频谱图、梅尔频谱、色度图、MFCC 特征。</div></div>
+<div class="skill-item"><div class="skill-name">spotify</div><div class="skill-desc">Spotify 全功能控制。播放/暂停、搜索曲目、管理播放列表和设备。需要 Spotify Premium。</div></div>
+<div class="skill-item"><div class="skill-name">youtube-content</div><div class="skill-desc">YouTube 内容处理。提取视频字幕、生成摘要、转写为博客文章或社交媒体帖子。</div></div>
+</div>
+</div>
+<div class="category"><h3>MLOps <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(7)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">mlops</div><div class="skill-desc">MLOps 知识体系。涵盖模型训练、微调、部署、监控的完整工具链和最佳实践。</div></div>
+<div class="skill-item"><div class="skill-name">huggingface-hub</div><div class="skill-desc">HuggingFace Hub 操作。通过 hf CLI 搜索、下载、上传模型和数据集。支持模型卡片查看。</div></div>
+<div class="skill-item"><div class="skill-name">local-model-integration</div><div class="skill-desc">本地 LLM 集成（Ollama）。在本地运行开源模型（Llama/Qwen/Mistral 等），配置和故障排查指南。</div></div>
+<div class="skill-item"><div class="skill-name">weights-and-biases</div><div class="skill-desc">W&amp;B 实验管理。记录 ML 实验参数和指标、超参搜索（sweep）、模型注册表、可视化仪表盘。</div></div>
+<div class="skill-item"><div class="skill-name">llama-cpp</div><div class="skill-desc">llama.cpp 本地推理。GGUF 格式模型加载、GPU 加速（CUDA/Metal）、HuggingFace Hub 模型发现。</div></div>
+<div class="skill-item"><div class="skill-name">segment-anything-model</div><div class="skill-desc">SAM 图像分割。Meta 的零样本分割模型：通过点选、框选、掩码进行任意对象分割。</div></div>
+<div class="skill-item"><div class="skill-name">dspy</div><div class="skill-desc">DSPy 声明式编程框架。自动优化 LLM 提示词、构建 RAG 系统、调优复杂 LM 流水线。</div></div>
+</div>
+</div>
+<div class="category"><h3>技能发现 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(1)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">find-skills</div><div class="skill-desc">技能搜索和推荐引擎。根据你的需求描述，自动搜索 Hermes 技能市场和社区仓库，推荐最匹配的技能。</div></div>
+</div>
+</div>
+<div class="category"><h3>GitHub <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(7)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">github</div><div class="skill-desc">GitHub 全功能操作。仓库管理、Pull Request、Code Review、Issue 跟踪、CI/CD。通过 gh CLI 和 REST API。</div></div>
+<div class="skill-item"><div class="skill-name">codebase-inspection</div><div class="skill-desc">代码库分析。用 pygount 统计代码行数、语言分布、文件类型比例。快速了解一个项目的代码构成。</div></div>
+<div class="skill-item"><div class="skill-name">github-auth</div><div class="skill-desc">GitHub 认证配置。HTTPS Token 生成、SSH Key 配置、gh CLI 登录。三种认证方式的完整指南。</div></div>
+<div class="skill-item"><div class="skill-name">github-code-review</div><div class="skill-desc">PR 代码审查。查看 diff、添加行内评论、通过 gh CLI 或 REST API 管理审查流程。</div></div>
+<div class="skill-item"><div class="skill-name">github-issues</div><div class="skill-desc">Issue 管理。创建、分类、打标签、分配负责人。支持模板和自动化。</div></div>
+<div class="skill-item"><div class="skill-name">github-pr-workflow</div><div class="skill-desc">PR 全生命周期。从创建分支、提交代码、推送、创建 PR、CI 检查到合并的完整流程。</div></div>
+<div class="skill-item"><div class="skill-name">github-repo-management</div><div class="skill-desc">仓库管理。克隆、创建、Fork、管理远程仓库、创建 Release 版本。</div></div>
+</div>
+</div>
+<div class="category"><h3>MCP 协议 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(2)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">mcp</div><div class="skill-desc">MCP（Model Context Protocol）完整指南。服务器配置、工具注册、协议规范。让 Hermes 与外部工具互联互通。</div></div>
+<div class="skill-item"><div class="skill-name">native-mcp</div><div class="skill-desc">Hermes 原生 MCP 客户端。在 config.yaml 中配置服务器，自动发现和注册工具。支持 stdio 和 HTTP 传输。</div></div>
+</div>
+</div>
+<div class="category"><h3>质量测试 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(1)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">dogfood</div><div class="skill-desc">Web 应用探索式 QA 测试。自动发现页面 bug、收集截图证据、生成结构化测试报告。</div></div>
+</div>
+</div>
+<div class="category"><h3>内容创作 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(10)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">chinese-novelist</div><div class="skill-desc">中文长篇小说创作助手。分章节创作，支持悬疑/言情/奇幻/科幻/历史等题材，10-50 章长篇，每章 3000+ 字。</div></div>
+<div class="skill-item"><div class="skill-name">baoyu-article-illustrator</div><div class="skill-desc">文章配图自动生成。根据文章内容自动匹配插画类型、风格和调色板，保持全篇视觉一致性。</div></div>
+<div class="skill-item"><div class="skill-name">baoyu-comic</div><div class="skill-desc">知识漫画创作。将教育内容、人物传记、技术教程转化为漫画形式，降低理解门槛。</div></div>
+<div class="skill-item"><div class="skill-name">baoyu-infographic</div><div class="skill-desc">信息图生成。21 种布局 × 21 种风格，适合数据可视化、流程说明、对比分析。</div></div>
+<div class="skill-item"><div class="skill-name">claude-design</div><div class="skill-desc">一次性 HTML 制品设计。落地页、演示文稿、产品原型，快速出图。</div></div>
+<div class="skill-item"><div class="skill-name">humanizer</div><div class="skill-desc">文本人性化处理。去除 AI 写作腔调（「在当今时代」「值得注意的是」等），增加真实个人风格。</div></div>
+<div class="skill-item"><div class="skill-name">ideation</div><div class="skill-desc">创意点子生成器。通过随机约束组合激发创意项目灵感。跳出思维定式。</div></div>
+<div class="skill-item"><div class="skill-name">novel-architect</div><div class="skill-desc">小说架构师。分步骤搭建世界观、角色设定、情节大纲，草稿生成和修改迭代。</div></div>
+<div class="skill-item"><div class="skill-name">sketch</div><div class="skill-desc">快速 HTML 原型。同时生成 2-3 个不同设计方向的对比版本，方便快速决策。</div></div>
+<div class="skill-item"><div class="skill-name">teams-meeting-pipeline</div><div class="skill-desc">Teams 会议摘要管线。自动转录、提取关键决策、生成行动项清单。Hermes CLI 驱动。</div></div>
+</div>
+</div>
+<div class="category"><h3>安全测试 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(1)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">godmode</div><div class="skill-desc">LLM 越狱和安全测试。Parseltongue/GODMODE/ULTRAPLINIAN 等多种越狱方法。用于评估模型安全性。</div></div>
+</div>
+</div>
+<div class="category"><h3>智能家居 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(2)</span></h3>
+<div class="skill-grid">
+<div class="skill-item"><div class="skill-name">smart-home</div><div class="skill-desc">智能家居控制。对接灯光、开关、传感器等设备的统一控制接口。</div></div>
+<div class="skill-item"><div class="skill-name">openhue</div><div class="skill-desc">Philips Hue 智能灯控制。通过 OpenHue CLI 管理灯光亮度/颜色、场景切换、房间分组。</div></div>
+</div>
+</div>
+        </section>
+
+        <section id="plugins">
+            <h2><span class="icon">🔌</span> 可用插件列表</h2>
+            <p class="section-desc">共 54 个插件。插件是 Hermes 的功能扩展模块，安装后需手动启用。</p>
+            <div class="category"><h3>浏览器 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(3)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>browser_use</code></td><td>Browser Use 云端浏览器。提供远程浏览器实例，Agent 可以浏览网页、点击按钮、填写表单。</td></tr>
+<tr><td style="white-space:nowrap"><code>browserbase</code></td><td>Browserbase 云端浏览器。带住宅代理的反检测浏览器，适合需要绕过反爬的网页操作。</td></tr>
+<tr><td style="white-space:nowrap"><code>firecrawl</code></td><td>Firecrawl 云端浏览器。专为网页抓取和内容提取优化，支持 JavaScript 渲染页面。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>图像生成 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(5)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>fal</code></td><td>FAL.ai 图像生成平台。支持 flux-2-klein/pro 模型和 nano-banana 风格，高质量 AI 图像生成。</td></tr>
+<tr><td style="white-space:nowrap"><code>krea</code></td><td>Krea 2 Large + Medium。实时 AI 图像生成和编辑，支持画布式交互。</td></tr>
+<tr><td style="white-space:nowrap"><code>openai</code></td><td>OpenAI gpt-image-2。OpenAI 原生图像生成，通过 API 调用，质量稳定。</td></tr>
+<tr><td style="white-space:nowrap"><code>openai-codex</code></td><td>OpenAI Codex OAuth 图像生成。通过 Codex 的 OAuth 认证链路调用图像生成能力。</td></tr>
+<tr><td style="white-space:nowrap"><code>xai</code></td><td>xAI Grok 图像生成。Elon Musk 的 xAI 推出的 grok-imagine 模型，风格独特。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>视频生成 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(2)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>fal</code></td><td>FAL.ai 视频生成。支持 Veo 3.1、Kling、Pixverse 等多个视频模型。</td></tr>
+<tr><td style="white-space:nowrap"><code>xai</code></td><td>xAI Grok 视频生成和编辑。支持文生视频和视频编辑功能。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>模型供应商 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(21)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>aliyun-dashscope</code></td><td>阿里云 DashScope（国际版）。提供通义千问等模型的 API 接入。</td></tr>
+<tr><td style="white-space:nowrap"><code>aliyun-coding-plan</code></td><td>阿里云 Coding Plan。面向编程场景的模型服务，支持代码生成和补全。</td></tr>
+<tr><td style="white-space:nowrap"><code>anthropic</code></td><td>Anthropic Claude 系列模型。Claude Sonnet/Opus，擅长复杂推理和长文本处理。</td></tr>
+<tr><td style="white-space:nowrap"><code>azure-foundry</code></td><td>微软 Azure AI Foundry。企业级模型部署和管理平台。</td></tr>
+<tr><td style="white-space:nowrap"><code>bedrock</code></td><td>AWS Bedrock。亚马逊云上的模型托管服务，支持 Claude/Llama 等多种模型。</td></tr>
+<tr><td style="white-space:nowrap"><code>copilot</code></td><td>GitHub Copilot。微软的 AI 编程助手，通过 API 方式接入。</td></tr>
+<tr><td style="white-space:nowrap"><code>custom</code></td><td>自定义/Ollama/本地端点。连接任何兼容 OpenAI API 的服务，包括本地运行的 Ollama 模型。</td></tr>
+<tr><td style="white-space:nowrap"><code>deepseek</code></td><td>DeepSeek 系列模型。国产高性价比模型，支持超长上下文（1M token），中文能力优秀。</td></tr>
+<tr><td style="white-space:nowrap"><code>gemini</code></td><td>Google Gemini 系列。谷歌的多模态模型，支持文本/图片/视频/音频。</td></tr>
+<tr><td style="white-space:nowrap"><code>huggingface</code></td><td>HuggingFace 推理服务。HF Hub 上的模型推理 API，免部署直接调用。</td></tr>
+<tr><td style="white-space:nowrap"><code>kimi</code></td><td>Moonshot Kimi Coding。月之暗面的编程专用模型，擅长代码理解和生成。</td></tr>
+<tr><td style="white-space:nowrap"><code>minimax</code></td><td>MiniMax M 系列。国产多模态模型，支持文本和语音。</td></tr>
+<tr><td style="white-space:nowrap"><code>nous</code></td><td>Nous Research Portal。Hermes 模型系列的官方推理服务。</td></tr>
+<tr><td style="white-space:nowrap"><code>nvidia</code></td><td>NVIDIA NIM。英伟达的模型推理微服务，GPU 加速，企业级部署。</td></tr>
+<tr><td style="white-space:nowrap"><code>openai-codex</code></td><td>OpenAI Codex（Responses API）。OpenAI 的新一代编程模型 API。</td></tr>
+<tr><td style="white-space:nowrap"><code>opencode</code></td><td>OpenCode（Zen + Go）。开源编程模型，支持本地和云端部署。</td></tr>
+<tr><td style="white-space:nowrap"><code>openrouter</code></td><td>OpenRouter 模型聚合器。一个 API Key 接入 200+ 模型，自动路由和比价。</td></tr>
+<tr><td style="white-space:nowrap"><code>qwen</code></td><td>Qwen Portal（OAuth）。通义千问官方门户，通过 OAuth 认证接入。</td></tr>
+<tr><td style="white-space:nowrap"><code>xai</code></td><td>xAI Grok。Elon Musk 的 xAI 推出的 Grok 模型，支持文本和图像。</td></tr>
+<tr><td style="white-space:nowrap"><code>xiaomi</code></td><td>小米 MiMo。小米的 AI 模型服务，支持多模态交互。</td></tr>
+<tr><td style="white-space:nowrap"><code>zai</code></td><td>Z.AI / GLM。智谱 AI 的 GLM 系列模型，国产开源大模型。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>消息平台 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(8)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>discord</code></td><td>Discord 平台接入。支持语音频道、斜杠命令、私聊授权管理。</td></tr>
+<tr><td style="white-space:nowrap"><code>google_chat</code></td><td>Google Chat 接入。通过 Cloud Pub/Sub 拉取消息，支持群聊和私聊。</td></tr>
+<tr><td style="white-space:nowrap"><code>irc</code></td><td>IRC 协议支持。纯 Python asyncio 实现，兼容传统 IRC 网络。</td></tr>
+<tr><td style="white-space:nowrap"><code>line</code></td><td>LINE 消息 API。Webhook 接收 + HMAC 签名验证，支持日本/台湾/泰国市场。</td></tr>
+<tr><td style="white-space:nowrap"><code>mattermost</code></td><td>Mattermost 企业聊天。v4 REST API + WebSocket 实时通信。</td></tr>
+<tr><td style="white-space:nowrap"><code>ntfy</code></td><td>ntfy 推送通知。HTTP 流式接收 + POST 发送，简单轻量的通知方案。</td></tr>
+<tr><td style="white-space:nowrap"><code>simplex</code></td><td>SimpleX Chat。去中心化加密聊天协议，无用户标识，隐私优先。</td></tr>
+<tr><td style="white-space:nowrap"><code>teams</code></td><td>Microsoft Teams 接入。通过 Bot Framework 连接企业 Teams 环境。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>网络搜索 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(8)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>brave_free</code></td><td>Brave 搜索（免费 2000 次/月）。隐私友好的搜索引擎 API，无需付费即可使用。</td></tr>
+<tr><td style="white-space:nowrap"><code>ddgs</code></td><td>DuckDuckGo 搜索。完全免费，无需 API Key，隐私优先。已默认启用。</td></tr>
+<tr><td style="white-space:nowrap"><code>exa</code></td><td>Exa 搜索。AI 原生的语义搜索 + 内容提取，适合长尾信息发现。</td></tr>
+<tr><td style="white-space:nowrap"><code>firecrawl</code></td><td>Firecrawl 搜索+提取。网页搜索配合内容抓取，一条龙获取搜索结果原文。</td></tr>
+<tr><td style="white-space:nowrap"><code>parallel</code></td><td>Parallel.ai 搜索+提取。高性能网页内容获取，适合批量数据处理。</td></tr>
+<tr><td style="white-space:nowrap"><code>searxng</code></td><td>SearXNG 自托管搜索引擎。开源、可自建、隐私零泄露。适合对隐私要求极高的场景。</td></tr>
+<tr><td style="white-space:nowrap"><code>tavily</code></td><td>Tavily 搜索+提取+爬取。专为 AI Agent 设计的搜索 API，结构化返回结果。</td></tr>
+<tr><td style="white-space:nowrap"><code>xai</code></td><td>xAI Grok Agentic 搜索。Grok 模型的原生联网搜索能力，融合推理和检索。</td></tr>
+</tbody></table></div>
+<div class="category"><h3>其他 <span style="font-weight:400;opacity:0.6;font-size:0.9rem">(7)</span></h3>
+<table class="plugin-table"><thead><tr><th>名称</th><th>功能说明</th></tr></thead><tbody>
+<tr><td style="white-space:nowrap"><code>dashboard_auth</code></td><td>Nous Portal 仪表盘 OAuth 2.0 认证。用于访问 Nous Research 的 Web 管理界面。</td></tr>
+<tr><td style="white-space:nowrap"><code>disk-cleanup</code></td><td>自动清理会话临时文件。防止磁盘被临时数据占满，已默认启用。</td></tr>
+<tr><td style="white-space:nowrap"><code>google_meet</code></td><td>Google Meet 集成。会议实时转录 + 语音交互，AI 可以旁听和参与会议。</td></tr>
+<tr><td style="white-space:nowrap"><code>langfuse</code></td><td>Langfuse 可观测性。追踪对话记录、LLM 调用、工具使用，提供全链路监控。</td></tr>
+<tr><td style="white-space:nowrap"><code>security-guidance</code></td><td>安全警告。实时检测危险代码模式（如 rm -rf、SQL 注入），提醒用户风险。已默认启用。</td></tr>
+<tr><td style="white-space:nowrap"><code>spotify</code></td><td>原生 Spotify 集成。提供 7 个操作工具：播放控制、搜索、播放列表管理。</td></tr>
+<tr><td style="white-space:nowrap"><code>teams_pipeline</code></td><td>Teams 会议处理管线。自动转录会议、生成摘要和待办事项。</td></tr>
+</tbody></table></div>
+        </section>
+
+        <footer>
+            <p>Hermes Agent · Nous Research · 数据更新于 2026-05-31</p>
+        </footer>
+    </div>
+    <script>
+    const nav=document.getElementById('nav'),links=nav.querySelectorAll('a'),sections=document.querySelectorAll('section');
+    new IntersectionObserver((e)=>{e.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));
+    const a=nav.querySelector('a[href="#'+e.target.id+'"]');if(a)a.classList.add('active');}})}).observe;
+    </script>
+</body>
+</html>
