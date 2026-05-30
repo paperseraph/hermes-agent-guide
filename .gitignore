@@ -6,3 +6,4 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+.cf_token\ncf_deploy.py\nindigo/.env\nindigo/.wrangler/\nindigo/wrangler.toml

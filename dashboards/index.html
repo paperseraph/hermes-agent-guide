@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent · 仪表盘中心</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --border: #30363d;
+    --text: #c9d1d9; --muted: #8b949e; --green: #3fb950;
+    --blue: #58a6ff; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  }
+  .container { max-width: 700px; padding: 40px 24px; text-align: center; }
+  h1 { font-size: 1.8rem; margin-bottom: 4px; }
+  h1 span { color: var(--green); }
+  .sub { color: var(--muted); margin-bottom: 40px; font-size: 0.95rem; }
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 24px; text-decoration: none; color: var(--text);
+    display: flex; align-items: center; gap: 16px; text-align: left;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: var(--green); transform: translateY(-1px); }
+  .card-icon { font-size: 2rem; min-width: 48px; text-align: center; }
+  .card-info h3 { font-size: 1rem; margin-bottom: 2px; }
+  .card-info p { font-size: 0.85rem; color: var(--muted); }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 8px;
+    font-size: 0.7rem; font-weight: 600; margin-left: auto;
+  }
+  .badge.live { background: #1a3a1a; color: var(--green); }
+  .badge.overview { background: #1a1a3a; color: var(--blue); }
+  .badge.stock { background: #3a1a3a; color: var(--purple); }
+  .footer { margin-top: 40px; color: var(--muted); font-size: 0.75rem; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🦉 Hermes <span>Agent</span> · 仪表盘中心</h1>
+  <p class="sub">A股量化分析系统 · 实时监控与决策看板</p>
+
+  <div class="cards">
+    <a href="dashboards/l0-monitor.html" class="card">
+      <div class="card-icon">🛰️</div>
+      <div class="card-info">
+        <h3>L0 望风者 · 实时监控</h3>
+        <p>情报员+舆情兵双通道，命中流实时更新</p>
+      </div>
+      <span class="badge live">实时</span>
+    </a>
+
+    <a href="dashboards/multi-agent.html" class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-info">
+        <h3>多Agent全景仪表盘</h3>
+        <p>宏观/复盘/技术/财报/RL 五Agent观点总览，分歧与共识</p>
+      </div>
+      <span class="badge overview">全景</span>
+    </a>
+
+    <a href="dashboards/stock-300822.html" class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-info">
+        <h3>个股仪表盘 · 300822 贝仕达克</h3>
+        <p>技术面 + 基本面 + RL信号，三合一决策看板</p>
+      </div>
+      <span class="badge stock">个股</span>
+    </a>
+
+    <a href="index.html" class="card">
+      <div class="card-icon">📖</div>
+      <div class="card-info">
+        <h3>Hermes Agent 速查手册</h3>
+        <p>命令参考、配置指南、技能列表</p>
+      </div>
+      <span class="badge overview">文档</span>
+    </a>
+  </div>
+
+  <div class="footer">Powered by Hermes Agent · RTX 5080 + DeepSeek V4 Pro</div>
+</div>
+
+</body>
+</html>

@@ -5,134 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hermes Agent 命令速查手册</title>
     <meta name="description" content="Hermes Agent 完整命令、技能与插件速查手册">
-    <meta name="theme-color" content="#a78bfa">
+    <meta name="theme-color" content="#3fb950">
     <style>
         :root {
-            --bg: #0a0a0b;
-            --bg2: #111113;
-            --bg3: #1a1a1e;
-            --text: #e4e4e7;
-            --text2: #71717a;
-            --accent: #a78bfa;
-            --accent2: #7c3aed;
-            --border: #27272a;
-            --hover: #18181b;
-            --card: #111113;
-            --code-bg: #1a1a1e;
-            --glow: rgba(167,139,250,0.12);
+            --bg: #0d1117;
+            --bg2: #161b22;
+            --bg3: #21262d;
+            --text: #c9d1d9;
+            --text2: #8b949e;
+            --accent: #3fb950;
+            --accent2: #238636;
+            --border: #30363d;
+            --hover: #1c2128;
+            --code-bg: #1a1f29;
+            --card: #161b22;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, 'Noto Sans SC', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
             background: var(--bg); color: var(--text); line-height: 1.6;
         }
-        /* geometric bg */
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(167,139,250,0.08), transparent),
-                radial-gradient(ellipse 50% 80% at 80% 80%, rgba(124,58,237,0.06), transparent);
-            pointer-events: none; z-index: 0;
-        }
-        .container { max-width: 1100px; margin: 0 auto; padding: 28px; position: relative; z-index: 1; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
         header {
-            padding: 56px 24px 40px; text-align: center; position: relative;
-            margin-bottom: 36px;
+            padding: 48px 24px 32px; text-align: center;
+            border-bottom: 1px solid var(--border); margin-bottom: 32px;
         }
-        header::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2));
-            border-radius: 2px;
-        }
-        header h1 {
-            font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #e4e4e7 0%, #a78bfa 50%, #c4b5fd 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; margin-bottom: 10px;
-        }
-        header p { color: var(--text2); font-size: 1rem; font-weight: 400; }
+        header h1 { font-size: 2.4rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        header h1 span { color: var(--accent); }
+        header p { color: var(--text2); font-size: 1.05rem; }
         nav {
-            display: flex; gap: 2px; flex-wrap: wrap; justify-content: center;
-            margin-bottom: 44px; position: sticky; top: 0;
-            background: rgba(10,10,11,0.85); backdrop-filter: blur(20px);
-            padding: 14px 0; z-index: 10; border-bottom: 1px solid var(--border);
+            display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;
+            margin-bottom: 40px; position: sticky; top: 0; background: var(--bg);
+            padding: 12px 0; z-index: 10; border-bottom: 1px solid var(--border);
         }
         nav a {
-            color: var(--text2); text-decoration: none; padding: 7px 18px;
-            border-radius: 6px; font-size: 0.85rem; font-weight: 500;
-            transition: all 0.2s; letter-spacing: 0.01em;
+            color: var(--text2); text-decoration: none; padding: 6px 16px;
+            border-radius: 6px; font-size: 0.9rem; transition: all 0.15s;
         }
         nav a:hover { color: #fff; background: var(--bg3); }
-        nav a.active { color: #fff; background: var(--accent2); }
-        section { margin-bottom: 56px; }
+        nav a.active { color: var(--accent); background: var(--bg2); }
+        section { margin-bottom: 48px; }
         section h2 {
-            font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.02em;
-            padding-bottom: 14px; border-bottom: 1px solid var(--border);
-            margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+            font-size: 1.6rem; font-weight: 600; color: #fff;
+            padding-bottom: 12px; border-bottom: 2px solid var(--accent);
+            margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
         }
         section h2 .icon { font-size: 1.3rem; }
-        .category { margin-bottom: 36px; }
+        .category { margin-bottom: 32px; }
         .category h3 {
-            font-size: 1rem; color: var(--accent); margin-bottom: 14px;
-            font-weight: 600; display: flex; align-items: center; gap: 8px;
+            font-size: 1.05rem; color: var(--accent); margin-bottom: 12px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .category h3::before {
-            content: ''; display: inline-block; width: 6px; height: 6px;
-            background: var(--accent); border-radius: 50%;
-        }
-        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 6px; }
+        .cmd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px; }
         .cmd-card {
             background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-            padding: 14px 18px; transition: all 0.2s; position: relative; overflow: hidden;
-        }
-        .cmd-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--glow); opacity: 0; transition: opacity 0.3s;
+            padding: 14px 16px; transition: border-color 0.15s;
         }
         .cmd-card:hover { border-color: var(--accent2); }
-        .cmd-card:hover::before { opacity: 1; }
-        .cmd-card > * { position: relative; z-index: 1; }
         .cmd-card .code {
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.82rem; color: #c4b5fd; margin-bottom: 8px; word-break: break-all;
-            background: var(--code-bg); padding: 2px 6px; border-radius: 3px; display: inline-block;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.85rem; color: #79c0ff; margin-bottom: 6px; word-break: break-all;
         }
         .cmd-card .desc { font-size: 0.85rem; color: var(--text); margin-bottom: 4px; }
-        .cmd-card .scenario { font-size: 0.78rem; color: var(--text2); }
-        /* Skills - compact */
-        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 4px; }
+        .cmd-card .scenario { font-size: 0.78rem; color: var(--text2); font-style: italic; }
+        .cmd-card .scenario::before { content: "💡 "; }
+        /* Skills */
+        .skill-list { display: flex; flex-direction: column; gap: 4px; }
         .skill-item {
-            padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border);
-            transition: background 0.2s;
+            display: flex; align-items: baseline; gap: 10px; padding: 6px 0;
+            border-bottom: 1px solid var(--border);
         }
-        .skill-item:hover { background: var(--hover); }
+        .skill-item:last-child { border-bottom: none; }
         .skill-item .skill-name {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
-            color: #c4b5fd; font-weight: 500;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+            color: #79c0ff; white-space: nowrap; min-width: 140px;
         }
-        .skill-item .skill-desc { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+        .skill-item .skill-desc { font-size: 0.85rem; color: var(--text); }
         /* Plugins */
-        .plugin-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+        .plugin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         .plugin-table th {
-            text-align: left; padding: 10px 14px; background: var(--bg2);
-            color: var(--accent); font-weight: 600; font-size: 0.78rem;
-            text-transform: uppercase; letter-spacing: 1px;
+            text-align: left; padding: 8px 12px; background: var(--bg2);
+            color: var(--text2); font-weight: 600; font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .plugin-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+        .plugin-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
         .plugin-table tr:hover td { background: var(--hover); }
-        .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
-        .dot.on { background: #a3e635; box-shadow: 0 0 8px rgba(163,230,53,0.4); }
-        .dot.off { background: #3f3f46; }
-        footer {
-            text-align: center; padding: 36px; color: var(--text2); font-size: 0.8rem;
-            border-top: 1px solid var(--border); margin-top: 56px;
+        .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+        .dot.on { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+        .dot.off { background: var(--text2); }
+        .badge {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3px;
         }
-        footer a { color: var(--accent); text-decoration: none; }
-        /* responsive */
+        footer {
+            text-align: center; padding: 32px; color: var(--text2); font-size: 0.8rem;
+            border-top: 1px solid var(--border); margin-top: 48px;
+        }
         @media (max-width: 768px) {
-            .cmd-grid, .skill-grid { grid-template-columns: 1fr; }
-            .container { padding: 14px; }
-            header h1 { font-size: 1.8rem; }
+            .cmd-grid { grid-template-columns: 1fr; }
+            .skill-item { flex-direction: column; gap: 2px; }
+            .container { padding: 12px; }
+            header h1 { font-size: 1.6rem; }
         }
         
         .section-desc { color: var(--text2); font-size: 0.9rem; margin-bottom: 24px; }
@@ -344,192 +317,192 @@
             <h2><span class="icon">🧩</span> 内置技能列表</h2>
             <p class="section-desc">共 113 个技能，覆盖 19 个领域</p>
             <div class="category"><h3>A股量化分析 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(12)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">akshare-stock</div><div class="skill-desc">A股分析全能——实时行情、技术面、基本面、板块、衍生品</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-earnings-agent</div><div class="skill-desc">A股财报分析——主动拉取研报、财务指标、业绩预告和公告</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-intelligence-agent</div><div class="skill-desc">A股Agent团队总纲——L0望风者+L1研究员</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-macro-agent</div><div class="skill-desc">A股宏观研判——PMI/CPI/PPI/M2/LPR/GDP等宏观数据</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-macro-knowledge</div><div class="skill-desc">宏观分析知识库——央行政策/全球市场的传导映射</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-market-review-agent</div><div class="skill-desc">A股市场复盘——龙虎榜、板块资金流、涨停分析</div></div>
-<div class="skill-item"><div class="skill-name">a-stock-technical-agent</div><div class="skill-desc">A股技术分析——K线、趋势、支撑压力、量价分析</div></div>
-<div class="skill-item"><div class="skill-name">l0-briefing-format</div><div class="skill-desc">L0简报极简格式——情报+舆情一屏呈现</div></div>
-<div class="skill-item"><div class="skill-name">quant-backtrader</div><div class="skill-desc">Backtrader回测环境——Windows/CUDA量化回测</div></div>
-<div class="skill-item"><div class="skill-name">quant-ml-stack</div><div class="skill-desc">量化ML工具链——PyTorch CUDA环境配置</div></div>
-<div class="skill-item"><div class="skill-name">quant-ml-tools</div><div class="skill-desc">AI/ML量化工具——FinRL/FinBERT/AutoTS对比</div></div>
-<div class="skill-item"><div class="skill-name">weekly-editor</div><div class="skill-desc">总编Agent——汇总L1周报，SQLite+Markdown双写</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">akshare-stock</span><span class="skill-desc">A股分析全能——实时行情、技术面、基本面、板块、衍生品</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-earnings-agent</span><span class="skill-desc">A股财报分析——主动拉取研报、财务指标、业绩预告和公告</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-intelligence-agent</span><span class="skill-desc">A股Agent团队总纲——L0望风者+L1研究员</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-macro-agent</span><span class="skill-desc">A股宏观研判——PMI/CPI/PPI/M2/LPR/GDP等宏观数据</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-macro-knowledge</span><span class="skill-desc">宏观分析知识库——央行政策/全球市场的传导映射</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-market-review-agent</span><span class="skill-desc">A股市场复盘——龙虎榜、板块资金流、涨停分析</span></div>
+<div class="skill-item"><span class="skill-name">a-stock-technical-agent</span><span class="skill-desc">A股技术分析——K线、趋势、支撑压力、量价分析</span></div>
+<div class="skill-item"><span class="skill-name">l0-briefing-format</span><span class="skill-desc">L0简报极简格式——情报+舆情一屏呈现</span></div>
+<div class="skill-item"><span class="skill-name">quant-backtrader</span><span class="skill-desc">Backtrader回测环境——Windows/CUDA量化回测</span></div>
+<div class="skill-item"><span class="skill-name">quant-ml-stack</span><span class="skill-desc">量化ML工具链——PyTorch CUDA环境配置</span></div>
+<div class="skill-item"><span class="skill-name">quant-ml-tools</span><span class="skill-desc">AI/ML量化工具——FinRL/FinBERT/AutoTS对比</span></div>
+<div class="skill-item"><span class="skill-name">weekly-editor</span><span class="skill-desc">总编Agent——汇总L1周报，SQLite+Markdown双写</span></div>
 </div>
 </div>
 <div class="category"><h3>自主Agent <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(7)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">autonomous-ai-agents</div><div class="skill-desc">自主AI编程Agent和Multi-agent工作流</div></div>
-<div class="skill-item"><div class="skill-name">claude-code</div><div class="skill-desc">委托编码给Claude Code CLI（功能开发、PR）</div></div>
-<div class="skill-item"><div class="skill-name">codex</div><div class="skill-desc">委托编码给OpenAI Codex CLI（功能开发、PR）</div></div>
-<div class="skill-item"><div class="skill-name">hermes-agent</div><div class="skill-desc">配置、扩展或贡献Hermes Agent本身</div></div>
-<div class="skill-item"><div class="skill-name">kanban-codex-lane</div><div class="skill-desc">Hermes看板worker运行Codex CLI配置</div></div>
-<div class="skill-item"><div class="skill-name">opencode</div><div class="skill-desc">委托编码给OpenCode CLI（功能开发、PR审查）</div></div>
-<div class="skill-item"><div class="skill-name">subagent-driven-development</div><div class="skill-desc">delegate_task子Agent开发计划（两阶段审查）</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">autonomous-ai-agents</span><span class="skill-desc">自主AI编程Agent和Multi-agent工作流</span></div>
+<div class="skill-item"><span class="skill-name">claude-code</span><span class="skill-desc">委托编码给Claude Code CLI（功能开发、PR）</span></div>
+<div class="skill-item"><span class="skill-name">codex</span><span class="skill-desc">委托编码给OpenAI Codex CLI（功能开发、PR）</span></div>
+<div class="skill-item"><span class="skill-name">hermes-agent</span><span class="skill-desc">配置、扩展或贡献Hermes Agent本身</span></div>
+<div class="skill-item"><span class="skill-name">kanban-codex-lane</span><span class="skill-desc">Hermes看板worker运行Codex CLI配置</span></div>
+<div class="skill-item"><span class="skill-name">opencode</span><span class="skill-desc">委托编码给OpenCode CLI（功能开发、PR审查）</span></div>
+<div class="skill-item"><span class="skill-name">subagent-driven-development</span><span class="skill-desc">delegate_task子Agent开发计划（两阶段审查）</span></div>
 </div>
 </div>
 <div class="category"><h3>部署托管 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(4)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">cloudflare-pages</div><div class="skill-desc">部署到Cloudflare Pages——自定义域名、CI/CD、回滚</div></div>
-<div class="skill-item"><div class="skill-name">netlify-deploy</div><div class="skill-desc">Netlify CLI全流程自动化部署——零全局安装</div></div>
-<div class="skill-item"><div class="skill-name">vercel-deployment</div><div class="skill-desc">Vercel部署——Next.js专家级知识</div></div>
-<div class="skill-item"><div class="skill-name">static-site-deploy</div><div class="skill-desc">静态网站部署到免费托管平台</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">cloudflare-pages</span><span class="skill-desc">部署到Cloudflare Pages——自定义域名、CI/CD、回滚</span></div>
+<div class="skill-item"><span class="skill-name">netlify-deploy</span><span class="skill-desc">Netlify CLI全流程自动化部署——零全局安装</span></div>
+<div class="skill-item"><span class="skill-name">vercel-deployment</span><span class="skill-desc">Vercel部署——Next.js专家级知识</span></div>
+<div class="skill-item"><span class="skill-name">static-site-deploy</span><span class="skill-desc">静态网站部署到免费托管平台</span></div>
 </div>
 </div>
 <div class="category"><h3>创意设计 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(15)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">blender-mcp</div><div class="skill-desc">通过socket连接直接控制Blender</div></div>
-<div class="skill-item"><div class="skill-name">creative</div><div class="skill-desc">创意内容——ASCII艺术、手绘图表、视觉设计</div></div>
-<div class="skill-item"><div class="skill-name">ascii-art</div><div class="skill-desc">ASCII艺术——pyfiglet、cowsay、boxes、图片转ASCII</div></div>
-<div class="skill-item"><div class="skill-name">ascii-video</div><div class="skill-desc">ASCII视频——视频/音频转彩色ASCII MP4/GIF</div></div>
-<div class="skill-item"><div class="skill-name">architecture-diagram</div><div class="skill-desc">深色主题SVG架构/云/基础设施图</div></div>
-<div class="skill-item"><div class="skill-name">comfyui</div><div class="skill-desc">ComfyUI生成图片、视频和音频</div></div>
-<div class="skill-item"><div class="skill-name">excalidraw</div><div class="skill-desc">手绘风格图表——架构图、流程图、时序图</div></div>
-<div class="skill-item"><div class="skill-name">font-pairing-suggester</div><div class="skill-desc">字体搭配推荐</div></div>
-<div class="skill-item"><div class="skill-name">manim-video</div><div class="skill-desc">Manim CE数学/算法动画——3Blue1Brown风格</div></div>
-<div class="skill-item"><div class="skill-name">p5js</div><div class="skill-desc">p5.js生成艺术、着色器、交互式、3D</div></div>
-<div class="skill-item"><div class="skill-name">pixel-art</div><div class="skill-desc">像素艺术——NES/Game Boy/PICO-8调色板</div></div>
-<div class="skill-item"><div class="skill-name">popular-web-designs</div><div class="skill-desc">54个真实设计系统HTML/CSS复刻</div></div>
-<div class="skill-item"><div class="skill-name">songwriting-and-ai-music</div><div class="skill-desc">歌曲创作和Suno AI音乐提示</div></div>
-<div class="skill-item"><div class="skill-name">theme-factory</div><div class="skill-desc">Artifact主题工具包——风格化HTML/CSS</div></div>
-<div class="skill-item"><div class="skill-name">touchdesigner-mcp</div><div class="skill-desc">通过MCP控制TouchDesigner实例</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">blender-mcp</span><span class="skill-desc">通过socket连接直接控制Blender</span></div>
+<div class="skill-item"><span class="skill-name">creative</span><span class="skill-desc">创意内容——ASCII艺术、手绘图表、视觉设计</span></div>
+<div class="skill-item"><span class="skill-name">ascii-art</span><span class="skill-desc">ASCII艺术——pyfiglet、cowsay、boxes、图片转ASCII</span></div>
+<div class="skill-item"><span class="skill-name">ascii-video</span><span class="skill-desc">ASCII视频——视频/音频转彩色ASCII MP4/GIF</span></div>
+<div class="skill-item"><span class="skill-name">architecture-diagram</span><span class="skill-desc">深色主题SVG架构/云/基础设施图</span></div>
+<div class="skill-item"><span class="skill-name">comfyui</span><span class="skill-desc">ComfyUI生成图片、视频和音频</span></div>
+<div class="skill-item"><span class="skill-name">excalidraw</span><span class="skill-desc">手绘风格图表——架构图、流程图、时序图</span></div>
+<div class="skill-item"><span class="skill-name">font-pairing-suggester</span><span class="skill-desc">字体搭配推荐</span></div>
+<div class="skill-item"><span class="skill-name">manim-video</span><span class="skill-desc">Manim CE数学/算法动画——3Blue1Brown风格</span></div>
+<div class="skill-item"><span class="skill-name">p5js</span><span class="skill-desc">p5.js生成艺术、着色器、交互式、3D</span></div>
+<div class="skill-item"><span class="skill-name">pixel-art</span><span class="skill-desc">像素艺术——NES/Game Boy/PICO-8调色板</span></div>
+<div class="skill-item"><span class="skill-name">popular-web-designs</span><span class="skill-desc">54个真实设计系统HTML/CSS复刻</span></div>
+<div class="skill-item"><span class="skill-name">songwriting-and-ai-music</span><span class="skill-desc">歌曲创作和Suno AI音乐提示</span></div>
+<div class="skill-item"><span class="skill-name">theme-factory</span><span class="skill-desc">Artifact主题工具包——风格化HTML/CSS</span></div>
+<div class="skill-item"><span class="skill-name">touchdesigner-mcp</span><span class="skill-desc">通过MCP控制TouchDesigner实例</span></div>
 </div>
 </div>
 <div class="category"><h3>生产力 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(10)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">airtable</div><div class="skill-desc">Airtable REST API——记录CRUD、过滤、upsert</div></div>
-<div class="skill-item"><div class="skill-name">google-workspace</div><div class="skill-desc">Gmail/Calendar/Drive/Docs/Sheets——gws CLI/Python</div></div>
-<div class="skill-item"><div class="skill-name">linear</div><div class="skill-desc">Linear项目管理——GraphQL+curl</div></div>
-<div class="skill-item"><div class="skill-name">maps</div><div class="skill-desc">地理编码/POI/路线/时区——OpenStreetMap/OSRM</div></div>
-<div class="skill-item"><div class="skill-name">nano-pdf</div><div class="skill-desc">PDF编辑——自然语言修改文本/错字/标题</div></div>
-<div class="skill-item"><div class="skill-name">notion</div><div class="skill-desc">Notion API+ntn CLI——页面/数据库/Markdown</div></div>
-<div class="skill-item"><div class="skill-name">ocr-and-documents</div><div class="skill-desc">PDF/扫描件文字提取——pymupdf/marker-pdf</div></div>
-<div class="skill-item"><div class="skill-name">powerpoint</div><div class="skill-desc">创建/读取/编辑.pptx演示文稿</div></div>
-<div class="skill-item"><div class="skill-name">markdown-to-epub-converter</div><div class="skill-desc">Markdown和对话转EPUB电子书</div></div>
-<div class="skill-item"><div class="skill-name">note-taking</div><div class="skill-desc">笔记技能——Obsidian仓库读写搜索</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">airtable</span><span class="skill-desc">Airtable REST API——记录CRUD、过滤、upsert</span></div>
+<div class="skill-item"><span class="skill-name">google-workspace</span><span class="skill-desc">Gmail/Calendar/Drive/Docs/Sheets——gws CLI/Python</span></div>
+<div class="skill-item"><span class="skill-name">linear</span><span class="skill-desc">Linear项目管理——GraphQL+curl</span></div>
+<div class="skill-item"><span class="skill-name">maps</span><span class="skill-desc">地理编码/POI/路线/时区——OpenStreetMap/OSRM</span></div>
+<div class="skill-item"><span class="skill-name">nano-pdf</span><span class="skill-desc">PDF编辑——自然语言修改文本/错字/标题</span></div>
+<div class="skill-item"><span class="skill-name">notion</span><span class="skill-desc">Notion API+ntn CLI——页面/数据库/Markdown</span></div>
+<div class="skill-item"><span class="skill-name">ocr-and-documents</span><span class="skill-desc">PDF/扫描件文字提取——pymupdf/marker-pdf</span></div>
+<div class="skill-item"><span class="skill-name">powerpoint</span><span class="skill-desc">创建/读取/编辑.pptx演示文稿</span></div>
+<div class="skill-item"><span class="skill-name">markdown-to-epub-converter</span><span class="skill-desc">Markdown和对话转EPUB电子书</span></div>
+<div class="skill-item"><span class="skill-name">note-taking</span><span class="skill-desc">笔记技能——Obsidian仓库读写搜索</span></div>
 </div>
 </div>
 <div class="category"><h3>开发调试 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(14)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">debug-isolation</div><div class="skill-desc">调试隔离——独立排查技巧</div></div>
-<div class="skill-item"><div class="skill-name">debugging-hermes-tui-commands</div><div class="skill-desc">调试Hermes TUI斜杠命令——Python/Gateway</div></div>
-<div class="skill-item"><div class="skill-name">hermes-agent-skill-authoring</div><div class="skill-desc">编写SKILL.md——frontmatter、验证、结构</div></div>
-<div class="skill-item"><div class="skill-name">hermes-skill-install</div><div class="skill-desc">skills install失败时的手动安装方案</div></div>
-<div class="skill-item"><div class="skill-name">layered-debugging</div><div class="skill-desc">层层隔离排查——逐层隔离、逐层验证</div></div>
-<div class="skill-item"><div class="skill-name">node-inspect-debugger</div><div class="skill-desc">Node.js调试——--inspect+Chrome DevTools</div></div>
-<div class="skill-item"><div class="skill-name">plan</div><div class="skill-desc">计划模式——写Markdown计划到.hermes/plans/</div></div>
-<div class="skill-item"><div class="skill-name">requesting-code-review</div><div class="skill-desc">提交前审查——安全扫描、质量门、自动修复</div></div>
-<div class="skill-item"><div class="skill-name">spike</div><div class="skill-desc">抛砖式实验——验证想法后再构建</div></div>
-<div class="skill-item"><div class="skill-name">system-safety</div><div class="skill-desc">Agent系统安全红线——禁止擅自修改关键配置</div></div>
-<div class="skill-item"><div class="skill-name">systematic-debugging</div><div class="skill-desc">四阶段根因调试——先理解bug再修复</div></div>
-<div class="skill-item"><div class="skill-name">tech-support</div><div class="skill-desc">技术问题分流——编程/调试/配置/系统管理</div></div>
-<div class="skill-item"><div class="skill-name">test-driven-development</div><div class="skill-desc">TDD——强制红-绿-重构，测试先行</div></div>
-<div class="skill-item"><div class="skill-name">writing-plans</div><div class="skill-desc">编写实施计划——拆分为小任务+路径+代码</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">debug-isolation</span><span class="skill-desc">调试隔离——独立排查技巧</span></div>
+<div class="skill-item"><span class="skill-name">debugging-hermes-tui-commands</span><span class="skill-desc">调试Hermes TUI斜杠命令——Python/Gateway</span></div>
+<div class="skill-item"><span class="skill-name">hermes-agent-skill-authoring</span><span class="skill-desc">编写SKILL.md——frontmatter、验证、结构</span></div>
+<div class="skill-item"><span class="skill-name">hermes-skill-install</span><span class="skill-desc">skills install失败时的手动安装方案</span></div>
+<div class="skill-item"><span class="skill-name">layered-debugging</span><span class="skill-desc">层层隔离排查——逐层隔离、逐层验证</span></div>
+<div class="skill-item"><span class="skill-name">node-inspect-debugger</span><span class="skill-desc">Node.js调试——--inspect+Chrome DevTools</span></div>
+<div class="skill-item"><span class="skill-name">plan</span><span class="skill-desc">计划模式——写Markdown计划到.hermes/plans/</span></div>
+<div class="skill-item"><span class="skill-name">requesting-code-review</span><span class="skill-desc">提交前审查——安全扫描、质量门、自动修复</span></div>
+<div class="skill-item"><span class="skill-name">spike</span><span class="skill-desc">抛砖式实验——验证想法后再构建</span></div>
+<div class="skill-item"><span class="skill-name">system-safety</span><span class="skill-desc">Agent系统安全红线——禁止擅自修改关键配置</span></div>
+<div class="skill-item"><span class="skill-name">systematic-debugging</span><span class="skill-desc">四阶段根因调试——先理解bug再修复</span></div>
+<div class="skill-item"><span class="skill-name">tech-support</span><span class="skill-desc">技术问题分流——编程/调试/配置/系统管理</span></div>
+<div class="skill-item"><span class="skill-name">test-driven-development</span><span class="skill-desc">TDD——强制红-绿-重构，测试先行</span></div>
+<div class="skill-item"><span class="skill-name">writing-plans</span><span class="skill-desc">编写实施计划——拆分为小任务+路径+代码</span></div>
 </div>
 </div>
 <div class="category"><h3>数据科学 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(2)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">data-science</div><div class="skill-desc">数据科学工作流——探索分析、Jupyter、可视化</div></div>
-<div class="skill-item"><div class="skill-name">jupyter-live-kernel</div><div class="skill-desc">实时Jupyter kernel迭代Python</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">data-science</span><span class="skill-desc">数据科学工作流——探索分析、Jupyter、可视化</span></div>
+<div class="skill-item"><span class="skill-name">jupyter-live-kernel</span><span class="skill-desc">实时Jupyter kernel迭代Python</span></div>
 </div>
 </div>
 <div class="category"><h3>DevOps <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(5)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">devops</div><div class="skill-desc">DevOps技能集</div></div>
-<div class="skill-item"><div class="skill-name">gateway-windows-platforms</div><div class="skill-desc">Windows上Gateway消息平台设置调试</div></div>
-<div class="skill-item"><div class="skill-name">kanban-orchestrator</div><div class="skill-desc">编排器分解手册+反诱惑规则</div></div>
-<div class="skill-item"><div class="skill-name">kanban-worker</div><div class="skill-desc">Kanban worker的陷阱、示例和边缘情况</div></div>
-<div class="skill-item"><div class="skill-name">webhook-subscriptions</div><div class="skill-desc">Webhook订阅——事件驱动的Agent运行</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">devops</span><span class="skill-desc">DevOps技能集</span></div>
+<div class="skill-item"><span class="skill-name">gateway-windows-platforms</span><span class="skill-desc">Windows上Gateway消息平台设置调试</span></div>
+<div class="skill-item"><span class="skill-name">kanban-orchestrator</span><span class="skill-desc">编排器分解手册+反诱惑规则</span></div>
+<div class="skill-item"><span class="skill-name">kanban-worker</span><span class="skill-desc">Kanban worker的陷阱、示例和边缘情况</span></div>
+<div class="skill-item"><span class="skill-name">webhook-subscriptions</span><span class="skill-desc">Webhook订阅——事件驱动的Agent运行</span></div>
 </div>
 </div>
 <div class="category"><h3>研究 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(4)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">arxiv</div><div class="skill-desc">按关键词/作者/分类/ID搜索arXiv论文</div></div>
-<div class="skill-item"><div class="skill-name">blogwatcher</div><div class="skill-desc">通过blogwatcher-cli监控博客和RSS</div></div>
-<div class="skill-item"><div class="skill-name">llm-wiki</div><div class="skill-desc">Karpathy的LLM Wiki——构建/查询Markdown知识库</div></div>
-<div class="skill-item"><div class="skill-name">polymarket</div><div class="skill-desc">查询Polymarket预测市场——价格/订单簿</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">arxiv</span><span class="skill-desc">按关键词/作者/分类/ID搜索arXiv论文</span></div>
+<div class="skill-item"><span class="skill-name">blogwatcher</span><span class="skill-desc">通过blogwatcher-cli监控博客和RSS</span></div>
+<div class="skill-item"><span class="skill-name">llm-wiki</span><span class="skill-desc">Karpathy的LLM Wiki——构建/查询Markdown知识库</span></div>
+<div class="skill-item"><span class="skill-name">polymarket</span><span class="skill-desc">查询Polymarket预测市场——价格/订单簿</span></div>
 </div>
 </div>
 <div class="category"><h3>消息协作 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(4)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">feishu-integration</div><div class="skill-desc">飞书/Lark消息平台接入和配置</div></div>
-<div class="skill-item"><div class="skill-name">email</div><div class="skill-desc">邮件技能集——终端收发邮件（himalaya CLI）</div></div>
-<div class="skill-item"><div class="skill-name">messaging</div><div class="skill-desc">跨平台消息发送——邮件/飞书/SMS等</div></div>
-<div class="skill-item"><div class="skill-name">yuanbao</div><div class="skill-desc">元宝群组——@提及、查询成员</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">feishu-integration</span><span class="skill-desc">飞书/Lark消息平台接入和配置</span></div>
+<div class="skill-item"><span class="skill-name">email</span><span class="skill-desc">邮件技能集——终端收发邮件（himalaya CLI）</span></div>
+<div class="skill-item"><span class="skill-name">messaging</span><span class="skill-desc">跨平台消息发送——邮件/飞书/SMS等</span></div>
+<div class="skill-item"><span class="skill-name">yuanbao</span><span class="skill-desc">元宝群组——@提及、查询成员</span></div>
 </div>
 </div>
 <div class="category"><h3>媒体 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(5)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">gif-search</div><div class="skill-desc">Tenor搜索/下载GIF——curl+jq</div></div>
-<div class="skill-item"><div class="skill-name">heartmula</div><div class="skill-desc">HeartMuLa——歌词+标签生成类Suno歌曲</div></div>
-<div class="skill-item"><div class="skill-name">songsee</div><div class="skill-desc">音频频谱——mel/chroma/MFCC CLI工具</div></div>
-<div class="skill-item"><div class="skill-name">spotify</div><div class="skill-desc">Spotify——播放/搜索/队列/播放列表/设备管理</div></div>
-<div class="skill-item"><div class="skill-name">youtube-content</div><div class="skill-desc">YouTube字幕→摘要/帖子/博客</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">gif-search</span><span class="skill-desc">Tenor搜索/下载GIF——curl+jq</span></div>
+<div class="skill-item"><span class="skill-name">heartmula</span><span class="skill-desc">HeartMuLa——歌词+标签生成类Suno歌曲</span></div>
+<div class="skill-item"><span class="skill-name">songsee</span><span class="skill-desc">音频频谱——mel/chroma/MFCC CLI工具</span></div>
+<div class="skill-item"><span class="skill-name">spotify</span><span class="skill-desc">Spotify——播放/搜索/队列/播放列表/设备管理</span></div>
+<div class="skill-item"><span class="skill-name">youtube-content</span><span class="skill-desc">YouTube字幕→摘要/帖子/博客</span></div>
 </div>
 </div>
 <div class="category"><h3>MLOps <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(7)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">mlops</div><div class="skill-desc">MLOps知识——训练、微调、部署ML/AI模型</div></div>
-<div class="skill-item"><div class="skill-name">huggingface-hub</div><div class="skill-desc">HuggingFace CLI——模型和数据集搜索/下载/上传</div></div>
-<div class="skill-item"><div class="skill-name">local-model-integration</div><div class="skill-desc">本地LLM模型(Ollama)配置和故障排查</div></div>
-<div class="skill-item"><div class="skill-name">weights-and-biases</div><div class="skill-desc">W&amp;B——ML实验日志、sweep、模型注册表</div></div>
-<div class="skill-item"><div class="skill-name">llama-cpp</div><div class="skill-desc">llama.cpp本地GGUF推理+HF Hub模型发现</div></div>
-<div class="skill-item"><div class="skill-name">segment-anything-model</div><div class="skill-desc">SAM——零样本图像分割</div></div>
-<div class="skill-item"><div class="skill-name">dspy</div><div class="skill-desc">DSPy——声明式LM程序、自动优化提示词、RAG</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">mlops</span><span class="skill-desc">MLOps知识——训练、微调、部署ML/AI模型</span></div>
+<div class="skill-item"><span class="skill-name">huggingface-hub</span><span class="skill-desc">HuggingFace CLI——模型和数据集搜索/下载/上传</span></div>
+<div class="skill-item"><span class="skill-name">local-model-integration</span><span class="skill-desc">本地LLM模型(Ollama)配置和故障排查</span></div>
+<div class="skill-item"><span class="skill-name">weights-and-biases</span><span class="skill-desc">W&amp;B——ML实验日志、sweep、模型注册表</span></div>
+<div class="skill-item"><span class="skill-name">llama-cpp</span><span class="skill-desc">llama.cpp本地GGUF推理+HF Hub模型发现</span></div>
+<div class="skill-item"><span class="skill-name">segment-anything-model</span><span class="skill-desc">SAM——零样本图像分割</span></div>
+<div class="skill-item"><span class="skill-name">dspy</span><span class="skill-desc">DSPy——声明式LM程序、自动优化提示词、RAG</span></div>
 </div>
 </div>
 <div class="category"><h3>技能管理 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(1)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">find-skills</div><div class="skill-desc">帮助发现和安装Agent技能</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">find-skills</span><span class="skill-desc">帮助发现和安装Agent技能</span></div>
 </div>
 </div>
 <div class="category"><h3>GitHub <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(7)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">github</div><div class="skill-desc">GitHub工作流——仓库、PR、代码审查、Issue、CI/CD</div></div>
-<div class="skill-item"><div class="skill-name">codebase-inspection</div><div class="skill-desc">代码库检查——pygount统计LOC/语言/比例</div></div>
-<div class="skill-item"><div class="skill-name">github-auth</div><div class="skill-desc">GitHub认证——HTTPS token、SSH key、gh CLI</div></div>
-<div class="skill-item"><div class="skill-name">github-code-review</div><div class="skill-desc">审查PR——diff、行内评论gh/REST</div></div>
-<div class="skill-item"><div class="skill-name">github-issues</div><div class="skill-desc">Issue管理——创建/分类/标签/分配</div></div>
-<div class="skill-item"><div class="skill-name">github-pr-workflow</div><div class="skill-desc">PR全生命周期——分支→提交→CI→合并</div></div>
-<div class="skill-item"><div class="skill-name">github-repo-management</div><div class="skill-desc">仓库管理——克隆/创建/fork、远程、release</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">github</span><span class="skill-desc">GitHub工作流——仓库、PR、代码审查、Issue、CI/CD</span></div>
+<div class="skill-item"><span class="skill-name">codebase-inspection</span><span class="skill-desc">代码库检查——pygount统计LOC/语言/比例</span></div>
+<div class="skill-item"><span class="skill-name">github-auth</span><span class="skill-desc">GitHub认证——HTTPS token、SSH key、gh CLI</span></div>
+<div class="skill-item"><span class="skill-name">github-code-review</span><span class="skill-desc">审查PR——diff、行内评论gh/REST</span></div>
+<div class="skill-item"><span class="skill-name">github-issues</span><span class="skill-desc">Issue管理——创建/分类/标签/分配</span></div>
+<div class="skill-item"><span class="skill-name">github-pr-workflow</span><span class="skill-desc">PR全生命周期——分支→提交→CI→合并</span></div>
+<div class="skill-item"><span class="skill-name">github-repo-management</span><span class="skill-desc">仓库管理——克隆/创建/fork、远程、release</span></div>
 </div>
 </div>
 <div class="category"><h3>MCP <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(2)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">mcp</div><div class="skill-desc">MCP服务器、工具和集成</div></div>
-<div class="skill-item"><div class="skill-name">native-mcp</div><div class="skill-desc">MCP客户端——连接服务器、注册工具</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">mcp</span><span class="skill-desc">MCP服务器、工具和集成</span></div>
+<div class="skill-item"><span class="skill-name">native-mcp</span><span class="skill-desc">MCP客户端——连接服务器、注册工具</span></div>
 </div>
 </div>
 <div class="category"><h3>测试QA <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(1)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">dogfood</div><div class="skill-desc">Web应用探索式QA——找bug、证据、报告</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">dogfood</span><span class="skill-desc">Web应用探索式QA——找bug、证据、报告</span></div>
 </div>
 </div>
 <div class="category"><h3>内容创作 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(10)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">chinese-novelist</div><div class="skill-desc">分章节创作中文小说——悬疑/言情/奇幻/科幻</div></div>
-<div class="skill-item"><div class="skill-name">baoyu-article-illustrator</div><div class="skill-desc">文章配图——类型×风格×调色板一致性</div></div>
-<div class="skill-item"><div class="skill-name">baoyu-comic</div><div class="skill-desc">知识漫画——教育、传记、教程</div></div>
-<div class="skill-item"><div class="skill-name">baoyu-infographic</div><div class="skill-desc">信息图——21种布局×21种风格</div></div>
-<div class="skill-item"><div class="skill-name">claude-design</div><div class="skill-desc">设计一次性HTML制品——页面/演示/原型</div></div>
-<div class="skill-item"><div class="skill-name">humanizer</div><div class="skill-desc">人性化文本——去除AI腔调、增加真实感</div></div>
-<div class="skill-item"><div class="skill-name">ideation</div><div class="skill-desc">通过创意约束生成项目点子</div></div>
-<div class="skill-item"><div class="skill-name">novel-architect</div><div class="skill-desc">分步搭建、头脑风暴、草稿生成小说</div></div>
-<div class="skill-item"><div class="skill-name">sketch</div><div class="skill-desc">快速HTML原型——2-3个设计变体对比</div></div>
-<div class="skill-item"><div class="skill-name">teams-meeting-pipeline</div><div class="skill-desc">Teams会议摘要管线——Hermes CLI</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">chinese-novelist</span><span class="skill-desc">分章节创作中文小说——悬疑/言情/奇幻/科幻</span></div>
+<div class="skill-item"><span class="skill-name">baoyu-article-illustrator</span><span class="skill-desc">文章配图——类型×风格×调色板一致性</span></div>
+<div class="skill-item"><span class="skill-name">baoyu-comic</span><span class="skill-desc">知识漫画——教育、传记、教程</span></div>
+<div class="skill-item"><span class="skill-name">baoyu-infographic</span><span class="skill-desc">信息图——21种布局×21种风格</span></div>
+<div class="skill-item"><span class="skill-name">claude-design</span><span class="skill-desc">设计一次性HTML制品——页面/演示/原型</span></div>
+<div class="skill-item"><span class="skill-name">humanizer</span><span class="skill-desc">人性化文本——去除AI腔调、增加真实感</span></div>
+<div class="skill-item"><span class="skill-name">ideation</span><span class="skill-desc">通过创意约束生成项目点子</span></div>
+<div class="skill-item"><span class="skill-name">novel-architect</span><span class="skill-desc">分步搭建、头脑风暴、草稿生成小说</span></div>
+<div class="skill-item"><span class="skill-name">sketch</span><span class="skill-desc">快速HTML原型——2-3个设计变体对比</span></div>
+<div class="skill-item"><span class="skill-name">teams-meeting-pipeline</span><span class="skill-desc">Teams会议摘要管线——Hermes CLI</span></div>
 </div>
 </div>
 <div class="category"><h3>红队测试 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(1)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">godmode</div><div class="skill-desc">越狱LLM——Parseltongue/GODMODE/ULTRAPLINIAN</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">godmode</span><span class="skill-desc">越狱LLM——Parseltongue/GODMODE/ULTRAPLINIAN</span></div>
 </div>
 </div>
 <div class="category"><h3>智能家居 <span style="font-weight:400;color:inherit;opacity:0.6;font-size:0.85rem">(2)</span></h3>
-<div class="skill-grid">
-<div class="skill-item"><div class="skill-name">smart-home</div><div class="skill-desc">智能家居控制——灯光、开关、传感器</div></div>
-<div class="skill-item"><div class="skill-name">openhue</div><div class="skill-desc">Philips Hue灯光/场景/房间——OpenHue CLI</div></div>
+<div class="skill-list">
+<div class="skill-item"><span class="skill-name">smart-home</span><span class="skill-desc">智能家居控制——灯光、开关、传感器</span></div>
+<div class="skill-item"><span class="skill-name">openhue</span><span class="skill-desc">Philips Hue灯光/场景/房间——OpenHue CLI</span></div>
 </div>
 </div>
         </section>

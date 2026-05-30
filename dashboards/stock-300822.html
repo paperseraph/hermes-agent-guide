@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个股仪表盘 · 贝仕达克 300822</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --border: #30363d;
+    --text: #c9d1d9; --muted: #8b949e; --green: #3fb950;
+    --yellow: #d29922; --orange: #db6d28; --red: #f85149;
+    --blue: #58a6ff; --purple: #bc8cff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh; padding: 24px;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .stock-id { color: var(--muted); font-size: 0.85rem; }
+  .price { font-size: 2.4rem; font-weight: 700; letter-spacing: -1px; }
+  .price .change { font-size: 1rem; color: var(--green); margin-left: 8px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .card h2 { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .metric-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid rgba(48,54,61,0.3);
+  }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-label { font-size: 0.85rem; color: var(--muted); }
+  .metric-value { font-weight: 600; font-size: 0.9rem; }
+  .metric-value.good { color: var(--green); }
+  .metric-value.warn { color: var(--yellow); }
+  .metric-value.bad { color: var(--red); }
+
+  .signal-box {
+    background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 8px; padding: 14px; text-align: center;
+  }
+  .signal-action { font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+  .signal-confidence { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+
+  .factor-bar {
+    margin-bottom: 10px;
+  }
+  .factor-label {
+    display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 3px;
+  }
+  .factor-track {
+    width: 100%; height: 6px; background: rgba(48,54,61,0.5);
+    border-radius: 3px; overflow: hidden;
+  }
+  .factor-fill {
+    height: 100%; border-radius: 3px;
+  }
+  .factor-fill.momentum { background: var(--blue); }
+  .factor-fill.volatility { background: var(--yellow); }
+  .factor-fill.reversal { background: var(--purple); }
+
+  .warning-banner {
+    background: rgba(210,153,34,0.1); border: 1px solid rgba(210,153,34,0.3);
+    border-radius: 8px; padding: 12px 16px; font-size: 0.85rem;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: var(--yellow); }
+
+  .verdict {
+    font-size: 0.85rem; color: var(--muted);
+    padding: 10px 0; border-top: 1px solid var(--border); margin-top: 10px;
+  }
+  .verdict em { color: var(--text); font-style: normal; }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="stock-id">300822 · SZSE</div>
+    <div class="price">18.52<span class="change">+0.34 (1.87%)</span></div>
+    <div style="color:var(--muted);font-size:0.8rem;margin-top:4px">贝仕达克 · 电子制造</div>
+  </div>
+  <div class="signal-box" style="min-width:180px">
+    <div class="signal-action" style="color:var(--green)">持仓</div>
+    <div class="signal-confidence">RL置信 72%</div>
+    <div style="font-size:0.75rem;color:var(--muted)">
+      止损 17.80 · 加仓等放量
+    </div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>📊 技术面</h2>
+    <div class="metric-row">
+      <span class="metric-label">日线 MACD</span>
+      <span class="metric-value good">金叉 ↑</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">支撑位</span>
+      <span class="metric-value">17.80</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">压力位</span>
+      <span class="metric-value">19.60</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">周线均线</span>
+      <span class="metric-value good">多头排列 ↑</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">周线量能</span>
+      <span class="metric-value warn">萎缩 ⚠</span>
+    </div>
+    <div class="warning-banner">
+      <strong>⚠ 矛盾信号：</strong>日线看多 ↔ 周线量能不足 → 暂停判断，等放量确认
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💰 基本面</h2>
+    <div class="metric-row">
+      <span class="metric-label">PE (TTM)</span>
+      <span class="metric-value">32x</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">历史中位 PE</span>
+      <span class="metric-value">28x</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">行业均值 PE</span>
+      <span class="metric-value">35x</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">ROE</span>
+      <span class="metric-value">12.3%</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">毛利率</span>
+      <span class="metric-value good">31.2% ↑</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">应收周转(天)</span>
+      <span class="metric-value bad">68天 ↑</span>
+    </div>
+    <div class="verdict">
+      🎯 <em>Schilit：好看先找刀</em> — 毛利率真的在改善，但应收账款在恶化。合理偏高，安全边际不足。
+    </div>
+  </div>
+</div>
+
+<div class="grid-3">
+  <div class="card" style="grid-column: span 2;">
+    <h2>🤖 RL 因子状态</h2>
+    <div class="factor-bar">
+      <div class="factor-label"><span>动量因子</span><span class="metric-value" style="color:var(--blue)">0.58</span></div>
+      <div class="factor-track"><div class="factor-fill momentum" style="width:58%"></div></div>
+    </div>
+    <div class="factor-bar">
+      <div class="factor-label"><span>波动因子</span><span class="metric-value" style="color:var(--yellow)">0.35</span></div>
+      <div class="factor-track"><div class="factor-fill volatility" style="width:35%"></div></div>
+    </div>
+    <div class="factor-bar">
+      <div class="factor-label"><span>反转因子</span><span class="metric-value" style="color:var(--purple)">0.22</span></div>
+      <div class="factor-track"><div class="factor-fill reversal" style="width:22%"></div></div>
+    </div>
+    <div class="warning-banner">
+      <strong>⚠ 模型预警：</strong>因子衰减速度超过历史70分位值。若动量跌破 0.50，自动触发减仓。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ 操作参数</h2>
+    <div class="metric-row">
+      <span class="metric-label">当前操作</span>
+      <span class="metric-value good">持有</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">止损价</span>
+      <span class="metric-value bad">17.80</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">加仓条件</span>
+      <span class="metric-value" style="font-size:0.78rem">日量 > 5日均量</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">减仓条件</span>
+      <span class="metric-value" style="font-size:0.78rem">跌破17.50且放量</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">下次评估</span>
+      <span class="metric-value">5/31 开盘</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
