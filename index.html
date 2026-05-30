@@ -16,7 +16,7 @@
             min-height: 100vh; display: flex; align-items: center; justify-content: center;
             line-height: 1.6;
         }
-        .container { text-align: center; padding: 40px 20px; }
+        .container { text-align: center; padding: 40px 20px; max-width: 1050px; }
         h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 8px; }
         h1 span { color: #3fb950; }
         p.sub { color: var(--text2); font-size: 1.1rem; margin-bottom: 48px; }
@@ -31,31 +31,31 @@
         .card .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
         .card .dot.green { background: #3fb950; }
         .card .dot.purple { background: #a78bfa; }
+        .card .dot.blue { background: #0ea5e9; }
         .card p { color: var(--text2); font-size: 0.92rem; }
+        .card .platform { font-size: 0.78rem; color: var(--text2); margin-top: 8px; opacity: 0.7; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1><span>Hermes</span> Agent 速查手册</h1>
-        <p class="sub">CLI命令 · 会话命令 · 内置技能 · 可用插件 — 两种风格，内容相同</p>
+        <p class="sub">CLI命令 · 会话命令 · 内置技能 · 可用插件</p>
         <div class="cards">
-            <a href="dark/" class="card">
-                <h2><span class="dot green"></span>极简深色 · 绿</h2>
-                <p>深色背景 + 绿色强调。护眼，适合长时间查阅。行式列表，信息密度高。</p>
+            <a href="green/" class="card">
+                <h2><span class="dot green"></span>极简深绿</h2>
+                <p>深色背景 + 绿色强调。护眼，适合长时间查阅。</p>
+                <div class="platform">Netlify 部署</div>
             </a>
             <a href="purple/" class="card">
-                <h2><span class="dot purple"></span>暗色几何 · 紫</h2>
-                <p>渐变标题 + 紫色光晕。现代感强，卡片网格布局，视觉层次丰富。</p>
+                <h2><span class="dot purple"></span>暗色几何紫</h2>
+                <p>渐变标题 + 紫色光晕。卡片网格，视觉层次丰富。</p>
+                <div class="platform">GitHub Pages</div>
             </a>
-        </div>
-        <div style="margin-top:40px; padding-top:32px; border-top:1px solid #30363d;">
-            <p style="color:#8b949e; font-size:0.9rem; margin-bottom:20px;">实时监控</p>
-            <div class="cards">
-                <a href="dashboards/" class="card" style="border-color:rgba(88,166,255,0.3);">
-                    <h2>📊 仪表盘中心</h2>
-                    <p>L0监控大屏 · 多Agent全景 · 个股看板 — HTML实时仪表盘</p>
-                </a>
-            </div>
+            <a href="https://hermes-handbook-33q.pages.dev" class="card" style="cursor:alias;">
+                <h2><span class="dot blue"></span>靛蓝深渊</h2>
+                <p>深海暗蓝 + 青色强调。科幻感，沉浸式阅读体验。</p>
+                <div class="platform">Cloudflare Pages</div>
+            </a>
         </div>
     </div>
 </body>
