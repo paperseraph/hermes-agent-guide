@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股技术分析日报 | 2026年5月29日</title>
+<style>
+  :root {
+    --bg: #0d1117; --card-bg: #161b22; --border: #30363d;
+    --text: #c9d1d9; --text2: #8b949e; --green: #3fb950;
+    --red: #f85149; --yellow: #d2991d; --blue: #58a6ff;
+    --accent: #1f6feb; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8em; color: var(--blue); border-bottom: 2px solid var(--border); padding-bottom: 12px; margin-bottom: 8px; }
+  h2 { font-size: 1.4em; color: var(--blue); margin: 32px 0 16px; padding-left: 8px; border-left: 3px solid var(--accent); }
+  h3 { font-size: 1.15em; margin: 20px 0 10px; }
+  .subtitle { color: var(--text2); font-size: 0.9em; margin-bottom: 24px; }
+  .meta { color: var(--text2); font-size: 0.85em; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.9em; }
+  th { background: #21262d; padding: 10px 12px; text-align: left; font-weight: 600; border: 1px solid var(--border); }
+  td { padding: 8px 12px; border: 1px solid var(--border); }
+  tr:nth-child(even) { background: #0d1117; }
+  tr:nth-child(odd) { background: #161b22; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+  .badge-green { background: #1a3520; color: var(--green); }
+  .badge-red { background: #3d1518; color: var(--red); }
+  .badge-yellow { background: #3d2e00; color: var(--yellow); }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .stock-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .stock-card h4 { font-size: 1.05em; margin-bottom: 10px; }
+  .stock-card ul { list-style: none; padding-left: 0; }
+  .stock-card li { padding: 3px 0; font-size: 0.9em; }
+  .signal-list { list-style: none; padding-left: 0; }
+  .signal-list li { padding: 4px 0 4px 20px; position: relative; }
+  .signal-list li::before { position: absolute; left: 0; font-weight: bold; }
+  .signal-bull li::before { content: '🟢'; }
+  .signal-bear li::before { content: '🔴'; }
+  .signal-warn li::before { content: '⚠️'; }
+  .conclusion-box { background: #1a1f2e; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text2); font-size: 0.8em; text-align: center; }
+  blockquote { border-left: 3px solid var(--yellow); padding: 6px 16px; margin: 12px 0; background: #1a1a14; color: #d2a837; font-size: 0.9em; }
+  .ma-badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.8em; margin-right: 4px; background: #21262d; }
+  .summary-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0; }
+  .summary-item { flex: 1; min-width: 200px; }
+  @media (max-width: 768px) { body { padding: 12px; } table { font-size: 0.75em; } .summary-row { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+<h1>📉 A股技术分析日报</h1>
+<p class="subtitle">
+  <strong>2026年5月29日（周五）</strong> &nbsp;|&nbsp;
+  数据截止上一交易日 &nbsp;|&nbsp;
+  交易员人格：Paul Tudor Jones × Jesse Livermore
+</p>
+<p class="meta">数据源：baostock &nbsp;|&nbsp; 覆盖标的：贝仕达克(300822)、弘信电子(300657)、中伟股份(300919)、美利云(000815)</p>
+
+<hr class="divider">
+
+<h2>🗺️ 指数全景</h2>
+<table>
+<thead>
+<tr><th>指数</th><th>收盘</th><th>涨跌</th><th>趋势</th><th>RSI</th><th>MACD</th><th>支撑</th><th>压力</th><th>信号</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>上证</td><td>4068.57</td><td class="red">-0.73%</td>
+  <td><span class="badge badge-red">空头</span></td>
+  <td>44.0</td><td>死叉</td>
+  <td>4051<br><small>布林下轨</small></td>
+  <td>4112<br><small>MA5</small></td>
+  <td class="red">MA空排+MACD绿柱扩大</td>
+</tr>
+<tr>
+  <td>深成指</td><td>15575.13</td><td class="red">-1.81%</td>
+  <td><span class="badge badge-yellow">震荡</span></td>
+  <td>54.1</td><td>死叉</td>
+  <td>15221<br><small>10日低</small></td>
+  <td>15622<br><small>MA20</small></td>
+  <td>阴线跌破MA5/10</td>
+</tr>
+<tr>
+  <td>创业板</td><td>4037.95</td><td class="red">-2.11%</td>
+  <td><span class="badge badge-green">多头</span></td>
+  <td>63.1</td><td>DIF≈DEA</td>
+  <td>3979<br><small>MA10</small></td>
+  <td>4055<br><small>MA5</small></td>
+  <td>多头排列但MACD翻绿</td>
+</tr>
+<tr>
+  <td>科创50</td><td colspan="8" style="text-align:center;color:var(--text2)">baostock 暂无数据</td>
+</tr>
+</tbody>
+</table>
+
+<div class="card">
+<strong>📊 指数总结：</strong>
+<ul class="signal-list signal-bear">
+  <li>三大指数全线收跌，上证最弱。上证已连破 MA5/10/20，下一个关键位是 <strong>4050 布林下轨</strong>——跌破4050则短中期空头确认。</li>
+  <li>创业板虽维持 MA 多头排列（5 &gt; 10 &gt; 20），但当日跌 2.11% 吃掉前两日涨幅，MACD 红柱萎缩到接近零轴。需看周一能否在 MA10(3979) 止跌。</li>
+  <li>深成指夹在 MA10 和 MA20 之间，方向不明确。</li>
+</ul>
+</div>
+
+<hr class="divider">
+
+<h2>📊 关键信号</h2>
+
+<h3>🟢 看多信号</h3>
+<ul class="signal-list signal-bull">
+  <li>创业板 MA5 &gt; MA10 &gt; MA20，中期趋势仍为多头</li>
+  <li>深成指 20 日累计涨幅 <span class="green">+5.02%</span>，中期并不弱</li>
+</ul>
+
+<h3>🔴 看空信号</h3>
+<ul class="signal-list signal-bear">
+  <li><strong>上证 MACD 死叉确认</strong>（DIF 6.08 &lt; DEA 20.87），绿柱连续放大</li>
+  <li><strong>深成指 MACD 死叉</strong>（DIF 243 &lt; DEA 286），本轮反弹以来首次</li>
+  <li>四大持仓个股全部处于空头排列，无一例外</li>
+</ul>
+
+<h3>⚠️ 背离警示</h3>
+<ul class="signal-list signal-warn">
+  <li><strong>弘信电子</strong>：20日涨 <span class="green">+13.58%</span> 但 5日暴跌 <span class="red">-19.1%</span>——急涨急跌。布林带宽 52.8%（极度扩张），价格 40.65 在布林中轨(42.37)下方。</li>
+  <li><strong>美利云</strong>：20日跌 <span class="red">-20.01%</span>，RSI=33.7 逼近超卖，布林下轨 15.93 几乎与现价重合——沿下轨阴跌，无反弹信号不要抄底。</li>
+</ul>
+
+<hr class="divider">
+
+<h2>📈 用户持仓标的</h2>
+
+<!-- 贝仕达克 -->
+<div class="stock-card">
+<h4>贝仕达克（300822）<span class="badge badge-red">空头</span></h4>
+<div class="summary-row">
+  <div class="summary-item">
+    <table>
+      <tr><td>收盘</td><td class="red"><strong>13.79</strong></td><td>当日</td><td class="red">-3.90%</td></tr>
+      <tr><td>5日</td><td class="red">-7.88%</td><td>20日</td><td class="red">-7.01%</td></tr>
+      <tr><td>RSI</td><td>35.1</td><td>MACD</td><td class="red">死叉 绿柱-0.31</td></tr>
+      <tr><td>成交</td><td>0.42亿</td><td>量比</td><td>1.1x 正常</td></tr>
+    </table>
+  </div>
+  <div class="summary-item">
+    <table>
+      <tr><td>支撑</td><td><strong>13.74</strong><br><small>20日低</small></td><td>压力</td><td><strong>14.42</strong><br><small>MA5</small></td></tr>
+      <tr><td>布林下轨</td><td>14.07</td><td>布林中轨</td><td>14.98</td></tr>
+    </table>
+  </div>
+</div>
+<blockquote>⚠️ <strong>不交易区间。</strong>沿布林下轨下行，RSI虽接近超卖但无量价背离。做多条件：放量站回MA5(14.42)；失效条件：跌破13.74。</blockquote>
+</div>
+
+<!-- 弘信电子 -->
+<div class="stock-card">
+<h4>弘信电子（300657）<span class="badge badge-yellow">震荡 · 高波动</span></h4>
+<div class="summary-row">
+  <div class="summary-item">
+    <table>
+      <tr><td>收盘</td><td class="red"><strong>40.65</strong></td><td>当日</td><td class="red">-7.02%</td></tr>
+      <tr><td>5日</td><td class="red">-19.10%</td><td>20日</td><td class="green">+13.58%</td></tr>
+      <tr><td>RSI</td><td>48.8 中性</td><td>MACD</td><td class="red">刚死叉 绿柱-1.11</td></tr>
+      <tr><td>成交</td><td>28.88亿</td><td>量比</td><td>0.8x 缩量</td></tr>
+    </table>
+  </div>
+  <div class="summary-item">
+    <table>
+      <tr><td>支撑</td><td><strong>40.21 → 34.45</strong></td><td>压力</td><td><strong>42.37</strong><br><small>MA20</small></td></tr>
+      <tr><td>布林带宽</td><td colspan="3"><span class="red">52.8% 极度扩张</span></td></tr>
+      <tr><td>布林中轨</td><td>42.37</td><td>布林下轨</td><td>31.18</td></tr>
+    </table>
+  </div>
+</div>
+<blockquote>⚠️ <strong>不交易区间。</strong>5日跌19%回踩MA20（已跌破），起涨点约34-35。缩量下跌是好事（抛压减轻）。做多触发：放量收复MA20(42.37)；继续观望：跌破40.21看34.45。</blockquote>
+</div>
+
+<!-- 中伟股份 -->
+<div class="stock-card">
+<h4>中伟股份（300919）<span class="badge badge-red">空头</span></h4>
+<div class="summary-row">
+  <div class="summary-item">
+    <table>
+      <tr><td>收盘</td><td class="red"><strong>52.36</strong></td><td>当日</td><td class="red">-3.96%</td></tr>
+      <tr><td>5日</td><td class="red">-4.78%</td><td>20日</td><td class="red">-14.08%</td></tr>
+      <tr><td>RSI</td><td>37.7 偏弱</td><td>MACD</td><td class="red">死叉加深 绿柱-1.62</td></tr>
+      <tr><td>成交</td><td>8.59亿</td><td>量比</td><td>1.0x</td></tr>
+    </table>
+  </div>
+  <div class="summary-item">
+    <table>
+      <tr><td>支撑</td><td><strong>51.94 → 49.98</strong><br><small>20日低 → 布林下轨</small></td></tr>
+      <tr><td>压力</td><td><strong>54.02</strong><br><small>MA5</small></td></tr>
+      <tr><td>布林中轨</td><td>58.25</td></tr>
+    </table>
+  </div>
+</div>
+<blockquote>🔴 <strong>空头明确。</strong>持续阴跌无反弹，20日跌14%。MA均线全面压制，MACD绿柱扩大。做多条件：放量站回MA5(54.02)，否则不做。</blockquote>
+</div>
+
+<!-- 美利云 -->
+<div class="stock-card">
+<h4>美利云（000815）<span class="badge badge-red">空头 · 最弱</span></h4>
+<div class="summary-row">
+  <div class="summary-item">
+    <table>
+      <tr><td>收盘</td><td class="red"><strong>16.07</strong></td><td>当日</td><td class="red">-4.63%</td></tr>
+      <tr><td>5日</td><td class="red">-16.26%</td><td>20日</td><td class="red">-20.01%</td></tr>
+      <tr><td>RSI</td><td class="yellow">33.7 近超卖</td><td>MACD</td><td class="red">死叉 绿柱-1.17</td></tr>
+      <tr><td>成交</td><td>8.81亿</td><td>量比</td><td>0.9x</td></tr>
+    </table>
+  </div>
+  <div class="summary-item">
+    <table>
+      <tr><td>支撑</td><td><strong>15.96 → 15.93</strong><br><small>20日低 → 布林下轨</small></td></tr>
+      <tr><td>压力</td><td><strong>17.27</strong><br><small>MA5</small></td></tr>
+      <tr><td>布林带宽</td><td>40.4% 沿下轨运行</td></tr>
+    </table>
+  </div>
+</div>
+<blockquote>🔴 <strong>绝对不抄底。</strong>四个标的中最弱，20日跌20%，RSI逼近超卖但无见底信号。反弹触发：连续2日不创新低+放量站上MA5(17.27)。失效条件：跌破15.93。</blockquote>
+</div>
+
+<hr class="divider">
+
+<h2>💡 择时参考</h2>
+
+<h3>短期（1-3天）</h3>
+<ul class="signal-list signal-bear">
+  <li>市场整体偏弱，周一早盘观察上证 <strong>4050 保卫战</strong></li>
+  <li>个股层面无一个出现买入信号，全部处于"等待"或"观望"</li>
+  <li>弘信电子如果周一能在40附近缩量企稳，短线博弈价值最高（20日趋势未破坏）</li>
+</ul>
+
+<h3>中期（1-4周）</h3>
+<ul class="signal-list signal-bear">
+  <li>上证若有效跌破 4050，仓位应降低</li>
+  <li>创业板只要不跌破 MA20(3917)，中期多头格局未破坏</li>
+  <li>美利云、中伟股份趋势最差，反弹优先减仓；贝仕达克次之；弘信电子关注回调企稳后的二次机会</li>
+</ul>
+
+<div class="conclusion-box">
+<h3>⛔ 矛盾信号标注</h3>
+<ul class="signal-list signal-warn">
+  <li><strong>弘信电子</strong>：20日 +13.58% vs 5日 -19.1%，典型高波动"不交易区间"</li>
+  <li><strong>创业板</strong>：多头排列 vs MACD 刚翻绿，周一走势将确认方向</li>
+</ul>
+</div>
+
+<hr class="divider">
+
+<div class="footer">
+  <p>⚠️ 免责声明：技术分析是概率工具，不构成投资建议。</p>
+  <p>报告生成时间：2026-06-01 | 数据来源：baostock | 分析师人格：Paul Tudor Jones × Jesse Livermore</p>
+</div>
+
+</body>
+</html>
