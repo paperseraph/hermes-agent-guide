@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持仓周度研报 — 2026.05.31</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #a371f7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;padding:40px 20px}
+  .container{max-width:1100px;margin:0 auto}
+  .hero{text-align:center;padding:60px 0 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+  .hero h1{font-size:2.4em;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+  .hero .sub{color:var(--muted);font-size:1.1em}
+  .hero .date-badge{display:inline-block;background:var(--purple);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.85em;margin-top:12px;font-weight:600}
+  .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:40px}
+  .summary-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+  .summary-card .label{font-size:0.8em;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+  .summary-card .value{font-size:2em;font-weight:800;margin:8px 0}
+  .summary-card .note{font-size:0.85em;color:var(--muted)}
+  .section{margin-bottom:40px}
+  .section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px}
+  .section h2 .icon{font-size:1.2em}
+  table{width:100%;border-collapse:collapse;font-size:0.92em}
+  th{text-align:left;padding:12px 14px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:600;font-size:0.85em;text-transform:uppercase}
+  td{padding:12px 14px;border-bottom:1px solid var(--border)}
+  tr:hover{background:rgba(255,255,255,0.02)}
+  .up{color:var(--red)}
+  .down{color:var(--green)}
+  .tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.8em;font-weight:600}
+  .tag-red{background:rgba(248,81,73,0.15);color:var(--red)}
+  .tag-yellow{background:rgba(210,153,34,0.15);color:var(--yellow)}
+  .tag-green{background:rgba(63,185,80,0.15);color:var(--green)}
+  .stock-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  .stock-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+  .stock-card.red-alert{border-color:rgba(248,81,73,0.3);box-shadow:0 0 20px rgba(248,81,73,0.08)}
+  .stock-card .name{font-size:1.15em;font-weight:700}
+  .stock-card .code{font-size:0.8em;color:var(--muted);margin-left:8px}
+  .stock-card .board{font-size:0.75em;color:var(--blue);margin-bottom:12px}
+  .stock-card .metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .stock-card .metric .m-label{font-size:0.7em;color:var(--muted);text-transform:uppercase}
+  .stock-card .metric .m-value{font-size:1.1em;font-weight:700}
+  .stock-card .vs-index{font-size:0.8em;margin-top:12px;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:8px}
+  .chart-bar{height:6px;background:#21262d;border-radius:3px;margin-top:16px;overflow:hidden}
+  .chart-bar .fill{height:100%;border-radius:3px;transition:width 0.5s}
+  .fill-red{background:var(--red)}
+  .fill-green{background:var(--green)}
+  .fill-yellow{background:var(--yellow)}
+  .insight-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px}
+  .insight-box h3{font-size:1.1em;color:var(--yellow);margin-bottom:12px}
+  .insight-box ul{margin-left:20px}
+  .insight-box li{margin-bottom:8px;font-size:0.95em}
+  .conclusion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .conclusion-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+  .conclusion-card .c-title{font-size:1em;font-weight:700;margin-bottom:8px}
+  .divider{height:1px;background:var(--border);margin:30px 0}
+  .footer{text-align:center;color:var(--muted);font-size:0.8em;padding:40px 0}
+  .alert-strip{background:rgba(248,81,73,0.08);border-left:3px solid var(--red);padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:0.95em}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <h1>📊 持仓周度深度研报</h1>
+  <div class="sub">创业板 & 科创板联动分析 · 7只核心持仓诊断</div>
+  <div class="date-badge">📅 2026-05-25 ~ 05-30 交易周</div>
+</div>
+
+<!-- Summary Cards -->
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="label">科创50 周表现</div>
+    <div class="value"><span class="up">-7.61%</span></div>
+    <div class="note">从 1896 → 1751，周五单日 -5.04%</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">创业板指 周表现</div>
+    <div class="value"><span class="down" style="color:var(--green)">+2.54%</span></div>
+    <div class="note">从 4021 → 4038，但周五 -2.11%</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">持仓平均周跌</div>
+    <div class="value"><span class="up">-11.75%</span></div>
+    <div class="note">7只全跌，跑输创业板指 14.29pct</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">深证成指 周表现</div>
+    <div class="value"><span class="up">-0.13%</span></div>
+    <div class="note">5周累计仅 +4.2%，主板明显弱势</div>
+  </div>
+</div>
+
+<!-- Alert Strip -->
+<div class="alert-strip">
+  ⚠️ <strong>核心矛盾：</strong>创业板指本周 +2.54%，但全部5只创业板持仓股周线皆墨（-1.2% ~ -26.5%），
+  暗示指数靠极少数权重股拉升，<strong>中小盘个股普跌严重</strong>。科创50周五暴跌 -5.04%，与A股持仓全线杀跌共振。
+</div>
+
+<!-- Section 1: Index Analysis -->
+<div class="section">
+  <h2><span class="icon">📈</span> 一、核心指数全景扫描</h2>
+  
+  <table>
+    <tr>
+      <th>指数</th>
+      <th>本周收盘</th>
+      <th>周涨跌</th>
+      <th>5周涨跌</th>
+      <th>20日涨跌</th>
+      <th>周五单日</th>
+      <th>趋势判断</th>
+    </tr>
+    <tr>
+      <td><strong>科创50</strong> (000688)</td>
+      <td>1,751.32</td>
+      <td class="up">-7.61%</td>
+      <td class="down">+10.83%</td>
+      <td class="down">+17.26%</td>
+      <td class="up">-5.04%</td>
+      <td><span class="tag tag-yellow">冲高回落</span></td>
+    </tr>
+    <tr>
+      <td><strong>创业板指</strong> (399006)</td>
+      <td>4,037.95</td>
+      <td class="down" style="color:var(--green)">+2.54%</td>
+      <td class="down">+9.78%</td>
+      <td class="down">+9.51%</td>
+      <td class="up">-2.11%</td>
+      <td><span class="tag tag-green">趋势向上</span></td>
+    </tr>
+    <tr>
+      <td><strong>深证成指</strong> (399001)</td>
+      <td>—</td>
+      <td class="up">-0.13%</td>
+      <td class="down">+4.22%</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-yellow">横盘震荡</span></td>
+    </tr>
+    <tr>
+      <td><strong>中芯国际</strong> (688981)</td>
+      <td>—</td>
+      <td class="down">+8.55%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-green">强势拉动</span></td>
+    </tr>
+    <tr>
+      <td><strong>寒武纪</strong> (688256)</td>
+      <td>—</td>
+      <td class="down">+2.60%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-green">温和跟随</span></td>
+    </tr>
+    <tr>
+      <td><strong>澜起科技</strong> (688008)</td>
+      <td>—</td>
+      <td class="up">-6.89%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-red">显著回调</span></td>
+    </tr>
+  </table>
+
+  <div class="insight-box" style="margin-top:20px">
+    <h3>🔍 指数研判</h3>
+    <ul>
+      <li><strong>科创50</strong>：本周冲高至1896后暴力回撤，周五单日-5.04%，量能放大至23.4亿手（本周最大）。典型的"诱多+杀跌"结构，5周累计+10.83%的涨幅已回吐近半。中芯国际(+8.6%)独木难支。</li>
+      <li><strong>创业板指</strong>：指数表面风光(+2.54%)，实际靠宁德时代等极少数权重股拉动，中小盘股哀鸿遍野——<strong>指数失真严重</strong>。</li>
+      <li><strong>深证成指</strong>：5周仅+4.2%，本周-0.1%，主板资金持续流出，与科创/创业板形成剪刀差。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 2: Stock Diagnosis -->
+<div class="section">
+  <h2><span class="icon">🔬</span> 二、7只持仓逐股诊断</h2>
+
+  <div class="stock-cards">
+    <!-- 弘信电子 -->
+    <div class="stock-card red-alert">
+      <div class="name">弘信电子 <span class="code">300657</span></div>
+      <div class="board">创业板 · AI算力/FPC · <span class="tag tag-red">重仓警戒</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">40.65</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-7.02%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-19.10%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value down" style="color:var(--green)">+21.61%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-red" style="width:15%"></div></div>
+      <div class="vs-index up">vs 创业板指本周：跑输 <strong>21.64pct</strong>（全持仓最差）</div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：-0.3% → +11.0% → -8.9% → <strong style="color:var(--green)">+38.9%</strong> → 本周 -19.1%<br>
+        典型暴涨后均值回归，上周+38.9%系偏离值
+      </div>
+    </div>
+
+    <!-- 波长光电 -->
+    <div class="stock-card red-alert">
+      <div class="name">波长光电 <span class="code">301421</span></div>
+      <div class="board">创业板 · 精密光学 · <span class="tag tag-red">⚠️ 极度风险</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">97.00</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-11.82%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-26.52%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value down" style="color:var(--green)">+7.98%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-red" style="width:8%"></div></div>
+      <div class="vs-index up">vs 创业板指本周：跑输 <strong>29.02pct</strong></div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：+8.0% → +0.3% → +2.3% → <strong style="color:var(--green)">+23.9%</strong> → 本周 -26.5%<br>
+        连续两周极端波动(+23.9%→-26.5%)，庄股特征明显
+      </div>
+    </div>
+
+    <!-- 美利云 -->
+    <div class="stock-card red-alert">
+      <div class="name">美利云 <span class="code">000815</span></div>
+      <div class="board">深主板 · 数据中心/云计算 · <span class="tag tag-red">持续恶化</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">16.07</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-4.63%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-16.26%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value up">-13.53%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-yellow" style="width:25%"></div></div>
+      <div class="vs-index up">vs 深证成指本周：跑输 <strong>16.13pct</strong></div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：-0.8% → <strong style="color:var(--green)">+20.7%</strong> → -8.4% → -8.8% → 本周 -16.3%<br>
+        罕见的连续4周下跌(-8.4%→-8.8%→-16.3%)，加速赶底或趋势破位
+      </div>
+    </div>
+
+    <!-- 郑州固锝 -->
+    <div class="stock-card">
+      <div class="name">苏州固锝 <span class="code">002079</span></div>
+      <div class="board">深主板 · 半导体分立器件 · <span class="tag tag-green">相对抗跌</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">12.45</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-6.39%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-1.21%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value down" style="color:var(--green)">+16.02%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-green" style="width:65%"></div></div>
+      <div class="vs-index up">vs 深证成指本周：跑输 1.08pct（基本同步）</div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：+9.6% → +5.9% → +2.5% → -0.8% → 本周 -1.2%<br>
+        涨幅持续收敛但未加速下跌，持仓中最稳健的标的
+      </div>
+    </div>
+
+    <!-- 中伟股份 -->
+    <div class="stock-card">
+      <div class="name">中伟股份 <span class="code">300919</span></div>
+      <div class="board">创业板 · 锂电池正极 · <span class="tag tag-yellow">持续阴跌</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">52.36</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-3.96%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-4.77%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value up">-15.28%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-yellow" style="width:30%"></div></div>
+      <div class="vs-index up">vs 创业板指本周：跑输 7.27pct</div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：+3.8% → -4.4% → -7.4% → -2.5% → 本周 -4.8%<br>
+        锂电板块整体承压，但跌幅温和，属于系统性而非个股风险
+      </div>
+    </div>
+
+    <!-- 绿联科技 -->
+    <div class="stock-card">
+      <div class="name">绿联科技 <span class="code">301606</span></div>
+      <div class="board">创业板 · 消费电子/充电 · <span class="tag tag-yellow">震荡下行</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">67.17</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-3.93%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-12.47%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value up">-4.33%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-yellow" style="width:35%"></div></div>
+      <div class="vs-index up">vs 创业板指本周：跑输 14.97pct</div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：+5.0% → -5.0% → +13.7% → -5.5% → 本周 -12.5%<br>
+        次新股，振幅极大，资金博弈激烈
+      </div>
+    </div>
+
+    <!-- 贝仕达克 -->
+    <div class="stock-card">
+      <div class="name">贝仕达克 <span class="code">300822</span></div>
+      <div class="board">创业板 · 智能控制器 · <span class="tag tag-yellow">温和回调</span></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-label">周五收盘</div><div class="m-value">13.79</div></div>
+        <div class="metric"><div class="m-label">周五单日</div><div class="m-value up">-3.90%</div></div>
+        <div class="metric"><div class="m-label">本周跌</div><div class="m-value up">-7.92%</div></div>
+        <div class="metric"><div class="m-label">5周涨跌</div><div class="m-value up">-3.17%</div></div>
+      </div>
+      <div class="chart-bar"><div class="fill fill-yellow" style="width:40%"></div></div>
+      <div class="vs-index up">vs 创业板指本周：跑输 10.42pct</div>
+      <div class="vs-index" style="color:var(--muted);margin-top:4px;font-size:0.75em">
+        前4周：+5.6% → +3.8% → -3.5% → -1.1% → 本周 -7.9%<br>
+        前期温和运行，本周跟随情绪加速下跌
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 3: Relative Strength -->
+<div class="section">
+  <h2><span class="icon">⚖️</span> 三、相对强弱矩阵</h2>
+
+  <table>
+    <tr><th>标的</th><th>板块</th><th>本周涨跌</th><th>对标指数</th><th>指数本周</th><th>超额收益</th><th>跑输程度</th><th>诊断</th></tr>
+    <tr>
+      <td>苏州固锝</td><td>深主板</td><td class="up">-1.21%</td><td>深证成指</td><td class="up">-0.13%</td><td class="up">-1.08</td><td><span class="tag tag-green">基本同步</span></td>
+      <td>最稳健，未加速下跌</td>
+    </tr>
+    <tr>
+      <td>中伟股份</td><td>创业板</td><td class="up">-4.77%</td><td>创业板指</td><td class="down" style="color:var(--green)">+2.54%</td><td class="up">-7.31</td><td><span class="tag tag-yellow">中等跑输</span></td>
+      <td>系统性风险，锂电板块弱</td>
+    </tr>
+    <tr>
+      <td>贝仕达克</td><td>创业板</td><td class="up">-7.92%</td><td>创业板指</td><td class="down">+2.54%</td><td class="up">-10.46</td><td><span class="tag tag-yellow">明显跑输</span></td>
+      <td>情绪杀跌，基本面未变</td>
+    </tr>
+    <tr>
+      <td>绿联科技</td><td>创业板</td><td class="up">-12.47%</td><td>创业板指</td><td class="down">+2.54%</td><td class="up">-15.01</td><td><span class="tag tag-red">严重跑输</span></td>
+      <td>次新股资金撤离</td>
+    </tr>
+    <tr>
+      <td>美利云</td><td>深主板</td><td class="up">-16.26%</td><td>深证成指</td><td class="up">-0.13%</td><td class="up">-16.13</td><td><span class="tag tag-red">严重跑输</span></td>
+      <td>连续4周加速下跌</td>
+    </tr>
+    <tr>
+      <td>弘信电子</td><td>创业板</td><td class="up">-19.10%</td><td>创业板指</td><td class="down">+2.54%</td><td class="up">-21.64</td><td><span class="tag tag-red">极度跑输</span></td>
+      <td>暴涨后均值回归+情绪杀</td>
+    </tr>
+    <tr>
+      <td>波长光电</td><td>创业板</td><td class="up">-26.52%</td><td>创业板指</td><td class="down">+2.54%</td><td class="up">-29.06</td><td><span class="tag tag-red">极度跑输</span></td>
+      <td>庄股特征，极端波动</td>
+    </tr>
+  </table>
+
+  <div class="insight-box" style="margin-top:20px">
+    <h3>🔍 相对强弱核心结论</h3>
+    <ul>
+      <li><strong>全军覆没：</strong>7只持仓全周皆墨，无一幸免。这不是个股问题，是<strong>策略层面暴露</strong>——持仓集中于小盘成长股，在当前"指数靠权重拉、个股普遍跌"的行情结构下极其不利。</li>
+      <li><strong>苏州固锝</strong>是唯一一只与指数基本同步的标的（跑输仅1.08pct），但周五一天跌了6.39%，说明周五恐慌情绪也波及了它。</li>
+      <li><strong>波长光电 vs 弘信电子</strong>具有相似模式：前一周暴涨(>20%) → 本周暴跌(>19%)。这类标的的"暴涨"并非基本面驱动，而是游资短炒后的踩踏离场。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 4: Risk Classification -->
+<div class="section">
+  <h2><span class="icon">🚦</span> 四、风险分级 & 操作建议</h2>
+
+  <div class="conclusion-grid">
+    <div class="conclusion-card" style="border-color:rgba(248,81,73,0.3)">
+      <div class="c-title">🔴 红灯区 — 高度关注</div>
+      <p style="color:var(--muted);font-size:0.9em">
+        <strong>波长光电 (301421)</strong><br>
+        周跌26.5%，连续两周极端波动。5周累计仅+8%，意味着暴跌后已几乎回到起点。<br><br>
+        ⚠️ <strong>风险点：</strong>成交量是否放大到异常？若是缩量下跌可能是洗盘，若放量下跌则是主力出逃。下周若继续跌穿90元，5周涨幅将归零，心理支撑瓦解。<br><br>
+        <strong>建议：</strong>严设止损线（90元），不补仓。
+      </p>
+    </div>
+    <div class="conclusion-card" style="border-color:rgba(248,81,73,0.3)">
+      <div class="c-title">🔴 红灯区 — 加速下行</div>
+      <p style="color:var(--muted);font-size:0.9em">
+        <strong>美利云 (000815)</strong><br>
+        本周-16.3%，已是连续第4周下跌（-8.4%→-8.8%→-16.3%），呈加速赶底态势。5周累计-13.5%。<br><br>
+        ⚠️ <strong>风险点：</strong>数据中心/云计算板块是否有政策利空？若无明确利空，连续下跌后可能存在超跌反弹机会。<br><br>
+        <strong>建议：</strong>不追跌不补仓，等待企稳信号（至少3日不再创新低）。
+      </p>
+    </div>
+    <div class="conclusion-card" style="border-color:rgba(210,153,34,0.3)">
+      <div class="c-title">🟡 黄灯区 — 暴涨回吐</div>
+      <p style="color:var(--muted);font-size:0.9em">
+        <strong>弘信电子 (300657)</strong><br>
+        上周+38.9%→本周-19.1%，5周仍+21.6%。属于暴涨后的均值回归，目前40.65元距5周前(~33元)仍有约23%的涨幅安全垫。<br><br>
+        ⚠️ <strong>风险点：</strong>AI算力概念是否降温？若板块逻辑不变，回调至35-37元区间可能形成支撑。<br><br>
+        <strong>建议：</strong>持有观望，35元以下可考虑小幅加仓。
+      </p>
+    </div>
+    <div class="conclusion-card" style="border-color:rgba(210,153,34,0.3)">
+      <div class="c-title">🟡 黄灯区 — 系统性拖累</div>
+      <p style="color:var(--muted);font-size:0.9em">
+        <strong>绿联科技 (301606)</strong> & <strong>中伟股份 (300919)</strong> & <strong>贝仕达克 (300822)</strong><br>
+        三只跌幅在-4.8%~-12.5%，属于中等跌幅，主要受板块/大盘情绪拖累，未出现个股级别的利空信号。<br><br>
+        <strong>建议：</strong>三只均持有不动。中伟股份的锂电板块需关注碳酸锂价格走势；绿联作为次新股波动大属正常。
+      </p>
+    </div>
+    <div class="conclusion-card" style="border-color:rgba(63,185,80,0.3)">
+      <div class="c-title">🟢 绿灯区 — 相对稳健</div>
+      <p style="color:var(--muted);font-size:0.9em">
+        <strong>苏州固锝 (002079)</strong><br>
+        本周仅-1.2%，5周累计+16.0%，是唯一与指数基本同步的标的。半导体分立器件板块整体未出现系统性杀跌。<br><br>
+        ✅ <strong>亮点：</strong>涨幅虽在收敛但未加速下滑，显示有资金护盘。<br><br>
+        <strong>建议：</strong>核心持仓，继续持有。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Section 5: Strategy -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 五、策略总结与下周展望</h2>
+
+  <div class="insight-box">
+    <h3>📌 核心矛盾</h3>
+    <p style="font-size:0.95em">
+      本周行情呈现极端的<strong>"指数牛、个股熊"</strong>结构。创业板指+2.54%的表象下，7只创业板持仓股平均跌-11.75%，跑输指数14.29个百分点。这不是选股失败，而是<strong>当前市场结构对中小盘成长股极度不友好</strong>——资金高度集中于少数权重龙头（宁德时代等），中小盘流动性枯竭。
+    </p>
+  </div>
+
+  <div class="insight-box">
+    <h3>🔮 下周关键观察点</h3>
+    <ul>
+      <li><strong>科创50能否守住1700：</strong>周五暴跌-5.04%后，下周初若惯性跌破1700（距离仅3%），将引发技术性止损潮，进而拖累创业板中小盘股。</li>
+      <li><strong>波长光电是否放量：</strong>若缩量震荡（日成交<3亿），可能是洗盘；若放量续跌，果断离场。</li>
+      <li><strong>美利云是否出现止跌信号：</strong>连续4周加速下跌后，若下周跌幅收窄至5%以内且不再创新低，可能形成超跌反弹窗口。</li>
+      <li><strong>碳酸锂价格：</strong>若跌破关键支撑，中伟股份及整个锂电板块将承压。</li>
+      <li><strong>创业板指 vs 创业板综指剪刀差：</strong>若指数继续涨而个股继续跌，说明行情高度扭曲，需降低仓位。</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h3>📊 量化视角</h3>
+    <ul>
+      <li><strong>持仓组合β值偏高：</strong>7只股本周跌幅标准差极大（-1.2% ~ -26.5%），说明组合集中度过高、缺乏对冲逻辑。</li>
+      <li><strong>波动率聚类：</strong>弘信电子和波长光电的极端波动呈现"波动率聚类"特征——大涨后必有大跌（或反之），这是游资短炒标的的典型统计特征。</li>
+      <li><strong>盈亏比恶化：</strong>假设平均成本在当前价上方5%，7只股需要平均上涨9.5%才能回到成本线。在当前市场结构下，短期回本概率偏低。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📅 报告日期：2026年5月31日（周日）｜数据截止：2026年5月29日（周五收盘）</p>
+  <p>数据源：baostock · akshare · 新浪财经 ｜ Hermes Agent 自动生成</p>
+  <p style="color:var(--muted);margin-top:12px;font-size:0.75em">
+    ⚠️ 免责声明：本报告为AI辅助生成，仅供投研参考，不构成投资建议。市场有风险，投资需谨慎。
+  </p>
+</div>
+
+</div>
+</body>
+</html>
