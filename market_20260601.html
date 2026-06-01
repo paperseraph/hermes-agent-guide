@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股市场复盘 — 2026-06-01</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-secondary: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --yellow: #d2991d;
+  --accent: #58a6ff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.header {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.header h1 { font-size: 1.5em; color: var(--text); }
+.header .date { color: var(--text-secondary); font-size: 0.9em; margin-top: 4px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.card h2 { font-size: 1.1em; margin-bottom: 12px; color: var(--accent); }
+.card ul { list-style: none; padding: 0; }
+.card li { padding: 4px 0; border-bottom: 1px solid rgba(48,54,61,0.5); }
+.card li:last-child { border-bottom: none; }
+.up { color: var(--red); font-weight: 600; }
+.down { color: var(--green); font-weight: 600; }
+.neutral { color: var(--yellow); font-weight: 600; }
+.tag { 
+  display: inline-block; padding: 2px 8px; border-radius: 4px; 
+  font-size: 0.85em; margin-right: 4px; 
+}
+.tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+.tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+.tag-yellow { background: rgba(210,153,29,0.15); color: var(--yellow); }
+.sub { color: var(--text-secondary); font-size: 0.85em; margin-left: 6px; }
+.stock-item { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+.stock-price { font-weight: 600; font-size: 1.05em; }
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-secondary);
+  font-size: 0.8em;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.warn { color: var(--yellow); font-size: 0.85em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📋 A股市场复盘日报</h1>
+  <div class="date">2026年6月1日（周一）· 数据截止收盘</div>
+</div>
+
+<div class="card">
+  <h2>📊 大盘</h2>
+  <ul>
+    <li>上证 <span class="stock-price">4057.74</span> <span class="down">-0.27%</span> <span class="sub">高4093 低4045</span></li>
+    <li>深成指 <span class="stock-price">15340.36</span> <span class="down">-1.51%</span> <span class="sub">高15717 低15316</span></li>
+    <li>创业板指 <span class="stock-price">3950.94</span> <span class="down">-2.15%</span> <span class="sub">高4081 低3942</span></li>
+    <li>科创50 <span class="stock-price">1663.69</span> <span class="down">-5.00%</span> <span class="sub">科创暴跌，半导体/芯片重挫</span></li>
+    <li style="margin-top:8px;">涨停 <span class="tag tag-red">120家</span> 跌停 <span class="tag tag-green">21家</span> 成交约 <strong>28775亿</strong>（缩量分化）</li>
+    <li class="warn">涨跌比 ⚠️ 数据缺失（东方财富push2 API不可达）</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🔥 板块轮动</h2>
+  <h3 style="color:var(--red);font-size:0.95em;margin-bottom:8px;">🟢 领涨 Top5</h3>
+  <ul>
+    <li>煤炭行业 <span class="up">+5.18%</span> <span class="sub">能源安全+油价高位传导，趋势性强</span></li>
+    <li>印刷包装 <span class="up">+4.73%</span> <span class="sub">贝仕达克所属板块联动</span></li>
+    <li>纺织行业 <span class="up">+3.28%</span> <span class="sub">出口链/消费复苏预期</span></li>
+    <li>供水供气 <span class="up">+2.57%</span> <span class="sub">公用事业防御属性</span></li>
+    <li>家具行业 <span class="up">+2.51%</span> <span class="sub">地产后周期，博弈政策</span></li>
+  </ul>
+  <h3 style="color:var(--green);font-size:0.95em;margin:12px 0 8px;">🔴 领跌 Top5</h3>
+  <ul>
+    <li>玻璃行业 <span class="down">-5.12%</span> <span class="sub">光伏玻璃+地产链双杀</span></li>
+    <li>次新股 <span class="down">-4.82%</span> <span class="sub">资金风险偏好急剧下降</span></li>
+    <li>电子器件 <span class="down">-3.45%</span> <span class="sub">珂玛科技所属板块</span></li>
+    <li>陶瓷行业 <span class="down">-2.55%</span></li>
+    <li>开发区 <span class="down">-2.46%</span></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🐉 龙虎榜</h2>
+  <ul>
+    <li><strong>粤电力A(000539)</strong> · 4连板 · 净卖3.50亿 <span class="sub">游资高位出货，电力板块高度板松动，追高风险极大</span></li>
+    <li><strong>深南电A(000037)</strong> · 净买1.17亿但另榜净卖3847万 <span class="sub">多空分歧剧烈，换手率>20%，机构与游资互道SB</span></li>
+    <li><strong>*ST美丽(000010)</strong> · ST连板 · 净卖87万 <span class="sub">纯筹码博弈，无基本面支撑</span></li>
+    <li><strong>ST海王(000078)</strong> · ST连板 · 净卖668万</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>💰 资金流向</h2>
+  <ul>
+    <li>北向资金 <span class="warn">⚠️ 数据缺失（push2 API不可达）</span></li>
+    <li>主力净流入 <span class="down">-609.70亿</span> <span class="sub">较上周五-1233亿明显收窄</span></li>
+    <li>超大单净流入 <span class="down">-379.12亿</span></li>
+    <li style="margin-top:8px;">近5日主力资金：
+      <span style="font-size:0.85em;">5/26 -1107 | 5/27 -1001 | 5/28 -157 | 5/29 -1233 | 6/1 <strong>-610亿</strong></span>
+    </li>
+    <li>资金态度：持续流出但斜率放缓，从全面撤离转向结构性调仓</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🎨 市场风格判断</h2>
+  <ul>
+    <li><span class="tag tag-red">大盘价值占优</span> 上证-0.27% vs 科创50-5.00%，剪刀差4.73%</li>
+    <li><span class="tag tag-red">防御型切换</span> 煤炭+公用事业领涨 vs 电子/次新领跌</li>
+    <li><span class="tag tag-yellow">风险偏好骤降</span> 次新股-4.82%，涨停虽多但集中在电力等防守板块</li>
+    <li>煤炭5连阳 vs 科创5连阴：这是风格切换信号，不是正常轮动</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>💡 持仓标的表现</h2>
+  <ul>
+    <li>
+      <div class="stock-item">
+        <span><span class="tag tag-red">贝仕达克 300822</span></span>
+        <span class="stock-price">14.66 <span class="up">+6.31%</span></span>
+      </div>
+      <span class="sub">成交额9734万 · 换手2.30% · PE 193.07</span><br>
+      <span class="sub">印刷包装板块+4.73%联动，逆势走强但量能一般，观察能否突破前高15.06</span>
+    </li>
+    <li style="margin-top:10px;">
+      <div class="stock-item">
+        <span><span class="tag tag-green">珂玛科技 301611</span></span>
+        <span class="stock-price">89.39 <span class="down">-3.40%</span></span>
+      </div>
+      <span class="sub">成交额74731万 · 换手5.61% · PE 157.23</span><br>
+      <span class="sub">电子器件板块-3.45%，β≈1纯粹跟板块走，无独立利空，属系统性回撤</span>
+    </li>
+    <li style="margin-top:10px;">
+      <div class="stock-item">
+        <span><span class="tag tag-yellow">弘信电子 300657</span></span>
+        <span class="stock-price">40.05 <span class="down">-1.48%</span></span>
+      </div>
+      <span class="sub">成交额237532万 · 换手12.34% · PE 108.27</span><br>
+      <span class="sub">跌幅<板块均值，但换手率12.34%畸高！盘中高42.22低40.00振幅5.46%，多空激烈分歧</span>
+    </li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🧭 明日观察点</h2>
+  <ul>
+    <li>科创50能否守住1600点整数关口（今日1663，距1600仅63点/3.8%）</li>
+    <li>煤炭板块连涨后是否出现获利了结（今日+5.18%，短期技术超买）</li>
+    <li>弘信电子换手率12%后方向选择：高换手+长上影=短期见顶信号？还是洗盘？</li>
+    <li>粤电力A 4连板后龙虎榜显示游资出货，电力板块热度能否延续</li>
+    <li>北向资金流向：如果恢复数据，需关注是否存在外资抄底科技股迹象</li>
+  </ul>
+</div>
+
+<div class="footer">
+  数据源：akshare + 腾讯财经 qt.gtimg.cn<br>
+  ⚠️ 免责声明：以上分析仅供参考，不构成投资建议。<br>
+  生成时间：2026-06-01 16:36 CST<br>
+  东方财富push2 API今日全程不可达，北向资金/涨跌比/板块资金流数据缺失
+</div>
+
+</body>
+</html>
