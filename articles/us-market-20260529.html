@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财联社美股晚报 | 2026.05.29</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --border: #30363d;
+    --text: #c9d1d9; --muted: #8b949e; --green: #3fb950;
+    --yellow: #d29922; --orange: #db6d28; --red: #f85149;
+    --blue: #58a6ff; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.8;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1117 100%);
+    padding: 60px 24px 48px; text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero .badge {
+    display: inline-block; background: rgba(88,166,255,0.12);
+    color: var(--blue); padding: 4px 14px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 16px;
+  }
+  .hero h1 { font-size: 1.8rem; font-weight: 700; max-width: 600px; margin: 0 auto 8px; }
+  .hero .sub { color: var(--muted); font-size: 0.9rem; }
+
+  /* Article */
+  .article { max-width: 680px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  /* Summary card */
+  .summary-card {
+    background: linear-gradient(135deg, rgba(63,185,80,0.08), rgba(88,166,255,0.05));
+    border: 1px solid rgba(63,185,80,0.25); border-radius: 12px;
+    padding: 24px; margin-bottom: 32px; text-align: center;
+  }
+  .summary-card .icon { font-size: 2rem; margin-bottom: 8px; }
+  .summary-card .label { font-weight: 700; font-size: 1.1rem; color: var(--green); margin-bottom: 4px; }
+  .summary-card .tagline { color: var(--muted); font-size: 0.85rem; }
+
+  /* Section title */
+  .section-title {
+    font-size: 1.05rem; font-weight: 700; color: var(--blue);
+    letter-spacing: 0.5px; margin: 36px 0 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Table */
+  .data-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+  .data-table th {
+    text-align: left; padding: 10px 12px; color: var(--muted);
+    font-weight: 600; font-size: 0.8rem; border-bottom: 2px solid var(--border);
+  }
+  .data-table td {
+    padding: 10px 12px; border-bottom: 1px solid rgba(48,54,61,0.5);
+  }
+  .data-table .up { color: var(--green); font-weight: 700; }
+  .data-table .down { color: var(--red); font-weight: 700; }
+
+  /* Card section */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; margin-bottom: 16px;
+  }
+  .card.lead { border-left: 4px solid var(--green); }
+  .card.drop { border-left: 4px solid var(--red); }
+  .card.warn { border-left: 4px solid var(--orange); }
+  .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+
+  /* Stock list */
+  .stock-list { list-style: none; }
+  .stock-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(48,54,61,0.4);
+    font-size: 0.9rem;
+  }
+  .stock-list li:last-child { border-bottom: none; }
+  .stock-list .name { color: var(--text); }
+  .stock-list .chg-up { color: var(--green); font-weight: 700; }
+  .stock-list .chg-down { color: var(--red); font-weight: 700; }
+
+  /* Bullets */
+  .bullet-list { list-style: none; padding: 0; }
+  .bullet-list li {
+    padding: 6px 0; font-size: 0.9rem; color: var(--text);
+  }
+  .bullet-list li::before { content: "▸ "; color: var(--blue); }
+
+  /* Signal list */
+  .signal-item {
+    background: var(--card); border-radius: 10px; padding: 16px 20px;
+    margin-bottom: 12px; border-left: 4px solid var(--orange);
+  }
+  .signal-item .num {
+    display: inline-block; background: rgba(219,109,40,0.15);
+    color: var(--orange); width: 24px; height: 24px; border-radius: 50%;
+    text-align: center; line-height: 24px; font-weight: 700; font-size: 0.8rem;
+    margin-right: 10px;
+  }
+  .signal-item .sig-title { font-weight: 600; }
+
+  /* Quote */
+  .quote-box {
+    background: rgba(88,166,255,0.06); border: 2px solid rgba(88,166,255,0.2);
+    border-radius: 12px; padding: 24px; margin-top: 32px; text-align: center;
+  }
+  .quote-box .quote-mark { color: var(--blue); font-size: 1.5rem; }
+  .quote-box p { font-size: 1rem; font-weight: 600; margin: 8px 0 0; }
+
+  /* Footer */
+  .footer {
+    max-width: 680px; margin: 0 auto; padding: 24px;
+    text-align: center; color: var(--muted); font-size: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">📡 财联社 · 美股晚报</div>
+  <h1>AI财报季炸裂：戴尔+33%史无前例<br>道指站上51000</h1>
+  <div class="sub">2026年5月29日（周五） · 收盘速览</div>
+</div>
+
+<div class="article">
+
+  <!-- Summary -->
+  <div class="summary-card">
+    <div class="icon">🚀</div>
+    <div class="label">三大指数全线收涨</div>
+    <div class="tagline">道指历史首次站上 51,000 点 · 纳指月线 +8.36% 领跑 · 标普 +5.15%</div>
+  </div>
+
+  <!-- Index Table -->
+  <div class="section-title">🏁 三大指数</div>
+  <table class="data-table">
+    <thead>
+      <tr><th>指数</th><th>收盘涨跌</th><th>收盘点位</th><th>5月累计</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>道琼斯工业</td><td class="up">+0.72%</td><td>51,006.63</td><td class="up">+2.78%</td></tr>
+      <tr><td>标普500</td><td class="up">+0.22%</td><td>—</td><td class="up">+5.15%</td></tr>
+      <tr><td>纳斯达克</td><td class="up">+0.20%</td><td>—</td><td class="up">+8.36%</td></tr>
+    </tbody>
+  </table>
+
+  <ul class="bullet-list">
+    <li><strong>道指首次站上51000点</strong>，刷新历史纪录</li>
+    <li>纳指盘中一度转跌（02:00），尾盘勉强收红</li>
+    <li>5月三大指数月线全线收阳，纳指领跑 +8.36%</li>
+  </ul>
+
+  <!-- Sector: AI & SaaS -->
+  <div class="section-title">🚀 领涨主线：AI算力 + SaaS双轮驱动</div>
+
+  <div class="card lead">
+    <div class="card-title">AI 服务器链 · 财报催化</div>
+    <ul class="stock-list">
+      <li><span class="name">戴尔科技</span><span class="chg-up">+33% 🔥 历史最大单日涨幅</span></li>
+      <li><span class="name">超微电脑</span><span class="chg-up">+11%</span></li>
+      <li><span class="name">慧与科技</span><span class="chg-up">+13%</span></li>
+    </ul>
+    <p style="font-size:0.85rem;color:var(--muted);margin-top:10px">
+      Michael Dell 身家飙至 2430 亿美元，反超扎克伯格
+    </p>
+  </div>
+
+  <div class="card lead">
+    <div class="card-title">SaaS 板块 · 财报季尾声</div>
+    <ul class="stock-list">
+      <li><span class="name">ServiceNow</span><span class="chg-up">+14%</span></li>
+      <li><span class="name">赛富时 Salesforce</span><span class="chg-up">+8%</span></li>
+      <li><span class="name">Adobe</span><span class="chg-up">+7%</span></li>
+      <li><span class="name">微软</span><span class="chg-up">+5%</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">老牌科技蓝筹跟涨</div>
+    <ul class="stock-list">
+      <li><span class="name">IBM</span><span class="chg-up">+13%</span></li>
+      <li><span class="name">Palantir</span><span class="chg-up">+9%</span></li>
+      <li><span class="name">甲骨文</span><span class="chg-up">+11%</span></li>
+    </ul>
+  </div>
+
+  <!-- Sector: Declines -->
+  <div class="section-title">📉 回调板块</div>
+
+  <div class="card drop">
+    <div class="card-title">太空概念</div>
+    <ul class="stock-list">
+      <li><span class="name">AST SpaceMobile</span><span class="chg-down">-15%</span></li>
+      <li><span class="name">Rocket Lab</span><span class="chg-down">-3%</span></li>
+    </ul>
+  </div>
+
+  <div class="card drop">
+    <div class="card-title">中概股：金龙指数基本平收（6,586.58），<span style="color:var(--red)">5月累跌近5%</span></div>
+    <ul class="stock-list">
+      <li><span class="name">霸王茶姬</span><span class="chg-up">+25% 🔥 逆势暴涨</span></li>
+      <li><span class="name">百度</span><span class="chg-up">+2%</span></li>
+      <li><span class="name">阿里巴巴</span><span class="chg-down">-1%</span></li>
+    </ul>
+  </div>
+
+  <!-- Warning Signals -->
+  <div class="section-title">⚠️ 值得关注的信号</div>
+
+  <div class="signal-item">
+    <span class="num">1</span>
+    <span class="sig-title">贝莱德减持</span>
+    <p style="font-size:0.85rem;color:var(--muted);margin-top:4px">
+      模型组合股票超配从 3% → 1%，高管警告"避开潜在风险的路径正在变窄"
+    </p>
+  </div>
+
+  <div class="signal-item">
+    <span class="num">2</span>
+    <span class="sig-title">CoreWeave 内部套现</span>
+    <p style="font-size:0.85rem;color:var(--muted);margin-top:4px">
+      内部人士出货 1.07 亿美元
+    </p>
+  </div>
+
+  <div class="signal-item">
+    <span class="num">3</span>
+    <span class="sig-title">纳指ETF溢价</span>
+    <p style="font-size:0.85rem;color:var(--muted);margin-top:4px">
+      嘉实纳指ETF收盘价 2.122 vs 净值 1.9329，溢价明显
+    </p>
+  </div>
+
+  <div class="signal-item">
+    <span class="num">4</span>
+    <span class="sig-title">欧盟考虑冻结俄油价格上限</span>
+    <p style="font-size:0.85rem;color:var(--muted);margin-top:4px">
+      原油相关波动需留意
+    </p>
+  </div>
+
+  <!-- One-sentence summary -->
+  <div class="quote-box">
+    <div class="quote-mark">💬</div>
+    <p>AI财报季超预期（戴尔 +33% 史无前例）推动美股续创新高，道指站上 51000。但贝莱德主动降仓、中概月线五连阴、CoreWeave 套现等信号提示高位风险。纳指盘中翻绿说明多头并非铁板一块。</p>
+  </div>
+
+  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:32px">
+    📊 数据来源：财联社 · 美东时间 2026-05-29 16:00
+  </p>
+
+</div>
+
+<div class="footer">
+  Powered by <strong>Hermes Agent</strong> · A股智能投研系统<br>
+  本报告由AI自动生成，不构成投资建议
+</div>
+
+</body>
+</html>
