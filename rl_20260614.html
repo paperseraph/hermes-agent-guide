@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL执行信号 — 2026-06-14</title>
+<style>
+:root { --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8; --border: #334155; --buy: #22c55e; --hold: #eab308; --sell: #ef4444; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding:2rem; max-width:900px; margin:0 auto; }
+h1 { font-size:1.8rem; margin-bottom:0.3rem; }
+.subtitle { color:var(--muted); font-size:0.9rem; margin-bottom:2rem; }
+h2 { font-size:1.2rem; margin:2rem 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+.model-status { background:var(--card); border-radius:8px; padding:1rem 1.5rem; margin-bottom:2rem; font-size:0.85rem; line-height:1.8; }
+.model-status strong { color:#38bdf8; }
+.signal-card { background:var(--card); border-radius:10px; padding:1.25rem 1.5rem; margin-bottom:1rem; border-left:4px solid var(--border); }
+.signal-card.buy { border-left-color: var(--buy); }
+.signal-card.hold { border-left-color: var(--hold); }
+.signal-card.sell { border-left-color: var(--sell); }
+.signal-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem; }
+.stock-name { font-size:1.15rem; font-weight:700; }
+.stock-code { color:var(--muted); font-size:0.8rem; font-family:monospace; }
+.signal-badge { padding:2px 10px; border-radius:12px; font-size:0.8rem; font-weight:600; }
+.signal-badge.buy { background:rgba(34,197,94,0.15); color:var(--buy); }
+.signal-badge.hold { background:rgba(234,179,8,0.15); color:var(--hold); }
+.signal-badge.sell { background:rgba(239,68,68,0.15); color:var(--sell); }
+.signal-badge.small { font-size:0.7rem; padding:1px 8px; }
+.confidence-bar { position:relative; height:6px; background:var(--border); border-radius:3px; margin-bottom:1rem; }
+.confidence-fill { height:100%; border-radius:3px; transition:width 0.5s; }
+.confidence-label { position:absolute; right:0; top:-20px; font-size:0.72rem; color:var(--muted); }
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:0.6rem 1rem; }
+.metric { display:flex; flex-direction:column; }
+.metric label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; }
+.metric .val { font-size:0.95rem; font-weight:600; }
+.metric .val.up { color:var(--buy); }
+.metric .val.down { color:var(--sell); }
+.metric .val.positive { color:var(--buy); }
+.metric .val.negative { color:var(--sell); }
+.idx-section { background:var(--card); border-radius:8px; padding:1rem 1.5rem; }
+.idx-row { display:flex; align-items:center; gap:1rem; padding:0.5rem 0; border-bottom:1px solid rgba(51,65,85,0.5); font-size:0.9rem; }
+.idx-row:last-child { border-bottom:none; }
+.idx-name { flex:1; }
+.idx-name code { color:var(--muted); font-size:0.75rem; }
+.idx-close { font-weight:600; min-width:5rem; text-align:right; }
+.idx-macd { font-size:0.8rem; min-width:4rem; }
+.idx-macd.up { color:var(--buy); }
+.idx-macd.down { color:var(--sell); }
+.constraints { background:var(--card); border-radius:8px; padding:1rem 1.5rem; display:flex; justify-content:space-between; align-items:center; }
+.bias-badge { padding:4px 14px; border-radius:14px; font-weight:700; font-size:0.9rem; }
+.bias-badge.bullish { background:rgba(34,197,94,0.15); color:var(--buy); }
+.bias-badge.neutral { background:rgba(148,163,184,0.15); color:var(--muted); }
+.bias-badge.bearish { background:rgba(239,68,68,0.15); color:var(--sell); }
+.warnings { background:rgba(234,179,8,0.08); border:1px solid rgba(234,179,8,0.3); border-radius:8px; padding:1rem 1.5rem; font-size:0.85rem; line-height:1.8; }
+.warnings strong { color:var(--hold); }
+.footer { color:var(--muted); font-size:0.75rem; text-align:center; margin-top:2rem; padding-top:1rem; border-top:1px solid var(--border); }
+@media(max-width:600px){ .metrics{grid-template-columns:repeat(2,1fr);} }
+</style>
+</head>
+<body>
+<h1>🤖 RL执行信号周报</h1>
+<p class="subtitle">2026年6月14日 · PPO模型推理</p>
+
+<h2>🤖 模型状态</h2>
+<div class="model-status">
+<strong>训练数据截止：</strong>2026-06-01 &nbsp;|&nbsp; <strong>引擎：</strong>PPO（Rule Fallback备援）<br>
+<strong>数据源：</strong>baostock 近90日K线 + 8项技术指标（MACD/RSI/CCI/DX/布林/SMA30/SMA60）
+</div>
+
+<h2>📊 持仓信号</h2>
+        <div class="signal-card buy">
+            <div class="signal-header">
+                <span class="stock-name">弘信电子</span>
+                <span class="stock-code">300657</span>
+                <span class="signal-badge buy">🟢 买入</span>
+            </div>
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width:45%; background:linear-gradient(90deg, #22c55e, #15803d)"></div>
+                <span class="confidence-label">置信度 0.45</span>
+            </div>
+            <div class="metrics">
+                <div class="metric"><label>收盘价</label><span class="val">46.9</span></div>
+                <div class="metric"><label>30日均线</label><span class="val">42.7</span></div>
+                <div class="metric"><label>MACD</label><span class="val up">↑ 1.479</span></div>
+                <div class="metric"><label>RSI</label><span class="val">46.0</span></div>
+                <div class="metric"><label>CCI</label><span class="val">16.7</span></div>
+                <div class="metric"><label>布林位置</label><span class="val">61.7%</span></div>
+                <div class="metric"><label>DX</label><span class="val">14.6</span></div>
+                <div class="metric"><label>评分</label><span class="val positive">+0.45</span></div>
+            </div>
+        </div>
+        <div class="signal-card hold">
+            <div class="signal-header">
+                <span class="stock-name">中伟股份</span>
+                <span class="stock-code">300919</span>
+                <span class="signal-badge hold">🟡 持仓</span>
+            </div>
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width:50%; background:linear-gradient(90deg, #eab308, #a16207)"></div>
+                <span class="confidence-label">置信度 0.50</span>
+            </div>
+            <div class="metrics">
+                <div class="metric"><label>收盘价</label><span class="val">47.59</span></div>
+                <div class="metric"><label>30日均线</label><span class="val">54.56</span></div>
+                <div class="metric"><label>MACD</label><span class="val up">↑ -2.732</span></div>
+                <div class="metric"><label>RSI</label><span class="val">30.1</span></div>
+                <div class="metric"><label>CCI</label><span class="val">-82.6</span></div>
+                <div class="metric"><label>布林位置</label><span class="val">25.2%</span></div>
+                <div class="metric"><label>DX</label><span class="val">42.9</span></div>
+                <div class="metric"><label>评分</label><span class="val negative">+0.00</span></div>
+            </div>
+        </div>
+        <div class="signal-card sell">
+            <div class="signal-header">
+                <span class="stock-name">美利云</span>
+                <span class="stock-code">000815</span>
+                <span class="signal-badge sell">🔴 卖出</span>
+            </div>
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width:20%; background:linear-gradient(90deg, #ef4444, #b91c1c)"></div>
+                <span class="confidence-label">置信度 0.20</span>
+            </div>
+            <div class="metrics">
+                <div class="metric"><label>收盘价</label><span class="val">15.29</span></div>
+                <div class="metric"><label>30日均线</label><span class="val">18.58</span></div>
+                <div class="metric"><label>MACD</label><span class="val down">↓ -1.180</span></div>
+                <div class="metric"><label>RSI</label><span class="val">26.9</span></div>
+                <div class="metric"><label>CCI</label><span class="val">-73.0</span></div>
+                <div class="metric"><label>布林位置</label><span class="val">24.9%</span></div>
+                <div class="metric"><label>DX</label><span class="val">53.2</span></div>
+                <div class="metric"><label>评分</label><span class="val negative">-0.20</span></div>
+            </div>
+        </div>
+
+<h2>📉 指数参考（不可交易）</h2>
+<div class="idx-section">
+        <div class="idx-row">
+            <span class="idx-name">沪深300 <code>000300</code></span>
+            <span class="signal-badge small sell">🔴 卖出</span>
+            <span class="idx-close">4777.32</span>
+            <span class="idx-macd down">MACD ↓</span>
+        </div>
+        <div class="idx-row">
+            <span class="idx-name">创业板指 <code>399006</code></span>
+            <span class="signal-badge small buy">🟢 买入</span>
+            <span class="idx-close">3830.35</span>
+            <span class="idx-macd down">MACD ↓</span>
+        </div>
+</div>
+
+<h2>⚖️ 仓位约束</h2>
+<div class="constraints">
+<span>单票 ≤ 25% &nbsp;|&nbsp; 现金 ≥ 5%</span>
+<span>综合评分 <strong>+0.08</strong></span>
+<span class="bias-badge neutral">中性</span>
+</div>
+
+<h2>⚠️ 风险提示</h2>
+<div class="warnings">
+<strong>训练数据截止 2026-06-01</strong>，距今约2周，行情变化可能未充分反映。<br>
+<strong>美利云（000815）</strong>RSI仅26.9，超卖区域，但模型仍给SELL — 注意超卖反弹风险。<br>
+<strong>中伟股份（300919）</strong>MACD金叉但CCI深负、价格远低于SMA30，多空矛盾 — 等待方向确认。<br>
+极端单边行情下动量指标滞后，信号可靠性下降。RL信号为量化参考，请结合宏观/技术/财报交叉验证。
+</div>
+
+<p class="footer">PPO（近端策略优化）· 下次重训建议：2026年6月底 · 模型评分：持仓股综合 +0.08</p>
+</body></html>
