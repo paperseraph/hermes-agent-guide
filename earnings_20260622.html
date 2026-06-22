@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股财报深度追踪报告 | 2026年6月22日</title>
+<style>
+  :root {
+    --bg: #0d1117; --card-bg: #161b22; --border: #30363d;
+    --text: #c9d1d9; --text2: #8b949e; --green: #3fb950;
+    --red: #f85149; --yellow: #d2991d; --blue: #58a6ff;
+    --accent: #1f6feb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.8em; color: var(--blue); border-bottom: 2px solid var(--border); padding-bottom: 12px; margin-bottom: 8px; }
+  h2 { font-size: 1.4em; color: var(--blue); margin: 32px 0 16px; padding-left: 8px; border-left: 3px solid var(--accent); }
+  h3 { font-size: 1.15em; margin: 20px 0 10px; }
+  .subtitle { color: var(--text2); font-size: 0.9em; margin-bottom: 24px; }
+  .meta { color: var(--text2); font-size: 0.85em; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.9em; }
+  th { background: #21262d; padding: 10px 12px; text-align: left; font-weight: 600; border: 1px solid var(--border); }
+  td { padding: 8px 12px; border: 1px solid var(--border); }
+  tr:nth-child(even) { background: #0d1117; }
+  tr:nth-child(odd) { background: #161b22; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+  .badge-green { background: #1a3520; color: var(--green); }
+  .badge-red { background: #3d1518; color: var(--red); }
+  .badge-yellow { background: #3d2e00; color: var(--yellow); }
+  .signal { font-size: 1.1em; }
+  .signal-green { color: var(--green); }
+  .signal-red { color: var(--red); }
+  .signal-yellow { color: var(--yellow); }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .stock-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .stock-code { color: var(--text2); font-size: 0.85em; }
+  .conclusion-box { background: #1a1f2e; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .flag-list { list-style: none; padding-left: 0; }
+  .flag-list li { padding: 4px 0 4px 20px; position: relative; }
+  .flag-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .chart-placeholder { background: #1a1a2e; border: 1px dashed #30363d; border-radius: 6px; padding: 16px; text-align: center; color: var(--text2); margin: 12px 0; font-size: 0.85em; }
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text2); font-size: 0.8em; text-align: center; }
+  a { color: var(--blue); }
+  blockquote { border-left: 3px solid var(--yellow); padding: 6px 16px; margin: 12px 0; background: #1a1a14; color: #d2a837; font-size: 0.9em; }
+  @media (max-width: 768px) { body { padding: 12px; } table { font-size: 0.75em; } }
+</style>
+</head>
+<body>
+
+<h1>📈 A股财报深度追踪报告</h1>
+<p class="subtitle">
+  <strong>2026年6月22日（周一）</strong> &nbsp;|&nbsp;
+  数据截止：2026Q1 &nbsp;|&nbsp;
+  分析师人格：Howard Schilit × Benjamin Graham
+</p>
+<p class="meta">
+  持仓标的：弘信电子（300657）、中伟股份（300919）、美利云（000815）<br>
+  数据来源：akshare 结构化财务指标 + 券商研报 + 业绩预告
+</p>
+
+<hr class="divider">
+
+<h2>📊 全市场概览</h2>
+<blockquote>💡 H1业绩预告季：截至6月17日共17家公司披露，12家预喜。亿纬锂能（+95%~110%）领衔。AI算力+锂电链是H1最强板块。暴雷端：美锦能源焦化+氢能双亏预警，云煤能源停产。</blockquote>
+
+<hr class="divider">
+
+<!-- ====== 弘信电子 ====== -->
+<h2>🔍 一、弘信电子（300657）<span class="badge badge-yellow">持有（关注算力兑现）</span></h2>
+
+<div class="card">
+<h3>📖 财务数据（2025年报 + 2026Q1）</h3>
+<table>
+<tr><th>项目</th><th>2025</th><th>2024</th><th>同比</th><th>2026Q1</th></tr>
+<tr><td>营业收入</td><td>73.13亿</td><td>58.75亿</td><td class="green">+24.47%</td><td>16.16亿（+1.85%）</td></tr>
+<tr><td>归母净利润</td><td>1.47亿</td><td>0.57亿</td><td class="green">+159.13%</td><td>3792万（+457.57%）</td></tr>
+<tr><td>扣非净利润</td><td>1.02亿</td><td class="red">-0.65亿</td><td class="green">扭亏</td><td>2931万（+471.61%）</td></tr>
+<tr><td>毛利率</td><td>12.45%</td><td>10.04%</td><td class="green">+2.41pp</td><td>12.70%</td></tr>
+<tr><td>经营现金流/股</td><td>0.16元</td><td>0.41元</td><td class="red">-61%</td><td class="red">-0.18元</td></tr>
+<tr><td>ROE</td><td>11.92%</td><td>4.60%</td><td class="green">+7.32pp</td><td>2.81%（Q1）</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>🔴 Schilit 红旗信号</h3>
+<ul class="flag-list">
+<li><strong>现金流与利润严重背离</strong>：OpCF/NP = <span class="red">0.52</span>（远低于0.8安全线）。全年净利润1.47亿但经营现金流仅0.76亿，Q1更是转负。</li>
+<li><strong>非经常性损益占比高</strong>：扣非率仅<span class="red">69.4%</span>（1.02/1.47），4500万非经常项。年报预告称计提减值约1.4亿。</li>
+<li><strong>高杠杆运营</strong>：资产负债率 <span class="red">78.96%</span>，超过70%警戒线。算力垫资模式是结构性问题。</li>
+<li><strong>Q1营收增速骤降</strong>：从FY24的+69%→FY25的+24%→Q1仅<span class="red">+1.85%</span>。</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>📈 走势与估值</h3>
+<div class="chart-placeholder">
+近60日：27.59 → <strong>46.09</strong>（+67.1%）<br>
+60日均线38.42 → 现价溢价20%<br>
+PE_TTM <strong class="red">128.54x</strong> | PB <strong class="red">16.14x</strong> | 总市值229亿
+</div>
+<p>仅民生证券一家覆盖（2025-04-02，买入，PE 26x），距今超一年。最新EPS_2026预测1.34元已被2026Q1的0.08元/股证伪——需要全年EPS达2.68元才能匹配当前PE，年化仅0.32元。</p>
+</div>
+
+<div class="conclusion-box">
+<strong>🎯 交叉验证结论</strong><br><br>
+<table>
+<tr><th>维度</th><th>管理层观点</th><th>数字现实</th><th>判断</th></tr>
+<tr><td>FPC高端化</td><td>"高价值产品占比大幅提升"</td><td>毛利率从10%→12.45%，改善有限</td><td>🟡 方向对但幅度小</td></tr>
+<tr><td>算力放量</td><td>"算力服务器销售收入保持快速增长"</td><td>营收+1.85%与"快速增长"矛盾</td><td>🔴 需拆分FPCvs算力营收</td></tr>
+<tr><td>现金流</td><td>未提及现金流问题</td><td>OpCF/NP 0.52，Q1转负</td><td>🔴 最大隐患</td></tr>
+</table>
+<p style="margin-top:12px;"><strong class="signal-yellow">🟡 综合评级：持有 — FPC基本盘修复确定性强，但估值严重透支。PE 129x连"算力故事完全兑现"都难消化。等待回调至35-38元区间。</strong></p>
+</div>
+
+<hr class="divider">
+
+<!-- ====== 中伟股份 ====== -->
+<h2>🔍 二、中伟股份（300919）<span class="badge badge-green">推荐持有</span></h2>
+
+<div class="card">
+<h3>📖 财务数据（2025年报 + 2026Q1）</h3>
+<table>
+<tr><th>项目</th><th>2025</th><th>2024</th><th>同比</th><th>2026Q1</th></tr>
+<tr><td>营业收入</td><td>481.40亿</td><td>402.23亿</td><td class="green">+19.68%</td><td>157.50亿（+46.00%）</td></tr>
+<tr><td>归母净利润</td><td>15.67亿</td><td>14.67亿</td><td class="green">+6.84%</td><td>5.55亿（+80.54%）</td></tr>
+<tr><td>扣非净利润</td><td>14.49亿</td><td>12.81亿</td><td class="green">+13.10%</td><td>5.18亿（+96.87%）</td></tr>
+<tr><td>毛利率</td><td>12.34%</td><td>12.12%</td><td>+0.22pp</td><td>12.42%</td></tr>
+<tr><td>ROE</td><td>7.59%</td><td>7.39%</td><td>+0.20pp</td><td>2.29%（Q1年化9.2%）</td></tr>
+<tr><td>资产负债率</td><td>58.80%</td><td>59.62%</td><td>-0.82pp</td><td>59.25%</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📰 机构密集覆盖</h3>
+<table>
+<tr><th>机构</th><th>日期</th><th>评级</th><th>2026E EPS</th><th>PE</th></tr>
+<tr><td>东吴证券</td><td>2026-04-29</td><td class="green">买入</td><td>2.93元</td><td>17.2x</td></tr>
+<tr><td>长江证券</td><td>2026-05-22</td><td class="green">买入</td><td>—</td><td>—</td></tr>
+<tr><td>中信建投</td><td>2026-05-26</td><td class="green">买入</td><td>—</td><td>—</td></tr>
+<tr><td>东方证券</td><td>2026-05-22</td><td class="green">买入</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📈 走势与估值</h3>
+<div class="chart-placeholder">
+近60日：44.51 → <strong>50.72</strong>（+14.0%）<br>
+60日均线53.44 → 现价折价5%<br>
+PE_TTM <strong>29.9x</strong> | PB <strong>2.23x</strong> | 总市值543亿<br>
+Q1业绩预告兑现：预告53-59亿（+72%~92%），实际5.55亿符合预期
+</div>
+</div>
+
+<div class="conclusion-box">
+<strong>🎯 交叉验证结论</strong><br><br>
+扣非率92.5%，利润质量好。Q1扣非+97%配合营收+46%，是真正的量价齐升。管理层归因「镍资源一体化贡献弹性」已被数字验证：镍矿开采+冶炼环节盈利提升是核心增量。唯一隐忧：经营现金流/净利=0.80，刚好在安全线上，Q1只有0.02元/股（季节性低点）。<br><br>
+<strong class="signal-green">🟢 综合评级：推荐持有 — 三股中基本面最扎实。PEG 0.37，30x PE对应80%+增长合理偏低估。现价低于60日均5%，当前价位区间值得配置。</strong>
+</div>
+
+<hr class="divider">
+
+<!-- ====== 美利云 ====== -->
+<h2>🔍 三、美利云（000815）<span class="badge badge-yellow">观望（转型未验证）</span></h2>
+
+<div class="card">
+<h3>📖 财务数据（2025年报 + 2026Q1）</h3>
+<table>
+<tr><th>项目</th><th>2025</th><th>2024</th><th>同比</th><th>2026Q1</th></tr>
+<tr><td>营业收入</td><td>3.43亿</td><td>9.12亿</td><td class="red">-62.40%</td><td>8683万（-0.80%）</td></tr>
+<tr><td>归母净利润</td><td>0.67亿</td><td class="red">-5.48亿</td><td class="green">扭亏</td><td>2220万（+102.61%）</td></tr>
+<tr><td>扣非净利润</td><td>0.72亿</td><td class="red">-0.64亿</td><td class="green">扭亏</td><td>1666万（+54.54%）</td></tr>
+<tr><td>毛利率</td><td>44.01%</td><td>11.50%</td><td class="green">+32.51pp</td><td>43.89%</td></tr>
+<tr><td>资产负债率</td><td>35.53%</td><td>46.14%</td><td class="green">-10.61pp</td><td>35.07%</td></tr>
+</table>
+<p style="margin-top:12px;"><strong>业务大换血：</strong>2024年底关停造纸业务，现仅剩数据中心(IDC)机柜租赁+运维。营收从10亿级降至3.4亿是主动转型。毛利率从11.5%→44%验证了"砍低毛利、留高毛利"策略。</p>
+</div>
+
+<div class="card">
+<h3>📈 走势与估值</h3>
+<div class="chart-placeholder">
+近60日：14.78 → <strong>17.70</strong>（+19.8%）<br>
+60日均线19.16 → 现价折价8%<br>
+PE_TTM <strong class="red">158x</strong> | PB <strong class="red">8.76x</strong> | 总市值123亿<br>
+机构研报：<strong class="red">最近一篇为2017年东吴证券（9年前）</strong>
+</div>
+</div>
+
+<div class="conclusion-box">
+<strong>🎯 交叉验证结论</strong><br><br>
+低负债率（35%）和高毛利率（44%）是转型红利，但营收零增长+应收周转275天是致命伤。123亿市值对应TTM净利不到7800万——158x PE完全依赖IDC+算力概念，而非盈利基础。没有券商覆盖意味着市场价格纯粹由情绪驱动。<br><br>
+<strong class="signal-yellow">🟡 综合评级：观望 — 转型方向正确但估值脱离基本面。等待连续2季度营收正增长+机构覆盖回归后再评估。</strong>
+</div>
+
+<hr class="divider">
+
+<!-- ====== 综合对比 ====== -->
+<h2>📊 三股综合对比</h2>
+<div style="overflow-x: auto;">
+<table>
+<tr><th>维度</th><th>弘信电子 300657</th><th>中伟股份 300919</th><th>美利云 000815</th></tr>
+<tr><td>2025营收</td><td>73.13亿</td><td>481.40亿</td><td>3.43亿</td></tr>
+<tr><td>2025净利</td><td>1.47亿</td><td>15.67亿</td><td>0.67亿</td></tr>
+<tr><td>Q1营收增速</td><td class="red">+1.85%</td><td class="green">+46.00%</td><td class="red">-0.80%</td></tr>
+<tr><td>Q1扣非增速</td><td class="green">+471.61%</td><td class="green">+96.87%</td><td class="yellow">+54.54%</td></tr>
+<tr><td>OpCF/NP</td><td class="red">0.52</td><td class="yellow">0.80</td><td class="green">2.90</td></tr>
+<tr><td>负债率</td><td class="red">78.96%</td><td class="green">59.25%</td><td class="green">35.07%</td></tr>
+<tr><td>PE_TTM</td><td class="red">128.54x</td><td class="green">29.9x</td><td class="red">158x</td></tr>
+<tr><td>PB</td><td class="red">16.14x</td><td class="green">2.23x</td><td class="yellow">8.76x</td></tr>
+<tr><td>机构覆盖</td><td class="yellow">1家(旧)</td><td class="green">4+家</td><td class="red">0家</td></tr>
+<tr><td><strong>综合评级</strong></td><td class="yellow"><strong>🟡 持有</strong></td><td class="green"><strong>🟢 推荐持有</strong></td><td class="yellow"><strong>🟡 观望</strong></td></tr>
+</table>
+</div>
+
+<hr class="divider">
+
+<h2>🏁 投资结论</h2>
+<table>
+<tr><th>标的</th><th>结论</th><th>核心逻辑</th></tr>
+<tr>
+  <td><strong>弘信电子</strong></td>
+  <td class="yellow"><strong>🟡 持有（关注算力）</strong></td>
+  <td>扣非扭亏确定性强，但PE 129x消化难度极大。经营现金流/净利仅0.52，Q1转负。等待35-38元区间。</td>
+</tr>
+<tr>
+  <td><strong>中伟股份</strong></td>
+  <td class="green"><strong>🟢 推荐持有</strong></td>
+  <td>Q1扣非+97%×营收+46%，PEG=0.37。镍资源一体化弹性刚开始释放。现价低于60日均5%，性价比最优。</td>
+</tr>
+<tr>
+  <td><strong>美利云</strong></td>
+  <td class="yellow"><strong>🟡 观望</strong></td>
+  <td>IDC转型+低负债+高毛利组合不错，但158x PE+零机构覆盖=概念炒作。等业绩验证。</td>
+</tr>
+</table>
+
+<div class="footer">
+  <p>⚠️ <strong>免责声明</strong>：本报告仅基于公开财务数据和券商研报进行分析，所有结论均为AI生成的分析观点，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+  <p>报告生成时间：2026-06-22 | 数据来源：akshare、券商研报、业绩预告 | 分析师：Hermes Earnings Agent v2.2</p>
+</div>
+
+</body>
+</html>
