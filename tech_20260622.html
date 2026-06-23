@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术分析日报 — 2026-06-22</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, 'Microsoft YaHei', sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+h1 { color: #00d4ff; font-size: 1.5em; margin-bottom: 20px; }
+h2 { color: #ff6b6b; font-size: 1.2em; margin: 25px 0 12px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+h3 { margin: 18px 0 8px; font-size: 1.1em; }
+.card { background: #16213e; border-radius: 10px; padding: 18px; margin: 14px 0; border-left: 4px solid #00d4ff; }
+.card.yellow { border-left-color: #ffd700; }
+.card.green { border-left-color: #00ff88; }
+.card.red { border-left-color: #ff4444; }
+ul { list-style: none; padding: 0; }
+li { padding: 4px 0; font-size: 0.95em; line-height: 1.6; }
+.warn { color: #ff6b6b; }
+.good { color: #00ff88; }
+.muted { color: #888; font-size: 0.85em; }
+.tag { display: inline-block; background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 4px; }
+.tag.up { background: #1a3a1a; color: #00ff88; }
+.tag.down { background: #3a1a1a; color: #ff4444; }
+.divider { border-top: 1px dashed #333; margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<h1>📋 技术分析日报 — 2026-06-22</h1>
+
+<h2>📊 市场概览</h2>
+<div class="card">
+<ul>
+<li>上证指数 4163.10 <span class="tag up">+1.78%</span> 成交17040亿</li>
+<li>深证成指 16372.50 <span class="tag up">+2.13%</span> 成交20332亿</li>
+<li>创业板指 4359.39 <span class="tag up">+2.52%</span> 成交4924亿</li>
+<li>两市合计成交 <strong>37372亿</strong></li>
+</ul>
+</div>
+
+<h2>🔬 持仓技术面</h2>
+
+<h3>🟡 弘信电子（300657）</h3>
+<div class="card yellow">
+<ul>
+<li>现价 <strong>46.46</strong> | 当日 <span class="tag down">-2.29%</span> | 5日 <span class="tag down">-0.94%</span></li>
+<li>均线：MA5 47.50 / MA10 46.21 / MA20 44.73 / MA60 38.59</li>
+<li>趋势：<span class="good">多头排列</span>（MA5 > MA10 > MA20 > MA60）</li>
+<li>MACD：DIF 23.84 | DEA 23.30 | BAR +1.08（红柱但收窄）</li>
+<li>RSI(14)：64.9 | 布林宽度：25.3%</li>
+<li>布林带：中轨 44.73 | 上轨 50.40 | 下轨 39.07</li>
+<li>支撑 38.90 / 压力 52.88</li>
+<li class="warn">⚠️ 跌破 44.73（MA20/布林中轨）则短期走弱</li>
+<li>⚠️ 突破 50.40（布林上轨）趋势加速</li>
+<li>量价：量比 0.94x | 缩量回调，多头趋势中的正常回踩</li>
+<li class="warn">🔔 MACD 红柱连续收窄，若转绿柱且破 MA20 → 趋势反转信号</li>
+</ul>
+</div>
+
+<h3>🟡 中伟股份（300919）</h3>
+<div class="card yellow">
+<ul>
+<li>现价 <strong>51.23</strong> | 当日 <span class="tag up">+5.32%</span> | 5日 <span class="tag up">+7.65%</span></li>
+<li>均线：MA5 49.57 / MA10 47.89 / MA20 49.86 / MA60 53.57</li>
+<li>趋势：均线缠绕（MA5金叉MA10/MA20，但MA60压制上方）</li>
+<li>MACD：DIF 25.57 | DEA 25.77 | BAR -0.41（绿柱逼近零轴）</li>
+<li>RSI(14)：49.1 | 布林宽度：23.2%</li>
+<li>布林带：中轨 49.86 | 上轨 55.64 | 下轨 44.08</li>
+<li>支撑 44.63 / 压力 56.21</li>
+<li class="warn">⚠️ 跌破 49.86（布林中轨/MA20）反弹失败</li>
+<li class="good">⚠️ 突破 53.57（MA60）中期转多</li>
+<li>量价：量比 1.10x | 温和放量上涨，MACD即将金叉</li>
+<li>🔔 DIF距离金叉DEA仅差0.20，明日若继续涨则金叉确认</li>
+</ul>
+</div>
+
+<h3>🟢 美利云（000815）</h3>
+<div class="card green">
+<ul>
+<li>现价 <strong>17.75</strong> | 当日 <span class="tag up">+4.04%</span> | 5日 <span class="tag up">+16.09%</span></li>
+<li>均线：MA5 16.88 / MA10 16.26 / MA20 16.45 / MA60 19.16</li>
+<li>趋势：短多排列（MA5 > MA10 > MA20），但MA60在19.16压制</li>
+<li>MACD：DIF 8.66 | DEA 8.63 | BAR +0.04（零轴金叉刚成）</li>
+<li>RSI(14)：60.2 | 布林宽度：24.5%</li>
+<li>布林带：中轨 16.45 | 上轨 18.46 | 下轨 14.44</li>
+<li>支撑 14.78 / 压力 19.68（19.16的MA60是关键心理关）</li>
+<li class="warn">⚠️ 跌破 16.45（MA20/布林中轨）短期动能衰竭</li>
+<li class="good">⚠️ 突破 19.16（MA60）中期趋势反转确认</li>
+<li>量价：量比 1.27x | <span class="good">放量上涨（看涨确认）</span></li>
+<li class="warn">🔔 短期涨幅过大，关注布林上轨 18.46 附近的抛压</li>
+</ul>
+</div>
+
+<h2>⚠️ 异动提醒</h2>
+<div class="card">
+<ul>
+<li>美利云 5日 +16.09%，放量突破 MA20，但逼近 MA60 压力位，短期获利回吐风险上升</li>
+<li>弘信电子逆市缩量下跌 -2.29%，与大盘 +1.78% 背离，需关注是否有利空消息</li>
+<li>中伟股份 DIF 与 DEA 仅差 0.20，MACD 金叉几乎确认，若明日放量则中期转强</li>
+</ul>
+</div>
+
+<h2>📈 板块强度（6月22日）</h2>
+<div class="card">
+<ul>
+<li>🟢 强势：化工（+6.70%）、农药化肥（+5.67%）、金融（+5.14%）、有色金属（+4.65%）、化纤（+4.35%）</li>
+<li>🔴 弱势：公路桥梁（-1.84%）、综合（-1.19%）、摩托车（-1.11%）</li>
+<li>💡 与持仓关联：弘信电子（电子元器件）不在强势板块中，逆市走弱可能与板块轮动有关</li>
+</ul>
+</div>
+
+<h2>💡 择时参考</h2>
+<div class="card">
+<h3>短期（1-3天）</h3>
+<ul>
+<li>弘信：多头回踩 MA20 附近是加仓窗口，跌破则减仓</li>
+<li>中伟：MACD 金叉临界点，突破 MA60 则趋势转多，等确认</li>
+<li>美利云：强势但短期涨幅过大，逼近布林上轨 18.46，短线减仓/止盈点位</li>
+</ul>
+<h3>中期（1-4周）</h3>
+<ul>
+<li>弘信：多头趋势完好，MA60 远在 38.59，中期看多但等回调企稳</li>
+<li>中伟：MA60 压制 + 均线缠绕，中期方向不明，等 MACD 金叉确认</li>
+<li>美利云：若放量突破 MA60（19.16）站稳，中期底部确认，目标前高 22+</li>
+</ul>
+</div>
+
+<h2>⛔ 矛盾信号</h2>
+<div class="card red">
+<ul>
+<li><strong>美利云 000815</strong>：5日 +16% 强势 + 放量上涨（看涨）vs MA60（19.16）仍在现价上方 + 短期获利盘压力 → <strong>不交易区间</strong></li>
+<li>突破 MA60 且站稳 → 追多；回踩 MA5（16.88）不破 → 加仓；跌破 MA20（16.45）→ 反弹结束</li>
+</ul>
+</div>
+
+<div class="divider"></div>
+<p class="muted">⚠️ 免责声明：技术分析是概率工具，不构成投资建议。数据截止 2026-06-22，来源腾讯K线/新浪财经/baostock。</p>
+
+</body>
+</html>
