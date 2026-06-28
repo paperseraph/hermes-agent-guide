@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL执行信号周报 — 2025-06-28</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-secondary: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d2991d;
+    --blue: #58a6ff;
+    --purple: #bc8cc8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.5em; margin-bottom: 8px; }
+  .date { color: var(--text-secondary); font-size: 0.9em; margin-bottom: 24px; }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .signal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .signal-icon { font-size: 1.3em; }
+  .signal-name { font-size: 1.1em; font-weight: 600; }
+  .signal-code { color: var(--text-secondary); font-size: 0.85em; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-left: auto;
+  }
+  .badge-hold { background: #2d333b; color: var(--text-secondary); }
+  .badge-buy { background: #1a3a1a; color: var(--green); }
+  .badge-sell { background: #3a1a1a; color: var(--red); }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+    font-size: 0.9em;
+  }
+  .metric-label { color: var(--text-secondary); }
+  .metric-value { text-align: right; font-variant-numeric: tabular-nums; }
+  .conf-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .conf-fill { height: 100%; border-radius: 3px; }
+  .conf-fill-low { background: var(--yellow); width: 35%; }
+  .conf-fill-mid { background: var(--blue); width: 50%; }
+  .section-title {
+    color: var(--purple);
+    font-weight: 600;
+    margin: 28px 0 12px;
+    font-size: 1.05em;
+  }
+  .warning {
+    background: #2a1f0d;
+    border: 1px solid #5a4a1a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.9em;
+    color: var(--yellow);
+  }
+  .warning-title { font-weight: 600; margin-bottom: 6px; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .ref-note { color: var(--text-secondary); font-size: 0.8em; margin-top: 6px; }
+  .overall-bias {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+    background: #2d333b;
+    color: var(--text-secondary);
+  }
+</style>
+</head>
+<body>
+
+<h1>🤖 RL执行信号周报</h1>
+<div class="date">2025年6月28日（周日）· 规则信号引擎（Fallback）</div>
+
+<hr>
+
+<div class="section-title">📊 持仓信号</div>
+
+<!-- 弘信电子 300657 -->
+<div class="card">
+  <div class="signal-header">
+    <span class="signal-icon">🟡</span>
+    <span class="signal-name">弘信电子</span>
+    <span class="signal-code">300657</span>
+    <span class="badge badge-hold">HOLD</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">收盘价</span><span class="metric-value">¥43.06</span>
+    <span class="metric-label">置信度</span><span class="metric-value">0.50</span>
+    <span class="metric-label">MACD</span><span class="metric-value">0.91 ↓</span>
+    <span class="metric-label">RSI(30)</span><span class="metric-value">50.0（中性）</span>
+    <span class="metric-label">CCI(30)</span><span class="metric-value">-17.7</span>
+    <span class="metric-label">DX(30)</span><span class="metric-value">1.6（弱趋势）</span>
+    <span class="metric-label">布林位置</span><span class="metric-value">37.3%</span>
+    <span class="metric-label">SMA30</span><span class="metric-value">¥45.13</span>
+  </div>
+  <div class="conf-bar"><div class="conf-fill conf-fill-mid"></div></div>
+</div>
+
+<!-- 中伟股份 300919 -->
+<div class="card">
+  <div class="signal-header">
+    <span class="signal-icon">🟡</span>
+    <span class="signal-name">中伟股份</span>
+    <span class="signal-code">300919</span>
+    <span class="badge badge-hold">HOLD</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">收盘价</span><span class="metric-value">¥42.72</span>
+    <span class="metric-label">置信度</span><span class="metric-value">0.35</span>
+    <span class="metric-label">MACD</span><span class="metric-value">-1.95 ↓</span>
+    <span class="metric-label">RSI(30)</span><span class="metric-value">38.1（偏弱）</span>
+    <span class="metric-label">CCI(30)</span><span class="metric-value">-165.7（超卖区）</span>
+    <span class="metric-label">DX(30)</span><span class="metric-value">21.0（趋势形成中）</span>
+    <span class="metric-label">布林位置</span><span class="metric-value">-9.3%（破下轨）</span>
+    <span class="metric-label">SMA30</span><span class="metric-value">¥50.48</span>
+  </div>
+  <div class="conf-bar"><div class="conf-fill conf-fill-low"></div></div>
+</div>
+
+<!-- 美利云 000815 -->
+<div class="card">
+  <div class="signal-header">
+    <span class="signal-icon">🟡</span>
+    <span class="signal-name">美利云</span>
+    <span class="signal-code">000815</span>
+    <span class="badge badge-hold">HOLD</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">收盘价</span><span class="metric-value">¥14.60</span>
+    <span class="metric-label">置信度</span><span class="metric-value">0.35</span>
+    <span class="metric-label">MACD</span><span class="metric-value">-0.65 ↓</span>
+    <span class="metric-label">RSI(30)</span><span class="metric-value">45.0（中性偏弱）</span>
+    <span class="metric-label">CCI(30)</span><span class="metric-value">-151.8（超卖区）</span>
+    <span class="metric-label">DX(30)</span><span class="metric-value">0.1（无明显趋势）</span>
+    <span class="metric-label">布林位置</span><span class="metric-value">1.1%</span>
+    <span class="metric-label">SMA30</span><span class="metric-value">¥17.13</span>
+  </div>
+  <div class="conf-bar"><div class="conf-fill conf-fill-low"></div></div>
+</div>
+
+<div class="ref-note">📌 指数信号（参考，不可交易）：沪深300 → HOLD · 创业板指 → BUY（低置信度0.25）</div>
+
+<hr>
+
+<div class="section-title">⚖️ 仓位约束与整体偏向</div>
+<div class="card">
+  <div style="margin-bottom:12px">
+    <span style="color:var(--text-secondary)">单票上限</span>
+    <strong style="margin-left:12px">≤ 25%</strong>
+    <span style="color:var(--text-secondary);margin-left:24px">现金预留</span>
+    <strong style="margin-left:12px">≥ 5%</strong>
+  </div>
+  <div>
+    <span style="color:var(--text-secondary)">整体偏向</span>
+    <span class="overall-bias">🟡 中性 — 全场HOLD，无明确方向</span>
+  </div>
+</div>
+
+<div class="section-title">⚠️ 模型警告</div>
+<div class="warning">
+  <div class="warning-title">本轮推理使用规则信号引擎（Fallback）</div>
+  <div style="margin-bottom:8px">
+    PPO模型加载失败（PyTorch C扩展异常），已自动退化为规则引擎。信号基于 MACD + RSI + 布林 + CCI 综合评分，不含强化学习策略。
+  </div>
+  <div>
+    训练数据截止：2025-06-01 · 可能失效场景：极端单边行情下规则信号灵敏度不足 · 300919/000815训练数据量较少，置信度偏低。
+  </div>
+</div>
+
+</body>
+</html>
