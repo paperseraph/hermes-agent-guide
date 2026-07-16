@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📋 技术分析日报 — 2026-07-16</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, 'Microsoft YaHei', sans-serif; padding: 20px; line-height: 1.8; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { color: #f0c040; font-size: 1.5em; margin-bottom: 20px; border-bottom: 2px solid #f0c040; padding-bottom: 10px; }
+h2 { color: #e09040; font-size: 1.2em; margin: 24px 0 10px; }
+h3 { color: #80c0ff; font-size: 1.05em; margin: 16px 0 8px; }
+.card { background: #16213e; border-radius: 12px; padding: 20px; margin: 16px 0; border-left: 4px solid #f0c040; }
+.card.bearish { border-left-color: #e05050; }
+.card.neutral { border-left-color: #909090; }
+p, li { margin: 6px 0; }
+.highlight { color: #f0c040; font-weight: bold; }
+.red { color: #e05050; }
+.green { color: #50e050; }
+.divider { border: none; border-top: 1px solid #333; margin: 20px 0; }
+.signal { padding: 8px 14px; border-radius: 6px; margin: 8px 0; display: inline-block; }
+.signal.bear { background: rgba(224,80,80,0.15); color: #e05050; }
+.signal.bull { background: rgba(80,224,80,0.15); color: #50e050; }
+.footer { margin-top: 30px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.85em; color: #808080; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📋 技术分析日报 — 2026-07-16</h1>
+
+<div class="card">
+<h2>📊 市场概览</h2>
+<p>上证指数 <span class="red">3955.58</span>（<span class="red">-0.29%</span>）成交12263亿</p>
+<p>深证成指 <span class="red">14779.40</span>（<span class="red">-0.97%</span>）成交13449亿</p>
+<p>创业板指 <span class="red">3804.70</span>（<span class="red">-1.21%</span>）成交2920亿</p>
+<p>两市合计成交 <span class="highlight">28632亿</span></p>
+</div>
+
+<div class="card bearish">
+<h2>🔬 指数技术面</h2>
+
+<h3>🔴 上证指数</h3>
+<p>现价 3955.58 | 当日 -0.29%</p>
+<p>均线：MA5 3973.85 / MA10 3994.41 / MA20 4047.56 / MA60 4044.47</p>
+<p>趋势：<span class="red">空头排列，弱势下行</span>（MA5<MA10<MA20，价格在所有短期均线之下）</p>
+<p>MACD：DIF -31.77 | DEA -20.28 | BAR <span class="red">-22.99</span>（绿柱持续放大）</p>
+<p>RSI(14)：43.0 | 布林宽度：6.4%（窄幅收窄中）</p>
+<p>布林带：中轨 4047.56 | 上轨 4177.37 | 下轨 3917.75</p>
+<p>支撑 3869 / 压力 4048（中轨）</p>
+<p class="signal bear">⚠️ 跌破 3869 则20日支撑失效，下探空间打开至布林下轨 3917</p>
+<p>量价：量比 1.02x | 近5日均额 13521亿 | 信号：<span class="red">缩量下跌，空方占优</span></p>
+
+<h3>🔴 深证成指</h3>
+<p>现价 14779.40 | 当日 -0.97%</p>
+<p>均线：MA5 14934.50 / MA10 15135.05 / MA20 15590.20 / MA60 15483.82</p>
+<p>趋势：<span class="red">空头排列，弱势下行</span></p>
+<p>MACD：DIF -190.40 | DEA -64.47 | BAR <span class="red">-251.86</span>（绿柱大幅放大，深证最弱）</p>
+<p>RSI(14)：36.7 | 布林宽度：13.6%</p>
+<p>布林带：中轨 15590.20 | 上轨 16653.44 | 下轨 14526.96</p>
+<p>支撑 14338 / 压力 15590</p>
+<p class="signal bear">⚠️ 跌破 14338 则下探布林下轨 14527</p>
+<p>量价：量比 0.97x | 近5日均额 15270亿 | 信号：<span class="red">缩量下跌</span></p>
+
+<h3>🔴 创业板指</h3>
+<p>现价 3804.70 | 当日 -1.21%</p>
+<p>均线：MA5 3848.05 / MA10 3898.36 / MA20 4079.62 / MA60 4036.73</p>
+<p>趋势：<span class="red">空头排列，弱势下行</span></p>
+<p>MACD：DIF -55.15 | DEA -7.92 | BAR <span class="red">-94.46</span>（绿柱放大）</p>
+<p>RSI(14)：<span class="red">34.9</span>（逼近超卖区30） | 布林宽度：19.6%（宽幅运行）</p>
+<p>布林带：中轨 4079.62 | 上轨 4479.47 | 下轨 3679.77</p>
+<p>支撑 3674 / 压力 4079</p>
+<p class="signal bear">⚠️ 跌破 3674 支撑失效；RSI 若跌破 30 进入超卖区，短线或有技术反弹</p>
+<p>量价：量比 0.99x | 近5日均额 7067亿 | 信号：<span class="red">缩量下跌</span></p>
+</div>
+
+<div class="card">
+<h2>📈 板块强度（7月15日收盘）</h2>
+<h3>🟢 强势板块</h3>
+<p>化学制药 <span class="green">+4.10%</span>（主力净流入 +4.79亿，5日连续流入，20日净流入+4.03亿）领涨：博瑞医药 +20.01%</p>
+<p>医疗服务 <span class="green">+4.78%</span>（主力净流入 +3.56亿，5日+7.26亿，20日+8.15亿，资金持续加仓）领涨：万邦医药 +20.00%</p>
+<p>证券Ⅱ <span class="green">+2.46%</span>（单日主力净流入 +2.85亿，但5日-2.51亿、20日-6.75亿，疑似一日游）领涨：中金公司 +8.18%</p>
+
+<h3>🔴 弱势板块</h3>
+<p>半导体 <span class="red">-5.53%</span>（主力净流出 -29.86亿，5日-76.67亿，20日-200.18亿！持续大逃杀）</p>
+<p>光学光电子 <span class="red">-5.15%</span>（主力净流出 -4.30亿，5日-17.11亿，20日-55.03亿）</p>
+<p>元件 <span class="red">-2.42%</span>（主力净流出 -3.88亿，20日累计-70.75亿）</p>
+
+<p class="highlight">💡 科技线（半导体/光学/元件）遭遇系统性资金撤离，医药消费防御板块承接溢出资金。板块轮动从进攻转向防御。</p>
+</div>
+
+<div class="card">
+<h2>💡 择时参考</h2>
+<h3>短期（1-3天）</h3>
+<p>三大指数均处空头排列，MACD 绿柱放大，短期大概率继续寻底。创业板 RSI 34.9 距超卖仅一步之遥，若急跌至 3670-3700 区间可能出现技术反抽。上证关注 3917（布林下轨）支撑。</p>
+<p class="signal bear">⚠️ 当前不宜追空，空仓观望为主</p>
+
+<h3>中期（1-4周）</h3>
+<p>MA60 均已拐头下行或走平，中期趋势转弱确认。上证若有效跌破 3869（20日低点），将开启新一浪下跌。深证/创业板布林带宽（13.6%/19.6%）偏大，说明波动率尚未收敛，底部结构不完整。中期需等待缩量、波动率收敛、MACD 底背离信号出现。</p>
+</div>
+
+<div class="card neutral">
+<h2>⛔ 矛盾信号</h2>
+<p>创业板 RSI 34.9 逼近超卖 vs MACD 绿柱仍在放大 → 短线看反弹 vs 趋势看下跌 → <span class="highlight">不交易区间</span>。急跌可抢反弹，但需快进快出；趋势仓继续等待。</p>
+<p>证券板块单日流入 vs 半导体持续大逃杀 → 是否为"护盘"还是风格切换，需再观察1-2天确认。</p>
+</div>
+
+<div class="footer">
+<p>⚠️ 免责声明：技术分析是概率工具，不构成投资建议。当前空仓状态，以上仅为指数技术面研判。</p>
+<p>数据来源：baostock / 腾讯财经 / 新浪财经 | 数据截止：2026-07-15 收盘</p>
+<p>Hermes Agent · 技术分析日报 · db0b76d6cbff</p>
+</div>
+
+</div>
+</body>
+</html>
