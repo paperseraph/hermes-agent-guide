@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术分析日报 — 2026-07-17</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; color: #e0e0e0; font-family: -apple-system, 'Microsoft YaHei', sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.7; }
+h1 { color: #e94560; font-size: 1.5em; margin-bottom: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+h2 { color: #f0a500; font-size: 1.2em; margin: 20px 0 10px; }
+h3 { font-size: 1.05em; margin: 12px 0 6px; }
+.card { background: #16213e; border-radius: 8px; padding: 16px; margin: 10px 0; border-left: 3px solid #e94560; }
+.card.green { border-left-color: #4ecca3; }
+.card.yellow { border-left-color: #f0a500; }
+.market-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
+.market-item { background: #16213e; border-radius: 6px; padding: 10px 14px; flex: 1; min-width: 180px; }
+.market-item .name { color: #aaa; font-size: 0.85em; }
+.market-item .price { font-size: 1.3em; font-weight: bold; }
+.market-item .down { color: #4ecca3; }
+.market-item .up { color: #e94560; }
+.signal { color: #f0a500; }
+.warn { color: #e94560; }
+.muted { color: #888; font-size: 0.9em; }
+hr { border: none; border-top: 1px solid #333; margin: 16px 0; }
+ul { padding-left: 20px; margin: 6px 0; }
+li { margin: 4px 0; }
+code { background: #0f3460; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+.section-divider { margin: 20px 0 10px; border-top: 1px dashed #444; }
+</style>
+</head>
+<body>
+<h1>📋 技术分析日报 — 2026-07-17</h1>
+
+<h2>📊 市场概览</h2>
+<div class="market-grid">
+<div class="market-item"><div class="name">上证指数</div><div class="price down">3882.41 <span class="muted">-1.85%</span></div><div class="muted">成交11242亿</div></div>
+<div class="market-item"><div class="name">深证成指</div><div class="price down">14488.65 <span class="muted">-1.97%</span></div><div class="muted">成交12794亿</div></div>
+<div class="market-item"><div class="name">创业板指</div><div class="price down">3692.46 <span class="muted">-2.95%</span></div><div class="muted">成交2852亿</div></div>
+</div>
+<p class="warn">💀 三大指数齐跌，创业板重挫近3%，两市合计成交24036亿</p>
+
+<h2>🔬 指数技术面</h2>
+
+<div class="card">
+<h3>🔴 上证指数（3882.41）</h3>
+<ul>
+<li>当日 <span class="warn">-1.85%</span> | 5日 -3.82% | 10日 -3.64% | 连跌2天</li>
+<li>均线：MA5 3943 / MA10 3980 / MA20 4036 / MA60 4081</li>
+<li>趋势：<span class="warn">空头排列</span>，股价跌破全部均线</li>
+<li>MACD：DIF -39.92 | DEA -25.55 | BAR -28.74 → <span class="warn">死叉</span></li>
+<li>RSI(14)：37.6 | 布林宽度：7.2%</li>
+<li>布林：中轨 4036 | 上轨 4181 | 下轨 3891</li>
+<li class="warn">🚨 收盘价跌破布林下轨，开口扩张</li>
+<li>支撑 3867（昨日最低点）</li>
+<li class="warn">⚠️ 跌破3867则下探3800</li>
+<li>压力 4036（MA20/布林中轨）</li>
+<li>量价：量比0.94 → 缩量下跌</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔴 深证成指（14488.65）</h3>
+<ul>
+<li>当日 <span class="warn">-1.97%</span> | 5日 -5.91% | 10日 -6.52% | 连跌2天</li>
+<li>均线：MA5 14752 / MA10 15034 / MA20 15521 / MA60 15456</li>
+<li>趋势：<span class="warn">空头排列</span>，MA60已跌破</li>
+<li>MACD：DIF -240.74 | DEA -111.29 | BAR -258.92 → <span class="warn">死叉</span></li>
+<li>RSI(14)：34.1 | 布林宽度：14.9%</li>
+<li>布林：中轨 15521 | 上轨 16677 | 下轨 14364</li>
+<li>中轨下方，距下轨还有约125点</li>
+<li>支撑 14338 | 压力 15521</li>
+<li>量价：量比0.93 → 缩量下跌</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔴 创业板指（3692.46）</h3>
+<ul>
+<li>当日 <span class="warn">-2.95%</span> | 5日 -8.11% | 10日 -8.09% | 连跌2天</li>
+<li>均线：MA5 3783 / MA10 3866 / MA20 4056 / MA60 3949</li>
+<li>趋势：<span class="warn">空头排列</span>，10日跌超8%</li>
+<li>MACD：DIF -73.13 | DEA -24.89 | BAR -96.47 → <span class="warn">死叉</span></li>
+<li>RSI(14)：32.1 → 接近超卖</li>
+<li>布林宽度：<span class="warn">21.3%</span> 🚨 波动率爆炸</li>
+<li>布林：中轨 4056 | 上轨 4487 | 下轨 3625</li>
+<li class="warn">⚠️ 跌破3658则下轨3625是最后防线</li>
+<li>支撑 3658 | 压力 4056</li>
+<li>量价：量比0.93 → 缩量下跌，多头弃守</li>
+</ul>
+</div>
+
+<h2>📈 板块强度（7/16）</h2>
+
+<div class="card green">
+<h3>🟢 强势</h3>
+<ul>
+<li>广告营销 <span class="up">+3.09%</span>（主力净流入6.23亿，涨26/28）</li>
+<li>IT服务Ⅱ <span class="up">+1.42%</span>（主力净流入14.05亿，涨80/122）</li>
+<li>软件开发 <span class="up">+0.41%</span>（主力净流入7.21亿，涨90/130）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔴 弱势</h3>
+<ul>
+<li>电子化学品Ⅱ <span class="warn">-7.03%</span>（主力净流出41.39亿，0涨/35跌 💀）</li>
+<li>半导体 <span class="warn">-5.63%</span>（主力净流出254.48亿，涨20/176）</li>
+<li>通信设备 <span class="warn">-4.08%</span>（主力净流出112.44亿，涨29/85）</li>
+</ul>
+</div>
+<p class="warn">💡 AI链全线退潮，半导体+通信+电子化学品主力一日出逃超400亿</p>
+
+<h2>💡 择时参考</h2>
+
+<div class="card yellow">
+<h3>短期（1-3天）</h3>
+<p>三大指数空头排列+MACD死叉+缩量下跌 → 典型下跌中继。创业板RSI 32.1接近超卖，可能有技术反弹，但反弹≠反转。上证布林下轨刚跌破，明天若不能收回3891则确认破位。</p>
+<p class="signal">策略：空仓观望，等放量止跌信号再考虑入场</p>
+</div>
+
+<div class="card yellow">
+<h3>中期（1-4周）</h3>
+<p>深证MA60被跌破是关键信号。布林宽度扩张→趋势加速→最坏时刻可能还没到。上证3800是下一道整数心理支撑。</p>
+<p class="signal">策略：等布林收窄+均线粘合，至少2-3周消化期</p>
+</div>
+
+<h2>⛔ 矛盾信号</h2>
+<div class="card">
+<ul>
+<li><strong>缩量下跌 vs 趋势加速</strong>：量价背离说缩量是卖压衰竭，布林却说趋势加速中 → <span class="signal">更信趋势指标（布林+MACD）</span></li>
+<li><strong>创业板RSI接近超卖 vs 布林扩张</strong>：超卖常触发反弹，但加速趋势中反弹只是空头休息 → <span class="signal">不交易区间</span></li>
+</ul>
+</div>
+
+<h2>⚠️ 异动提醒</h2>
+<div class="card">
+<ul>
+<li>电子化学品Ⅱ -7.03% 全板块0涨 → 行业级恐慌</li>
+<li>半导体主力出逃254亿，KOSPI同日暴跌5%，全球AI去杠杆共振</li>
+<li>创业板布林宽度21.3%为近两月峰值，方向选择在即</li>
+</ul>
+</div>
+
+<hr>
+<p class="muted">⚠️ 免责声明：技术分析是概率工具，不构成投资建议。当前空仓状态，无个股操作建议。数据截止2026-07-16收盘，来源腾讯K线/新浪行情。</p>
+<p class="muted" style="margin-top:10px;">🌐 永久地址：https://paperseraph.github.io/hermes-agent-guide/tech_20260717.html</p>
+</body>
+</html>
