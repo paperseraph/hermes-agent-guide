@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL执行信号周报 — 2026-07-19</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --dim: #8b949e;
+  --green: #3fb950;
+  --yellow: #d2991d;
+  --red: #da3633;
+  --blue: #58a6ff;
+  --accent: #79c0ff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:"Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; max-width:800px; margin:0 auto; padding:40px 24px; line-height:1.7; }
+h1 { font-size:1.6em; color:var(--accent); margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:12px; }
+h2 { font-size:1.15em; color:var(--dim); margin:28px 0 12px; text-transform:uppercase; letter-spacing:1px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 20px; margin:12px 0; }
+.card .name { font-size:1.1em; font-weight:600; margin-bottom:6px; }
+.card .meta { font-size:0.88em; color:var(--dim); }
+.card .metrics { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:0.85em; }
+.buy { color:var(--green); }
+.hold { color:var(--yellow); }
+.sell { color:var(--red); }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.78em; font-weight:600; }
+.tag-buy { background:rgba(63,185,80,0.15); color:var(--green); }
+.tag-hold { background:rgba(210,153,29,0.15); color:var(--yellow); }
+.tag-sell { background:rgba(218,54,51,0.15); color:var(--red); }
+.tag-ref { background:rgba(139,148,158,0.12); color:var(--dim); }
+.warn { background:rgba(218,54,51,0.08); border:1px solid rgba(218,54,51,0.2); border-radius:8px; padding:14px 18px; margin:20px 0; font-size:0.88em; }
+.warn strong { color:var(--red); }
+.foot { color:var(--dim); font-size:0.78em; margin-top:32px; border-top:1px solid var(--border); padding-top:16px; }
+</style>
+</head>
+<body>
+
+<h1>🤖 RL执行信号周报 — 2026年7月19日</h1>
+
+<h2>📊 模型状态</h2>
+<div class="card">
+  <div class="meta">PPO模型已就绪 · 推理路径：PPO主线 · 训练截止：2026-07-18</div>
+  <div style="margin-top:6px;font-size:0.85em;">5标的 × 8技术指标 → 51维状态向量 → PPO推理</div>
+</div>
+
+<h2>📋 持仓信号</h2>
+
+<div class="card">
+  <div class="name">🟡 弘信电子 <span style="color:var(--dim)">300657</span> <span class="tag tag-hold">HOLD</span></div>
+  <div class="meta">收盘 32.60 · 置信度 0.50 · MACD ↓ · RSI 31.1 · CCI -137.1 · 布林位置 4.1%</div>
+  <div class="meta">SMA30 41.92（价格低于均线 22%）· DX 35.5 方向不明</div>
+</div>
+
+<div class="card">
+  <div class="name">🟡 中伟股份 <span style="color:var(--dim)">300919</span> <span class="tag tag-hold">HOLD</span></div>
+  <div class="meta">收盘 36.62 · 置信度 0.40 · MACD ↓ · RSI 22.1 · CCI -111.5 · 布林位置 15.9%</div>
+  <div class="meta">RSI逼近超卖区(22.1)，但MACD仍在下行，反弹需信号确认 · 训练数据量偏少</div>
+</div>
+
+<div class="card">
+  <div class="name">🟡 美利云 <span style="color:var(--dim)">000815</span> <span class="tag tag-hold">HOLD</span></div>
+  <div class="meta">收盘 12.12 · 置信度 0.35 · MACD ↓ · RSI 31.3 · CCI -121.5 · 布林位置 13.2%</div>
+  <div class="meta">评分 -0.15（偏空）· SMA30 14.87（价格低于均线 18%）· 训练数据量偏少</div>
+</div>
+
+<div class="card">
+  <div class="name">🔵 沪深300 <span style="color:var(--dim)">000300</span> <span class="tag tag-ref">参考</span> <span class="tag tag-hold">HOLD</span></div>
+  <div class="meta">收盘 4529.1 · 置信度 0.35 · MACD ↓ · RSI 30.2 · CCI -219.0 深度超卖 · 布林位置 -13.0%（破下轨）</div>
+  <div class="meta">不可交易，仅做大盘风向标</div>
+</div>
+
+<div class="card">
+  <div class="name">🔵 创业板指 <span style="color:var(--dim)">399006</span> <span class="tag tag-ref">参考</span> <span class="tag tag-buy">BUY</span></div>
+  <div class="meta">收盘 3428.63 · 置信度 0.25 · MACD ↓ · RSI 26.1 · CCI -178.7 · 布林位置 -7.1%</div>
+  <div class="meta">低置信度买入信号 · 不可交易，仅做风格参考</div>
+</div>
+
+<h2>⚖️ 仓位约束</h2>
+<div class="card">
+  <div style="font-size:0.92em;">整体偏向：<strong style="color:var(--yellow)">中性偏防御</strong></div>
+  <div style="margin-top:6px;font-size:0.85em;color:var(--dim);">
+    三只可交易标的全部 HOLD · 无主动买入信号 · 无主动卖出信号<br>
+    单票上限 25% · 现金下限 5% · 无仓位调整触发
+  </div>
+</div>
+
+<div class="warn">
+  <strong>⚠️ 风险提示</strong><br>
+  · 三只标的RSI集中在22~31区间，整体超卖但MACD全线下行——典型下跌趋势未反转形态<br>
+  · 创业板指CCI -178.7、沪深300 CCI -219.0，市场广度为深度空头<br>
+  · 模型训练截止2026-07-18，急跌加速行情下信号可能滞后<br>
+  · 中伟股份(300919)和美利云(000815)训练数据量较少，置信度偏低<br>
+  · <strong>本周建议</strong>：等待技术Agent确认支撑位 + 宏观Agent股市评分后综合判断，不单独依据RL信号调仓
+</div>
+
+<div class="foot">
+  Hermes RL Agent v1.1 · PPO模型 · 2026-07-19 19:00 CST · <a href="https://paperseraph.github.io/hermes-agent-guide/" style="color:var(--dim)">paperseraph.github.io</a>
+</div>
+
+</body>
+</html>
